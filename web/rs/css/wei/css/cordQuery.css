@@ -1,0 +1,47 @@
+.classTop h2{
+    background-color: #19b8e0;
+    font-size:22px;
+    padding: 5px;
+    border-radius: 8px;
+    margin-left: 170px;
+    font-family: SIYUAN2;
+    width: auto;
+    height: auto;
+}
+.classTop h3{
+    font-family: SIYUAN3;
+}
+.list-group{
+    margin-top: 75px;
+}
+.list-group-item{
+    height: 73px;
+}
+.list-group-item p{
+    position: absolute;
+}
+.itemTitle{
+    font-size: 18px;
+    font-family: SIYUAN3;
+    margin-top: 0;
+    color: #535353;
+}
+.date{
+    margin-top: 27px;
+    font-size: 9px;
+    color: #a0a0a0;
+}
+.detail{
+    margin-top: 43px;
+    font-size: 12px;
+}
+.cord{
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    padding: 5px;
+    color: #ffffff;
+    background-color: #1bb9e0;
+    border-radius: 8px;
+    margin-top: 25px;
+}

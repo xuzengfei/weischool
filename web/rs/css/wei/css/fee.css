@@ -1,0 +1,179 @@
+body{
+    background-color: #f2f2f2;
+}
+a,a:hover,a:active,a:link{
+    text-decoration: none;
+    color:#000000;
+}
+.container{
+    text-align: center;
+    padding-top: 110px;
+    position: absolute;
+    bottom:55px;
+}
+.please{
+    font-size: 20px;
+    margin-top:5%;
+    font-family: SIYUAN3;
+    padding-bottom: 10px;
+    color: #242424;
+    position: relative;
+}
+.container button{
+    display: block;
+    margin: 20px auto;
+    width: 90%;
+    height: 40px;
+    color: #ffffff;
+    background-color: #1bb9e0;
+    border: none;
+    font-family: SIYUAN2;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+.timeChoose{
+    float: left;
+    margin: 0;
+    width: 50%;
+    height: 165px;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.timeChoose div{
+    background-color:#1bb9e0;
+    width: 100%;
+    height: 130px;
+    margin-top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+
+}
+.timeChoose>div>h3{
+    background-color: #ffffff;
+    height: 80px;
+    width: 100%;
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+    font-size: 30px;
+    padding:20px 0;
+    margin-bottom: 0;
+}
+.timeChoose>div>h4{
+    color: #ffffff;
+    font-size: 15px;
+    float: left;
+    margin-top: 8px;
+    padding: 0;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: left;
+    margin-left: -3px;
+}
+.timeChoose>div>h5{
+    font-size:9px;
+    color: #ffffff;
+    float: left;
+    margin-top: 4px;
+    padding: 0;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: left;
+}
+.feeDetail,.feeCheck{
+    background-color: #ffffff;
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+}
+.feeDetail{
+    margin-top: 20px;
+}
+.line1,.line2,.line3{
+    margin: 0 auto;
+    width: 80%;
+    display: inline-block;
+}
+.feeDetail>div>p{
+    display: inline-block;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+.line1{
+    margin-top: 10px;
+}
+.line2{
+    margin-top: 5px;
+}
+.line3{
+    margin-top: 30px;
+}
+.td1,.td5{
+    width: 32%;
+}
+.td4{
+    width: 80%;
+}
+.td2,.td6{
+    width: 48%;
+}
+.td6{
+    font-size: 20px;
+}
+.feeCheck{
+    margin-top: 20px;
+    height: 200px;
+}
+.fee p,.fee select,.trueFee p{
+    display: inline-block;
+}
+.trueFee{
+    margin: 0;
+    padding: 0;
+}
+.trueFee>p{
+    margin: 0;
+    padding: 0;
+}
+.feeItem{
+    width: 25%;
+    text-align: right;
+
+}
+.trueFee_p{
+    width: 55%;
+    font-size: 30px;
+}
+select{
+    width: 45%;
+    margin-left: 10%;
+    border-radius: 10px;
+    height: 20px;
+    font-size: 12px;
+    padding: 0;
+    border: #cfcfcf solid 1px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+option{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.feeCheck>button{
+    width: 80px;
+    height: 30px;
+    background-color: #1bb9e0;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    float: right;
+    margin-right: 30px;
+    margin-top: 40px;
+}
+
+
