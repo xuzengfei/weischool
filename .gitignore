@@ -1,2 +1,9 @@
 /web/WEB-INF/lib
 /web/WEB-INF/classes
+/resource/mailconfig.properties
+/resource/springmvc-servlet.xml
+/resource/sysconfig.properties
+/resource/weixinconfig.properties
+/resource/dbconfig.properties
+/resource/hib-config.xml
+/resource/log4j.properties
