@@ -1,0 +1,79 @@
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+.img-circle{
+    width: 90px;
+    margin-top: 20%;
+}
+form{
+    width: 100%;
+    text-align: center;
+    margin-top: 20%;
+}
+input{
+    display: block;
+    margin: 0 auto;
+    padding-left: 5px;
+    height: 50px;
+    width: 80%;
+    background-color: #f2f2f2;
+    border: #b8b8b8 solid 1px;
+    color: #b8b8b8;
+    font-size: 18px;
+    font-family: SIYUAN2;
+}
+a,a:hover,a:link,a:active{
+    display: block;
+    color: #1bb9e0;
+    text-align: right;
+    margin-right: 10%;
+    font-family: SIYUAN3;
+    margin-top: 5px;
+    outline: none;
+    text-decoration: none;
+}
+button{
+    width: 90px;
+    height: 35px;
+    background-color: #1bb9e0;
+    border: none;
+    border-radius:8px;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 0;
+    margin-top: 20%;
+    font-family: SIYUAN3;
+}
+.areaChoose{
+    display: block;
+    margin: 0 auto;
+    padding-left: 5px;
+    height: 50px;
+    width: 80%;
+    background-color: #f2f2f2;
+    border: #b8b8b8 solid 1px;
+    color: #b8b8b8;
+    font-size: 18px;
+    font-family: SIYUAN2;
+    text-align: center;
+}
+.areaChoose>a,.dropdown-toggle{
+    width: 100%;
+    color: #b8b8b8;
+    background-color: #f2f2f2;
+    text-align: left;
+    font-family: SIYUAN2;
+    margin-top: 11px;
+    display: inline-block;
+    font-weight: 100;
+}
+.dropdown-menu,.dropdown-menu>li,.dropdown-menu>li>a{
+    margin: 0;
+    padding:5px 5px 5px 2px;
+    width: 100%;
+    text-align: left;
+    font-family: SIYUAN2;
+}

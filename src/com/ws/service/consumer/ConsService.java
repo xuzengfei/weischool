@@ -1,0 +1,47 @@
+package com.ws.service.consumer;
+
+import com.bugframework.common.pojo.DataGrid;
+import com.bugframework.common.utility.ResultCode;
+import com.ws.pojo.consumer.Consumer;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * @author Xuzengfei
+ * @version v1.0
+ * @since 2016/12/14.
+ */
+public interface ConsService {
+    /**
+     * 添加
+     *
+     * @param cons 添加的对象值
+     * @return ResultCode
+     */
+    ResultCode add(Consumer cons, String coupId);
+
+    /**
+     * 更新
+     *
+     * @param cons 更新对象
+     * @return ResultCode
+     */
+    ResultCode edit(Consumer cons);
+
+    /**
+     * 获得对象
+     *
+     * @param id 传入主键
+     * @return Experience值
+     */
+    Consumer get(String id);
+
+    /**
+     * 分页查询
+     *
+     * @param cons     荣誉证书对象值
+     * @param datagrid 分页模型
+     * @param request  HttpServletRequest 请求
+     */
+    void datagrid(Consumer cons, DataGrid<Consumer> datagrid, HttpServletRequest request);
+}

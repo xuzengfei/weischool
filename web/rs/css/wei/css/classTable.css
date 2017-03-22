@@ -1,0 +1,86 @@
+body{
+    background-color: #ffffff;
+    overflow:hidden;
+}
+*{
+    margin: 0;
+    padding:0;
+}
+.header{
+    height: 40px;
+}
+.container{
+    padding-top:50px;
+    padding-bottom: 50px;
+    overflow:hidden;
+}
+.tableTop{
+    width: 100%;
+    height: 65px;
+    background-color: #f1f1f1;
+}
+.mouth{
+    width: 9%;
+    height: 65px;
+    display: inline-block;
+    text-align: center;
+    float: left;
+    color: #000;
+    font-size: 12px;
+    margin-top:12px;
+}
+.tableDate{
+    width: 13%;
+    height: 65px;
+    display: inline-block;
+    text-align: center;
+    float: left;
+    margin-top: 4px;
+}
+.tableDate p{
+    margin:4px 0;
+    padding:0;
+    text-align: center;
+}
+.day{
+    font-size: 18px;
+    color: #000;
+    margin: 0 auto;
+}
+.weekNum{
+    color: #000;
+    font-size: 10px;
+}
+.tableClass{
+    width: 91%;
+    height:auto;
+    margin-left: 9%;
+    background-image:url("../images/classTableBG.png");
+    background-size: 100%,auto;
+    float: left;
+}
+.classDetail{
+    width: 13%;
+    height: auto;
+    padding: 0;
+    font-size: 10px;
+    display: inline-block;
+    text-align: center;
+}
+.classTime{
+    padding: 0;
+    margin:0;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    /*position: absolute;*/
+    /*top:auto;*/
+    position: relative;
+
+}
+.classTime>p{
+    margin: 0;
+    padding: 0;
+}
