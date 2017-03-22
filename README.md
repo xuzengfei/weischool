@@ -1,2 +1,0 @@
-# weischool
-微校
