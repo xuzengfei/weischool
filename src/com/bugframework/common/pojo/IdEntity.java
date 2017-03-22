@@ -67,7 +67,7 @@ public class IdEntity {
         this.id = id;
     }
 
-    @Column(name = "is_enable", length = 1)
+    @Column(name = "is_enable")
     public Integer getIsenable() {
         return isenable;
     }
@@ -124,7 +124,7 @@ public class IdEntity {
         this.delTime = delTime;
     }
 
-    @Column(name = "del_flag", length = 1)
+    @Column(name = "del_flag")
     public Integer getDelFlag() {
         return delFlag;
     }
