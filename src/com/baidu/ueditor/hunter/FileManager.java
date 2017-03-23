@@ -19,10 +19,10 @@ public class FileManager {
 	private String rootPath = null;
 	private String[] allowFiles = null;
 	private int count = 0;
-	
+	//TODO 添加虚拟路径
 	public FileManager ( Map<String, Object> conf ) {
-
-		this.rootPath = (String)conf.get( "rootPath" );
+		boolean virtualPath =(boolean)conf.get("virtualPath");//虚拟路径
+		this.rootPath = virtualPath?(String)conf.get("realMappingPath"):(String)conf.get( "rootPath" );
 		this.dir = this.rootPath + (String)conf.get( "dir" );
 		this.allowFiles = this.getAllowFiles( conf.get("allowFiles") );
 		this.count = (Integer)conf.get( "count" );

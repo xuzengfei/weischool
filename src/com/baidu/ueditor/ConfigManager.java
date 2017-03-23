@@ -74,7 +74,7 @@ public final class ConfigManager {
         return this.jsonConfig;
 
     }
-
+    //TODO 添加虚拟路径
     public Map<String, Object> getConfig(int type) {
 
         Map<String, Object> conf = new HashMap<String, Object>();
@@ -88,6 +88,15 @@ public final class ConfigManager {
                 conf.put("allowFiles", this.getArray("fileAllowFiles"));
                 conf.put("fieldName", this.jsonConfig.getString("fileFieldName"));
                 savePath = this.jsonConfig.getString("filePathFormat");
+                //for virtual path mapping
+                String filePathFormat = this.jsonConfig.getString("filePathFormat");
+                String fileUsingVirtualPath = this.jsonConfig.getString("fileUsingVirtualPath");
+                if ("yes".equalsIgnoreCase(fileUsingVirtualPath)) {
+                    String fileRealMappingPath = this.jsonConfig.getString("fileRealMappingPath");
+                    savePath = fileRealMappingPath + filePathFormat;
+                    virtualPath = true;
+                    conf.put("realMappingPath", fileRealMappingPath);//put into conf map using key=realMappingPath
+                }
                 break;
 
             case ActionMap.UPLOAD_IMAGE:
@@ -163,7 +172,7 @@ public final class ConfigManager {
                 conf.put("dir", this.jsonConfig.getString("imageManagerListPath"));
                 conf.put("count", this.jsonConfig.getInt("imageManagerListSize"));
                 //for virtual path mapping
-                String imageManagerPathFormat = this.jsonConfig.getString("imageManagerPathFormat");
+                String imageManagerPathFormat = this.jsonConfig.getString("imageManagerListPath");
                 String imageManagerUsingVirtualPath = this.jsonConfig.getString("imageManagerUsingVirtualPath");
                 if ("yes".equalsIgnoreCase(imageManagerUsingVirtualPath)) {
                     String imageManagerRealMappingPath = this.jsonConfig.getString("imageManagerRealMappingPath");
@@ -178,7 +187,7 @@ public final class ConfigManager {
                 conf.put("dir", this.jsonConfig.getString("fileManagerListPath"));
                 conf.put("count", this.jsonConfig.getInt("fileManagerListSize"));
                 //for virtual path mapping
-                String fileManagerPathFormat = this.jsonConfig.getString("fileManagerPathFormat");
+                String fileManagerPathFormat = this.jsonConfig.getString("fileManagerListPath");
                 String fileManagerUsingVirtualPath = this.jsonConfig.getString("fileManagerUsingVirtualPath");
                 if ("yes".equalsIgnoreCase(fileManagerUsingVirtualPath)) {
                     String fileManagerRealMappingPath = this.jsonConfig.getString("fileManagerRealMappingPath");
