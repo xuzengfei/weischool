@@ -22,6 +22,7 @@ import java.util.List;
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private TeacherDao teacherDao;
+
     /**
      * 分页查询教师
      *
@@ -32,9 +33,9 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void datagrid(Teacher teacher, DataGrid<Teacher> datagrid, HttpServletRequest request) {
         List<String[]> orders = new ArrayList<>();
-        orders.add(new String[] { "createTime", "desc" });
+        orders.add(new String[]{"createTime", "desc"});
         datagrid.setOrder(orders);
-        teacherDao.datagrid(teacher,datagrid,request);
+        teacherDao.datagrid(teacher, datagrid, request);
     }
 
     /**
@@ -45,7 +46,7 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public ResultCode add(Teacher teacher) {
-        if (teacher==null){
+        if (teacher == null) {
             return ResultCode.INVALID;
         }
         this.teacherDao.add(teacher);
@@ -60,7 +61,7 @@ public class TeacherServiceImpl implements TeacherService {
      */
     @Override
     public ResultCode update(Teacher teacher) {
-        if(teacher.getId()==null||"".equals(teacher.getId())){
+        if (teacher.getId() == null || "".equals(teacher.getId())) {
             return ResultCode.INVALID;
         }
         this.teacherDao.update(teacher);
@@ -76,5 +77,12 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher get(String id) {
         return this.teacherDao.get(id);
+    }
+
+    @Override
+    public Teacher getByNo(String no) {
+        if (no == null)
+            return null;
+       return this.teacherDao.findUniqueResult("from Teacher t where t.emNo  =? and t.isenable =? and t.delFlag =?", no, 1, 0);
     }
 }

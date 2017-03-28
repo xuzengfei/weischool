@@ -2,10 +2,10 @@ package com.ws.controller.wei.tc;
 
 import com.bugframework.common.pojo.AjaxJson;
 import com.bugframework.common.utility.ResultCode;
-import com.ws.controller.wei.st.common.WeiStLoginUtils;
 import com.ws.controller.wei.tc.common.WeiTcLoginUtils;
-import com.ws.pojo.teacher.Teacher;
 import com.ws.pojo.teacher.TeacherOpenId;
+import com.ws.service.teacher.TeacherOpenIdService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,20 +20,23 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/wei/tc/login")
 public class LoginApi {
+    @Autowired
+    private TeacherOpenIdService service;
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson login(String openId, String tcNo) {
-        openId =tcNo;//TODO 暂时这样写
-        ResultCode code = studentOpenIdService.save(openId, stNo, cpId);
+        openId = tcNo;//TODO 暂时这样写
+        ResultCode code = service.save(openId, tcNo);
         if (code.getValue() == 1) {
-            WeiTcLoginUtils.setStudentSession(service.getByOpenid(openId));
+            WeiTcLoginUtils.setTeacherSession(service.get(openId));
         }
         return new AjaxJson().result(code);
     }
 
     @RequestMapping(value = "/code", method = RequestMethod.GET)
     public void code(HttpServletRequest request, HttpServletResponse response) {
-   //     service.toCodeURl(request, response);
+        //     service.toCodeURl(request, response);
     }
 
     @RequestMapping(value = "/authorization")
@@ -44,13 +47,13 @@ public class LoginApi {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";
         }
-      //  StudentOpenId s = service.getByOpenid(openId);
-        TeacherOpenId s =null;
+        //  StudentOpenId s = service.getByOpenid(openId);
+        TeacherOpenId s = null;
         if (s == null) {
             request.setAttribute("openId", openId);
-            return "/wei/login";
+            return "/wei/tc/login";
         }
-        WeiTcLoginUtils.setStudentSession(s);
+        WeiTcLoginUtils.setTeacherSession(s);
         return "/wei/tc/index";
     }
 

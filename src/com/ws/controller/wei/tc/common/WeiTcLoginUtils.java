@@ -11,26 +11,26 @@ import javax.servlet.http.HttpSession;
  * Created by admin on 2017/3/23.
  */
 public class WeiTcLoginUtils {
-    public static TeacherOpenId getStudentSession() {
+    public static TeacherOpenId getTeacherSession() {
         HttpSession session = ResourceUtil.getSession();
         if (session != null) {
-            return (TeacherOpenId) session.getAttribute("STUDENT");
+            return (TeacherOpenId) session.getAttribute("TEACHER");
         }
         return null;
     }
 
-    public static void setStudentSession(TeacherOpenId s) {
+    public static void setTeacherSession(TeacherOpenId s) {
         if (s == null)
             return;
         HttpSession session = ResourceUtil.getSession();
         if (session != null) {
-            session.setAttribute("STUDENT", s);
+            session.setAttribute("TEACHER", s);
             session.setMaxInactiveInterval(1000 * 60 * 60);
         }
     }
 
-    public static void removeStudentSession() {
-        ResourceUtil.getSession().removeAttribute("STUDENT");
+    public static void removeTeacherSession() {
+        ResourceUtil.getSession().removeAttribute("TEACHER");
         ResourceUtil.getSession().invalidate();
     }
 }

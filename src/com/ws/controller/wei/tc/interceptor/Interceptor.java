@@ -1,7 +1,7 @@
 package com.ws.controller.wei.tc.interceptor;
 
 import com.bugframework.common.utility.ResourceUtil;
-import com.ws.controller.wei.st.common.WeiStLoginUtils;
+import com.ws.controller.wei.tc.common.WeiTcLoginUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,7 +43,7 @@ public class Interceptor implements HandlerInterceptor {
         String url = requestUri.substring(contextPath.length()); // /请求路径
         String requestPath = ResourceUtil.getRequestPath(request);// 用户访问的资源地址
 
-        if (WeiStLoginUtils.getStudentSession() != null) {
+        if (WeiTcLoginUtils.getTeacherSession() != null) {
             return true;
         }
 

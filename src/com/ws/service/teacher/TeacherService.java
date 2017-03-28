@@ -47,4 +47,11 @@ public interface TeacherService {
      * @return 返回操作后的Teacher对象实例
      */
     Teacher get(String id);
+
+    /**
+     * 工号查询教师
+     * @param no 教师工号
+     * @return
+     */
+    Teacher getByNo(String no);
 }

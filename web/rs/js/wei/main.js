@@ -219,27 +219,27 @@ $(function () {
 });
 
 //教师端点名按钮颜色和是否可点击控制
-$(function () {
-    $(".list-group-item").each(function () {
-        var s = $(this).find(".statue").text();
-        if (s == "课程结束" || s == "还未开始") {
-            $(this).find(".statue").css("background-color", "#a4a4a4");
-            $(this).css("border-bottom", "#a4a4a4 solid 1px");
-            $(this).find(".callNameBtn").attr("disabled", true);
-            $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
-        } else if (s == "正在上课") {
-            $(this).find(".statue").css("background-color", "#1bb9e0");
-            $(this).css("border-bottom", "#1bb9e0 solid 1px");
-            $(this).find(".callNameBtn").attr("disabled", false);
-            $(this).find(".callNameBtn").css("background-color", "#1bb9e0");
-        } else if (s == "课程取消") {
-            $(this).find(".statue").css("background-color", "#f26d3e");
-            $(this).find(".callNameBtn").attr("disabled", true);
-            $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
-            $(this).find(".callNameBtn").text("------")
-        }
-    });
-});
+ function teacherIndex() {
+     $(".list-group-item").each(function () {
+         var s = $(this).find(".statue").text();
+         if (s == "课程结束" || s == "还未开始") {
+             $(this).find(".statue").css("background-color", "#a4a4a4");
+             $(this).css("border-bottom", "#a4a4a4 solid 1px");
+             $(this).find(".callNameBtn").attr("disabled", true);
+             $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
+         } else if (s == "正在上课") {
+             $(this).find(".statue").css("background-color", "#1bb9e0");
+             $(this).css("border-bottom", "#1bb9e0 solid 1px");
+             $(this).find(".callNameBtn").attr("disabled", false);
+             $(this).find(".callNameBtn").css("background-color", "#1bb9e0");
+         } else if (s == "课程取消") {
+             $(this).find(".statue").css("background-color", "#f26d3e");
+             $(this).find(".callNameBtn").attr("disabled", true);
+             $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
+             $(this).find(".callNameBtn").text("------")
+         }
+     });
+ }
 
 //教师点名页面考勤按钮点击颜色控制
 $(function () {

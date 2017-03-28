@@ -2,6 +2,7 @@ package com.ws.service.grade.dao;
 
 import com.bugframework.common.dao.impl.BaseDaoImpl;
 import com.ws.pojo.grade.Grade;
+import javassist.compiler.ast.Expr;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Expression;
 import org.springframework.stereotype.Repository;
@@ -18,9 +19,15 @@ public class GradeDaoImpl extends BaseDaoImpl<Grade> implements GradeDao {
     @Override
     public List<Grade> find(Grade grade) {
         Criteria cq = this.getCriteria();
-        if(grade.getCampus()!=null&&grade.getCampus().getId()!=null){
+        if(grade.getCampus()!=null){
             cq.createAlias("campus","cp");
-            cq.add(Expression.eq("cp.id", grade.getCampus().getId()));
+            if(grade.getCampus().getId()!=null)
+                cq.add(Expression.eq("cp.id", grade.getCampus().getId()));
+            if(grade.getCampus().getIsenable()!=null)
+                cq.add(Expression.eq("cp.isenable", grade.getCampus().getIsenable()));
+        }
+        if(grade.getTeacher()!=null){
+            cq.add(Expression.eq("teacher",grade.getTeacher()));
         }
         if(grade.getIsenable()!=null){
             cq.add(Expression.eq("isenable",1));

@@ -2,7 +2,7 @@
  * 登录的时候需要渲染的方法
  */
 $(function () {
-    /**
+          /**
      * 列出校区，显示到下拉框中
      */
     $(".dropdown").click(function () {

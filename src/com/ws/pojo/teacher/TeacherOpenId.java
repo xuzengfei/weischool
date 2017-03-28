@@ -18,7 +18,7 @@ public class TeacherOpenId {
     public TeacherOpenId() {
     }
 
-    public TeacherOpenId(String tcId, String openId, String cpId, Long ct) {
+    public TeacherOpenId(String tcId, String openId, Long ct) {
         this.tcId = tcId;
         this.openId = openId;
         this.ct = ct;
@@ -46,7 +46,7 @@ public class TeacherOpenId {
         this.id = id;
     }
 
-    @Column(name = "st_id", length = 36)
+    @Column(name = "tc_id", length = 36)
     public String getTcId() {
         return tcId;
     }

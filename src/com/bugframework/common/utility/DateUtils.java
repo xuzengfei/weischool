@@ -3,8 +3,9 @@ package com.bugframework.common.utility;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * 日期控件
  * Created by admin on 2017/3/16.
@@ -16,8 +17,12 @@ public class DateUtils {
     public static SimpleDateFormat formatYYYYMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static SimpleDateFormat formatYYYYMMddHHmmss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    public static String getNowDay() {
+        return formatYYYYMMdd.format(new Date());
+    }
+
     // 获得当前日期与本周日相差的天数
-    private static int getMondayPlus() {
+    public static int getMondayPlus() {
         Calendar cd = Calendar.getInstance();
         // 获得今天是一周的第几天，星期日是第一天，星期二是第二天......
         int dayOfWeek = cd.get(Calendar.DAY_OF_WEEK) - 1;         //因为按中国礼拜一作为第一天所以这里减1
@@ -82,6 +87,34 @@ public class DateUtils {
         return null;
     }
 
+    /**
+     * 当天开始时间戳
+     *
+     * @return 时间戳
+     */
+    public static Long getStartTime() {
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.set(Calendar.HOUR, 0);
+        todayStart.set(Calendar.MINUTE, 0);
+        todayStart.set(Calendar.SECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 0);
+        return todayStart.getTime().getTime();
+    }
+
+    /**
+     * 当天结束时间
+     *
+     * @return 时间戳
+     */
+    public static Long getEndTime() {
+        Calendar todayEnd = Calendar.getInstance();
+        todayEnd.set(Calendar.HOUR, 23);
+        todayEnd.set(Calendar.MINUTE, 59);
+        todayEnd.set(Calendar.SECOND, 59);
+        todayEnd.set(Calendar.MILLISECOND, 999);
+        return todayEnd.getTime().getTime();
+    }
+
     public static void main(String[] args) {
        /* String[] days = getWeekDays(-2);
         for (int i = 0; i < 7; i++) {
@@ -89,7 +122,7 @@ public class DateUtils {
         }*/
 
         // System.out.println(timestapTostr(new Date().getTime()));
-    //    System.out.println(strTotimstrap("2017-3-16 12:00:00"));
+        //    System.out.println(strTotimstrap("2017-3-16 12:00:00"));
         System.out.println(formatM.format(new Date()));
     }
 }

@@ -94,7 +94,7 @@ public class UserApi {
         for (StudentGrade sg:list){
             if(sg.getCpId().equals(cp)){
                 StudentOpenId studentOpenId = WeiStLoginUtils.getStudentSession();
-            //    WeiStLoginUtils.removeStudentSession();
+            //    WeiStLoginUtils.removeTeacherSession();
                 studentOpenId.setCpId(cp);
                 WeiStLoginUtils.setStudentSession(studentOpenId);
                 return new AjaxJson(null,true,null);
