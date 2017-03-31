@@ -398,20 +398,20 @@ public class DataGridTag  extends TagSupport{
 		    sb.append("$(\"#"+this.name+"_pagin\").remove();");
 		    sb.append("var pageNo = data.obj.pageNo;");//当前页数
 		    sb.append("var pageCount =data.obj.pageCount;");//所有页数
-			sb.append("var pageSize =data.obj.pageSize;");//所有页数
+			sb.append("var pageSize =data.obj.pageSize;");//一页显示数
 		    sb.append("var i=pageNo-pageSize;");
-		    sb.append("var size = pageNo+pageSize;");
+		    sb.append("var size = pageCount;");
 		    sb.append("html='<div class=\"dataTables_info\" id=\""+this.name+"_info\" role=\"status\" aria-live=\"polite\">共'+data.obj.recordCount+'条记录，当前显示第'+data.obj.pageNo+'页</div>';");
 		    sb.append("html+='<div class=\"dataTables_paginate paging_full_numbers\" id=\""+this.name+"_pagin\" >';");
 		    sb.append("html+='<a class=\"paginate_button first disabled\" href=\"javascript:firstPage('+data.obj.pageNo+');\"  >第一页</a>';");
 		    sb.append("html+='<a class=\"paginate_button previous disabled\" href=\"javascript:prevPage('+data.obj.pageNo+');\"  >上一页</a>';");
 		    sb.append("html+='<span>';");
 		    
-		  
+
 		    sb.append("if(pageNo-pageSize<=0){");
 		    sb.append(" i=1;");
 		    sb.append("}");
-		    sb.append("if(pageNo+5>pageCount){");
+		    sb.append("if(pageNo>pageCount){");
 		    sb.append("	size = pageCount;");
 		    sb.append(" }");
 		    sb.append("for(;i<=size;i++){");

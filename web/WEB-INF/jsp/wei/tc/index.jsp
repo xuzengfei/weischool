@@ -5,7 +5,7 @@
 <head>
     <meta charset="GBK">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>玲珑艺术培训中心</title>
+    <title>玲珑艺术教育</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/teacher.css">
@@ -17,10 +17,10 @@
     <div class="classTop">
         <img class="img-circle" src="${pageContext.request.contextPath}/rs/css/wei/images/loginImg.png">
         <h3></h3>
-        <h5>任教科目：跆拳道</h5>
-        <h4>2016-12-28</h4>
+        <h5></h5>
+        <h4></h4>
     </div>
-    <div class="list-group">
+   <%-- <div class="list-group">
         <div class="addressChoose">
             <img src="${pageContext.request.contextPath}/rs/css/wei/images/teach_point.png" class="point">
             <p>五桂山校区</p>
@@ -37,9 +37,9 @@
             <p class="time">周六 08:30-10:00</p>
             <a href="teach_callName.html"><button class="callNameBtn" >点名</button></a>
         </div>
-    </div>
+    </div>--%>
 
-    <div class="list-group">
+   <%-- <div class="list-group">
         <div class="addressChoose">
             <img src="${pageContext.request.contextPath}/rs/css/wei/images/teach_point.png" class="point">
             <p>小榄校区</p>
@@ -56,10 +56,11 @@
             <p class="time">周六 08:30-10:00</p>
             <a href="teach_callName.html"><button class="callNameBtn" >点名</button></a>
         </div>
-    </div>
+    </div>--%>
 </div>
 </body>
 <script type="text/javascript">
     var basePath ="${pageContext.request.contextPath}/";
 </script>
+<script src="${pageContext.request.contextPath}/rs/js/wei/tc/index.js"></script>
 </html>

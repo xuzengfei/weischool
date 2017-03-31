@@ -13,8 +13,11 @@ import com.ws.service.teacher.TeacherService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class IndexApi {
     private GradeTimeService gradeTimeService;
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
+    @ResponseBody
     public AjaxJson getData() {
         Map<String, Object> datas = new HashedMap();
         TeacherOpenId teacherOpenId = WeiTcLoginUtils.getTeacherSession();
@@ -50,6 +54,8 @@ public class IndexApi {
                     Map<String, Object> gradMap = new HashedMap();
                     gradMap.put("id", g.getId());
                     gradMap.put("name", g.getName());
+                    gradMap.put("st", gradeTime.getStart());
+                    gradMap.put("et", gradeTime.getEnd());
                     if (System.currentTimeMillis() < gradeTime.getStart())
                         gradMap.put("status", 0);
                     else if (System.currentTimeMillis() >= gradeTime.getStart() && System.currentTimeMillis() < gradeTime.getEnd())
@@ -57,7 +63,7 @@ public class IndexApi {
                     else
                         gradMap.put("status", 2);
                     if (gradeDatas.containsKey(g.getCampus().getName())) {
-                        List<Map<String, Object>> gradMap1 = (List<Map<String, Object>>) gradeDatas.get(g.getCpId());
+                        List<Map<String, Object>> gradMap1 = (List<Map<String, Object>>) gradeDatas.get(g.getCampus().getName());
                         gradMap1.add(gradMap);
                     } else {
                         List<Map<String, Object>> list = new ArrayList<>();
@@ -67,11 +73,23 @@ public class IndexApi {
                 }
             }
         }
-        datas.put("week", DateUtils.getMondayPlus());
+        datas.put("week", 1 - DateUtils.getMondayPlus());
         datas.put("date", DateUtils.getNowDay());
         datas.put("tcName", teacher.getName());
         datas.put("gradeDatas", gradeDatas);
-        datas.put("emNo",teacher.getEmNo());
+        datas.put("emNo", teacher.getEmNo());
         return new AjaxJson(null, true, datas);
     }
+
+    @RequestMapping(value = "/callname/grade/{gradeId}", method = RequestMethod.GET)
+    public ModelAndView toCallName(@PathVariable String gradeId) {
+        return new ModelAndView("/wei/tc/callName", "gradeId", gradeId);
+    }
+
+    @RequestMapping(value = "/grade/{gradeId}",method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson getUser(@PathVariable String gradeId) {
+         return  null;
+    }
+
 }

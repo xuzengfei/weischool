@@ -1,5 +1,5 @@
 $(function () {
-
+    list();
 })
 /**
  * 列出用户
@@ -13,28 +13,46 @@ function list() {
             var tcName =data.tcName;
             var emNo = data.emNo;
             var gradeDatas =data.gradeDatas;
+            var weekday;
+            switch (week){
+                case 1: weekday="星期一";break;
+                case 2: weekday="星期二";break;
+                case 3: weekday="星期三";break;
+                case 4: weekday="星期四";break;
+                case 5: weekday="星期五";break;
+                case 6: weekday="星期六";break;
+                default: weekday="星期日";break;
+            }
+
             $(".classTop h3").html(tcName);
             $(".classTop h5").html("任教工号："+emNo);
-            $.each(gradeDatas,function(i,item){
-                var html="<div class="list-group">";
-                html+="<div class="addressChoose">";
-                html+="     <img src="${pageContext.request.contextPath}/rs/css/wei/images/teach_point.png" class="point">";
-                html+="   <p>五桂山校区</p>";
+            $(".classTop h4").html(date);
+            $.each(gradeDatas,function(key,value){
+                var html="<div class=\"list-group\">";
+                html+="<div class=\"addressChoose\">";
+                html+="     <img src=\""+basePath+"/rs/css/wei/images/teach_point.png\" class=\"point\">";
+                html+="   <p>"+key+"</p>";
                 html+="  </div>";
-                    <div class="list-group-item">
-                    <button class="statue">课程结束</button>
-                    <p class="className">跆拳道初级班</p>
-                    <p class="time">周六 08:30-10:00</p>
-                <a href="teach_callName.html"><button class="callNameBtn">点名</button></a>
-                    </div>
-                    <div class="list-group-item">
-                    <button class="statue">正在上课</button>
-                    <p class="className">跆拳道初级班</p>
-                    <p class="time">周六 08:30-10:00</p>
-                <a href="teach_callName.html"><button class="callNameBtn" >点名</button></a>
-                    </div>
-                    </div>
+                $.each(value,function (i,item) {
+                    var status ;
+                    if(item.status==0)
+                        status="还未开始";
+                    else if(item.status==1)
+                        status="正在上课";
+                    else
+                        status="课程结束";
+
+                    html+="     <div class=\"list-group-item\">";
+                    html+="     <button class=\"statue\">"+status+"</button>";
+                    html+="     <p class=\"className\">"+item.name+"</p>";
+                    html+="      <p class=\"time\">"+weekday+" "+$.myTime.UnixToDate(item.st, "hh:mm")+"-"+$.myTime.UnixToDate(item.et, "hh:mm")+"</p>";
+                    html+="  <a href=\"teach_callName.html\"><button class=\"callNameBtn\">点名</button></a>";
+                    html+="      </div>";
+                })
+                html+="     </div>";
+                $(".container").append(html);
             })
+            teacherIndex();
         }
     });
 }

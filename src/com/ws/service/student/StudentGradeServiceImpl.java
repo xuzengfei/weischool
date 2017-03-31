@@ -122,9 +122,6 @@ public class StudentGradeServiceImpl implements StudentGradeService {
             cq.createAlias("student", "st");
             cq.add(Expression.eq("st.id", sg.getStudent().getId()));
         }
-        if (sg.getIsenable() != null) {
-            cq.add(Expression.eq("isenable", sg.getIsenable()));
-        }
         cq.addOrder(Order.desc("createTime"));
         return cq.list();
     }

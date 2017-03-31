@@ -68,8 +68,10 @@ public class DateUtils {
                 return formatd.format(timestap);
             } else if ("M".equals(format)) {
                 return formatM.format(timestap);
-            } else if ("yyyy".equals(timestap)) {
+            } else if ("yyyy".equals(format)) {
                 return formatyyyy.format(timestap);
+            } else if ("all".equals(format)) {
+                return formatYYYYMMddHHmmss.format(timestap);
             } else {
                 return formatYYYYMMdd.format(timestap);
             }
@@ -93,12 +95,24 @@ public class DateUtils {
      * @return 时间戳
      */
     public static Long getStartTime() {
-        Calendar todayStart = Calendar.getInstance();
-        todayStart.set(Calendar.HOUR, 0);
+       /* Calendar todayStart = Calendar.getInstance();
+        todayStart.set(Calendar.HOUR, -1);
         todayStart.set(Calendar.MINUTE, 0);
         todayStart.set(Calendar.SECOND, 0);
-        todayStart.set(Calendar.MILLISECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 1);
         return todayStart.getTime().getTime();
+*/
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+        int second = cal.get(Calendar.SECOND);
+        //时分秒（毫秒数）
+        long millisecond = hour*60*60*1000 + minute*60*1000 + second*1000;
+        //凌晨00:00:00
+        cal.setTimeInMillis(cal.getTimeInMillis()-millisecond);
+        return cal.getTime().getTime();
+
+
     }
 
     /**
@@ -107,12 +121,22 @@ public class DateUtils {
      * @return 时间戳
      */
     public static Long getEndTime() {
-        Calendar todayEnd = Calendar.getInstance();
+        /*Calendar todayEnd = Calendar.getInstance();
         todayEnd.set(Calendar.HOUR, 23);
         todayEnd.set(Calendar.MINUTE, 59);
         todayEnd.set(Calendar.SECOND, 59);
         todayEnd.set(Calendar.MILLISECOND, 999);
-        return todayEnd.getTime().getTime();
+        return todayEnd.getTime().getTime();*/   Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+        int second = cal.get(Calendar.SECOND);
+        //时分秒（毫秒数）
+        long millisecond = hour*60*60*1000 + minute*60*1000 + second*1000;
+        //凌晨00:00:00
+        cal.setTimeInMillis(cal.getTimeInMillis()-millisecond);
+        cal.setTimeInMillis(cal.getTimeInMillis()+23*60*60*1000 + 59*60*1000 + 59*1000);
+        return cal.getTime().getTime();
+
     }
 
     public static void main(String[] args) {
@@ -123,6 +147,7 @@ public class DateUtils {
 
         // System.out.println(timestapTostr(new Date().getTime()));
         //    System.out.println(strTotimstrap("2017-3-16 12:00:00"));
-        System.out.println(formatM.format(new Date()));
+        System.out.println(getMondayPlus());
+        System.out.println(timestapTostr(1490968800000L,"all")+"    "+timestapTostr(1490974200000L,"all")+"  "+timestapTostr(getEndTime(),"all"));
     }
 }

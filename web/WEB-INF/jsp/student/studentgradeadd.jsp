@@ -58,7 +58,7 @@
 			<label class="form-label col-3">所属班级：</label>
 			<div class="formControls col-5">
 				<c:if test="${gradId ne '-1'}">
-					<input type="text" disabled value="${graName}"  class="input-text wdate"   >
+					<input type="text" disabled value="${gradName}"  class="input-text wdate"   >
 					<input type="hidden" value="${gradId}" name="grade.id">
 				</c:if>
 				<c:if test="${gradId eq '-1'}">
