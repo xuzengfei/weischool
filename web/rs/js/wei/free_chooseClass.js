@@ -6,7 +6,7 @@ $(function () {
  * 列出用户
  */
 function listFree() {
-    $.getJSON(basePath + "wei/st/course/list/cp/grade", function (res) {
+    $.getJSON(basePath + "wei/st/course/list/grade", function (res) {
         if (res.success) {
             var data = res.obj;
             $.each(data, function (i, item) {

@@ -23,14 +23,16 @@ input{
     border: #b8b8b8 solid 1px;
     color: #b8b8b8;
     font-size: 18px;
-    font-family: SIYUAN2;
+    font-family: myFonts;
+    font-weight: bold;
 }
 a,a:hover,a:link,a:active{
     display: block;
     color: #1bb9e0;
     text-align: right;
     margin-right: 10%;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     margin-top: 5px;
     outline: none;
     text-decoration: none;
@@ -45,7 +47,8 @@ button{
     font-size: 20px;
     padding: 0;
     margin-top: 20%;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
 }
 .areaChoose{
     display: block;
@@ -57,7 +60,8 @@ button{
     border: #b8b8b8 solid 1px;
     color: #b8b8b8;
     font-size: 18px;
-    font-family: SIYUAN2;
+    font-family: myFonts;
+    font-weight: bold;
     text-align: center;
 }
 .areaChoose>a,.dropdown-toggle{
@@ -65,15 +69,16 @@ button{
     color: #b8b8b8;
     background-color: #f2f2f2;
     text-align: left;
-    font-family: SIYUAN2;
+    font-family: myFonts;
+    font-weight: bold;
     margin-top: 11px;
     display: inline-block;
-    font-weight: 100;
 }
 .dropdown-menu,.dropdown-menu>li,.dropdown-menu>li>a{
     margin: 0;
     padding:5px 5px 5px 2px;
     width: 100%;
     text-align: left;
-    font-family: SIYUAN2;
+    font-family: myFonts;
+    font-weight: bold;
 }

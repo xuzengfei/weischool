@@ -28,31 +28,11 @@
     <%--通过js ajax 添加课程--%>
 </div>
 <div class="header">
-    <a href="index.html"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1);"><span class="icon-icon15"></span></a>
     课程查询
 </div>
 <div class="bottom">
-    <a href="index.html">
-        <div class="col-xs-4" id="index">
-                <span class="icon-icon1">
-                </span>
-            <p>首页</p>
-        </div>
-    </a>
-    <a href="fee_chooseClass.html">
-        <div class="col-xs-4" id="fee">
-                <span class="icon-icon2">
-                </span>
-            <p>缴费</p>
-        </div>
-    </a>
-    <a href="#" id="tel">
-        <div class="col-xs-4" id="phone">
-                <span class="icon-icon3">
-                </span>
-            <p>电话</p>
-        </div>
-    </a>
+    <%--底部--%>
 </div>
 </body>
 <script type="text/javascript">

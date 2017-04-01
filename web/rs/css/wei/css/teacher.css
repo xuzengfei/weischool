@@ -22,7 +22,8 @@ a,a:hover,a:active,a:link{
 }
 .classTop h5,h3,h4{
     margin-left:95px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
 }
 .classTop>h3{
     font-size: 24px;
@@ -33,12 +34,14 @@ a,a:hover,a:active,a:link{
     font-size: 15px;
     color: #737373;
     margin-top: -50px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
 }
 .classTop h4{
     font-size: 12px;
     color: #6a6a6a;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
 }
 .classTop img{
     width: 85px;
@@ -58,7 +61,8 @@ a,a:hover,a:active,a:link{
     display: inline-block;
     color: #464646;
     font-size: 12px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     padding: 0;
     margin: 0;
 }
@@ -101,7 +105,8 @@ a,a:hover,a:active,a:link{
     float: left;
     border-radius: 8px;
     font-size: 14px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     line-height: 15px;
 }
 .callNameBtn{
@@ -113,7 +118,8 @@ a,a:hover,a:active,a:link{
     float: right;
     border-radius:7px;
     font-size: 14px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     margin-top: -15px;
 }
 .callNameList{
@@ -124,13 +130,13 @@ a,a:hover,a:active,a:link{
 .callNameList>.list-group-item{
     border-bottom: none;
     margin: 0 auto;
-    display: inline-block;
+    /*display: inline-block;*/
     margin-top: 5px;
 }
 .callNameList>.list-group-item>img{
     width: 45px;
     height: 45px;
-    float: left;
+   margin-top: -32px;
 }
 .statueCall{
     color: #6a6a6a;
@@ -158,11 +164,12 @@ a,a:hover,a:active,a:link{
 }
 .callNameBox{
     border-bottom: #a4a4a4 solid 1px;
-    float: left;
     margin-top: 20px;
     margin-left: 5px;
-    width: 240px;
+    width:240px;
+    display: inline-block;
 }
+
 .onTimeBtn{
     border:#1bb9e0 solid 1px;
     width: 24px;
