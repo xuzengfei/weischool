@@ -103,6 +103,8 @@ public class AccountController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson edit(UserAccount account) {
+        if(account.getSysRole().getId()==null||"".equals(account.getSysRole().getId()))
+            account.setSysRole(null);
         ResultCode code = this.accountService.edit(account);
         AjaxJson j = new AjaxJson();
         switch (code) {

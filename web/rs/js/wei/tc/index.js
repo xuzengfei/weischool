@@ -51,6 +51,7 @@ function list() {
                 })
                 html+="     </div>";
                 $(".container").append(html);
+                $("#nulldata").remove();
             })
             teacherIndex();
         }

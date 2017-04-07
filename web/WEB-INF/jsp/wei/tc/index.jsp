@@ -20,6 +20,9 @@
         <h5></h5>
         <h4></h4>
     </div>
+    <div class="list-group" id="nulldata">
+        <p class="time">暂无数据</p>
+    </div>
    <%-- <div class="list-group">
         <div class="addressChoose">
             <img src="${pageContext.request.contextPath}/rs/css/wei/images/teach_point.png" class="point">
