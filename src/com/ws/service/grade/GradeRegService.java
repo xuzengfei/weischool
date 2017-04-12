@@ -6,6 +6,7 @@ import com.ws.pojo.grade.GradeReg;
 import com.ws.pojo.grade.GradeRegEm;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 上课签到服务层
@@ -44,4 +45,11 @@ public interface GradeRegService {
      * @param request  HttpServletRequest 请求
      */
     void datagrid(GradeReg gradeReg, DataGrid<GradeReg> datagrid, HttpServletRequest request);
+
+    /**
+     * 获得班次下所有的学生签到信息
+     * @param gtId
+     * @return
+     */
+    List<GradeReg> find(String gtId);
 }

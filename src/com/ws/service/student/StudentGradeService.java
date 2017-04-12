@@ -63,4 +63,11 @@ public interface StudentGradeService {
      * @return
      */
     List<StudentGrade> findOrderRestClass(String cpId, String stId);
+    /**
+     * 通过班级查询列表
+     *
+     * @param gradeId 查询ID
+     * @return
+     */
+    List<StudentGrade> findByGrade(String gradeId);
 }

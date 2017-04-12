@@ -5,7 +5,6 @@ import com.bugframework.common.utility.ResultCode;
 import com.ws.pojo.grade.GradeReg;
 import com.ws.pojo.grade.GradeRegEm;
 import com.ws.service.grade.dao.GradeRegDao;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,10 @@ import java.util.List;
  * Created by admin on 2017/4/11.
  */
 @Service
-public class GradeRegServiceImpl  implements GradeRegService{
+public class GradeRegServiceImpl implements GradeRegService {
     @Autowired
     private GradeRegDao dao;
+
     @Override
     public void add(GradeReg gradeReg) {
         this.dao.add(gradeReg);
@@ -27,23 +27,27 @@ public class GradeRegServiceImpl  implements GradeRegService{
 
     @Override
     public void del(String id, GradeRegEm idType) {
-        this.dao.batchExecute("delete from GradeRegEm where "+idType.getVal()+"=? ",id);
+        this.dao.delete(idType.getVal(), id);
     }
 
-
     @Override
-    public ResultCode edit(GradeReg gradeReg) {
-        Criteria cq  =  this.dao.getSession().createCriteria(GradeReg.class);
-        return null;
+    public ResultCode edit(String id, short status) {
+        this.dao.batchExecute("update GradeReg g set g.status =? where id = ?", status, id);
+        return ResultCode.SUCCESS;
     }
 
     @Override
     public void datagrid(GradeReg gradeReg, DataGrid<GradeReg> datagrid, HttpServletRequest request) {
-
+        this.dao.datagrid(gradeReg, datagrid, request);
     }
 
-    private boolean isExist(String gtId,String  stId){
-        List<GradeReg> list =  this.dao.find("from GradeReg g where gtId=? and stId=?",gtId,stId);
-        return list==null||list.isEmpty()?true:false;
+    @Override
+    public List<GradeReg> find(String gtId) {
+        return this.dao.find("from GradeReg g where g.gtId =? ", gtId);
+    }
+
+    private boolean isExist(String gtId, String stId) {
+        List<GradeReg> list = this.dao.find("from GradeReg g where gtId=? and stId=?", gtId, stId);
+        return list == null || list.isEmpty() ? true : false;
     }
 }

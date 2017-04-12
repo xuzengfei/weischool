@@ -140,4 +140,14 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         return cq.list();
     }
 
+    @Override
+    public List<StudentGrade> findByGrade(String gradeId) {
+        if (gradeId == null)
+            return null;
+        Criteria cq = this.studentGradeDao.getSession().createCriteria(StudentGrade.class);
+        cq.createAlias("grade", "g");
+        cq.add(Expression.eq("g.id", gradeId));
+        return cq.list();
+    }
+
 }

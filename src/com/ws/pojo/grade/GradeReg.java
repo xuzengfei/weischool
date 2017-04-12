@@ -2,14 +2,14 @@ package com.ws.pojo.grade;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * 上课签到
  * Created by admin on 2017/4/7.
  */
+@Entity
+@Table(name="ws_gra_reg")
 public class GradeReg {
     /**
      * 主键

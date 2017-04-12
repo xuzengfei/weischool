@@ -46,7 +46,14 @@ function list() {
                     html+="     <button class=\"statue\">"+status+"</button>";
                     html+="     <p class=\"className\">"+item.name+"</p>";
                     html+="      <p class=\"time\">"+weekday+" "+$.myTime.UnixToDate(item.st, "hh:mm")+"-"+$.myTime.UnixToDate(item.et, "hh:mm")+"</p>";
-                    html+="  <a href=\"teach_callName.html\"><button class=\"callNameBtn\">点名</button></a>";
+                    html+="  <a href=\"";
+                    if(item.status>0){
+                        html+=basePath+"wei/tc/callname/grade/"+item.id+"/gradeTime/"+item.gtId;
+                    }else{
+                        html+="teach_callName.html";
+                    }
+
+                    html+="\"><button class=\"callNameBtn\">点名</button></a>";
                     html+="      </div>";
                 })
                 html+="     </div>";

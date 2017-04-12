@@ -35,12 +35,13 @@ public class AttachApi {
         j.setSuccess(true);
         return j;
     }
-    @RequestMapping(value = "/list/st/pic",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/list/st/pic", method = RequestMethod.GET)
     @ResponseBody
-    public AjaxJson getPic(){
+    public AjaxJson getPic() {
         StudentOpenId s = WeiStLoginUtils.getStudentSession();
         Attach attach = new Attach();
-        attach.setModuleId( WeiStLoginUtils.getStudentSession().getStId());
+        attach.setModuleId(WeiStLoginUtils.getStudentSession().getStId());
         List<Attach> list = this.attachService.list(attach);
         AjaxJson j = new AjaxJson();
         j.setObj(list);
