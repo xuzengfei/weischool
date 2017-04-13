@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/teacher.css">
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
+    <script type="text/javascript" src="${ pageContext.request.contextPath }/rs/lib/layer/1.9.3/layer.js"></script>
 </head>
 <body>
 <div class="container">
@@ -26,6 +27,7 @@
 <script type="text/javascript">
     var basePath ="${pageContext.request.contextPath}/";
     var gradeId ="${gradeId}";
+    var gtId ="${gtId}";
 </script>
 <script src="${pageContext.request.contextPath}/rs/js/wei/tc/callname.js"></script>
 </html>

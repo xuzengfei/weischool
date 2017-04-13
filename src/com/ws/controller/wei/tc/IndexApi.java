@@ -2,7 +2,6 @@ package com.ws.controller.wei.tc;
 
 import com.bugframework.common.pojo.AjaxJson;
 import com.bugframework.common.utility.DateUtils;
-import com.ws.controller.wei.st.common.WeiStLoginUtils;
 import com.ws.controller.wei.tc.common.WeiTcLoginUtils;
 import com.ws.pojo.attach.Attach;
 import com.ws.pojo.grade.Grade;
@@ -48,6 +47,7 @@ public class IndexApi {
     private AttachService attachService;
     @Autowired
     private GradeRegService gradeRegService;
+
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
     @ResponseBody
@@ -103,8 +103,8 @@ public class IndexApi {
      * @return
      */
     @RequestMapping(value = "/callname/grade/{gradeId}/gradeTime/{gtId}", method = RequestMethod.GET)
-    public ModelAndView toCallName(@PathVariable String gradeId, @PathVariable String gtId,String gradeName) {
-        return new ModelAndView("/wei/tc/callName", "gradeId", gradeId).addObject("gtId", gtId).addObject("gradeName",gradeName);
+    public ModelAndView toCallName(@PathVariable String gradeId, @PathVariable String gtId, String gradeName) {
+        return new ModelAndView("/wei/tc/callName", "gradeId", gradeId).addObject("gtId", gtId).addObject("gradeName", gradeName);
     }
 
     /**
@@ -123,11 +123,11 @@ public class IndexApi {
         List<Attach> list = null;
         for (StudentGrade s : studentGrades) {
             reMap = new HashedMap();
-            reMap.put("id", s.getId());
+            reMap.put("stId", s.getStudent().getId());
             reMap.put("stName", s.getStudentName());
-
+            reMap.put("id", s.getId());
             attach = new Attach();
-            attach.setModuleId(WeiStLoginUtils.getStudentSession().getStId());
+            attach.setModuleId(s.getStudent().getId());
             list = this.attachService.list(attach);
             if (list != null && !list.isEmpty()) {
                 reMap.put("pic", list.get(0).getPath());
@@ -142,13 +142,13 @@ public class IndexApi {
     /**
      * 获得签到的用户
      *
-     * @param gradeId
+     * @param gtId
      * @return
      */
     @RequestMapping(value = "/grade/reg/{gtId}", method = RequestMethod.GET)
     @ResponseBody
-    public AjaxJson getRegUser(@PathVariable String gradeId) {
-        List<GradeReg> gradeRegs = gradeRegService.find(gradeId);
+    public AjaxJson getRegUser(@PathVariable String gtId) {
+        List<GradeReg> gradeRegs = gradeRegService.find(gtId);
         List<Map<String, Object>> list = new ArrayList<>();
         Map<String, Object> map = null;
         for (GradeReg g : gradeRegs) {
@@ -162,5 +162,34 @@ public class IndexApi {
         return new AjaxJson(null, true, list);
     }
 
+    /**
+     * TODO 保存点名
+     *
+     * @param stid   班级学生ID
+     * @param status 状态：1-准 2-请 3-旷
+     * @return
+     */
+    @RequestMapping(value = "/grade/reg/studentgrade/{stId}/status/{status}", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson addSign(@PathVariable String stId, @PathVariable Short status) {
+        StudentGrade studentGrade = this.studentGradeService.get(stId);
+        Teacher teacher = this.teacherService.get(WeiTcLoginUtils.getTeacherSession().getTcId());
+        GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status);
+        gradeRegService.add(gradeReg);
+        return new AjaxJson(null, true, gradeReg.getId());
+    }
 
+    /**
+     * TODO 更新点名
+     *
+     * @param id 主键
+     * @param status 状态：1-准 2-请 3-旷
+     * @return
+     */
+    @RequestMapping(value = "/grade/reg/{id}/status/{status}", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson editSign(@PathVariable String id, @PathVariable Short status) {
+        gradeRegService.edit(id, status);
+        return new AjaxJson(null, true, null);
+    }
 }
