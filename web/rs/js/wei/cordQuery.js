@@ -2,6 +2,8 @@ var pageNo =1;
 var recordCount =0;//总记录数
 var requestData={};
 $(function(){
+    $(".img-circle").nextAll().css("display","none");
+    $(".classTop").append('<p style="display: inline-block" id="nulldata">暂无数据</p>');
     loadPic(); //加载头像
     listCord(requestData); //列出用户
     $("#btn").click(function () { //提交按钮点击查询
@@ -31,6 +33,8 @@ function  listCord(rdata) {
             recordCount =res.obj.recordCount;
             $.each(data,function(i,item){
                 if (pageNo == 1 && i == 0){
+                  $(".img-circle").nextAll().css("display","");
+                  $("#nulldata").remove();
                   $(".classTop h3").html(item.title);
                   $(".classTop h5").html($.myTime.UnixToDate(item.exTime, "yyyy-MM-dd"));
                   $(".classTop h2").html(item.status==1?"已通过":"未通过");

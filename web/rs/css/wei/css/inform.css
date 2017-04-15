@@ -32,7 +32,8 @@ a,a:hover,a:link,a:active{
 }
 .headTitle>p{
     font-size: 18px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     margin:2px 0;
     padding:0;
 }
@@ -56,7 +57,8 @@ a,a:hover,a:link,a:active{
     text-align: left;
     padding-left: 0;
     color: #6a6a6a;
-    font-family: SIYUAN2;
+    font-family: myFonts;
+    font-weight: bold;
     padding-top:8px;
 }
 .date{
@@ -64,7 +66,8 @@ a,a:hover,a:link,a:active{
     float: right;
     margin-top: -35px;
     color: #6a6a6a;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
 }
 .new{
     width: 23px;

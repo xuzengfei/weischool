@@ -17,7 +17,8 @@ a,a:hover,a:link,a:active{
 .date{
     font-size: 10px;
     color: #a9a9a9;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     text-align: center;
     margin: 0 0 5px 0;
 }
@@ -36,7 +37,8 @@ a,a:hover,a:link,a:active{
 .photo>p{
     color: #000;
     font-size: 15px;
-    font-family: SIYUAN3;
+    font-family: myFonts;
+    font-weight: normal;
     padding: 0;
     margin:5px 0;
 }

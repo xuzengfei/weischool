@@ -117,7 +117,8 @@ public class StudentGradeController {
         Grade grade = new Grade();
         grade.setIsenable(1);
         grade.setCampus(new Campus(cpId));
-        return new ModelAndView("/student/studentgradeadd").addObject("obj", this.studentGradeService.get(id)).addObject("gradelist", gradeService.find(grade));
+        StudentGrade studentGrade =this.studentGradeService.get(id);
+        return new ModelAndView("/student/studentgradeadd").addObject("obj", studentGrade ).addObject("gradelist", gradeService.find(grade)).addObject("gradId",-1);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

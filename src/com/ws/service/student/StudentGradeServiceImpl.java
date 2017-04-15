@@ -122,9 +122,6 @@ public class StudentGradeServiceImpl implements StudentGradeService {
             cq.createAlias("student", "st");
             cq.add(Expression.eq("st.id", sg.getStudent().getId()));
         }
-        if (sg.getIsenable() != null) {
-            cq.add(Expression.eq("isenable", sg.getIsenable()));
-        }
         cq.addOrder(Order.desc("createTime"));
         return cq.list();
     }
@@ -140,6 +137,16 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         cq.add(Expression.eq("st.id", stId));
         cq.add(Expression.eq("isenable", 1));
         cq.addOrder(Order.asc("restClass"));
+        return cq.list();
+    }
+
+    @Override
+    public List<StudentGrade> findByGrade(String gradeId) {
+        if (gradeId == null)
+            return null;
+        Criteria cq = this.studentGradeDao.getSession().createCriteria(StudentGrade.class);
+        cq.createAlias("grade", "g");
+        cq.add(Expression.eq("g.id", gradeId));
         return cq.list();
     }
 

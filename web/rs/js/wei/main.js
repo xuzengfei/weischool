@@ -215,7 +215,7 @@ $(function () {
 
 //在此处修改电话自动拨号号码
 $(function () {
-    $("#tel").attr("href", "tel:13527119843");
+    $("#tel").attr("href", "tel:13715603919");
 });
 
 //教师端点名按钮颜色和是否可点击控制
@@ -241,8 +241,8 @@ $(function () {
      });
  }
 
-//教师点名页面考勤按钮点击颜色控制
-$(function () {
+
+/*function callNameBox(){
     $(".callNameBox").each(function () {
         var t = $(this);
         t.find(".onTimeBtn").click(function () {
@@ -264,7 +264,7 @@ $(function () {
             t.find(".skipClass").css("color", "#ffffff");
         });
     });
-});
+}*/
 
 //课程表表格高度
 $(function () {

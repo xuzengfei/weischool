@@ -54,7 +54,7 @@
 			<div class="formControls col-5"> <span class="select-box" style="width:150px;">
 				<select class="select" id="role" name="sysRole.id" size="1" >
 				<c:if test="${not empty account.id}">
-				<option value="">[${account.sysRole.name }]</option>
+				<option >[${account.sysRole.name }]</option>
 				</c:if>
 				</select>
 				</span> </div>

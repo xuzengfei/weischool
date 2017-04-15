@@ -8,5 +8,10 @@
 /resource/hib-config.xml
 /resource/log4j.properties
 /resource
+<<<<<<< .mine
 /.idea
 /weischool.iml
+=======
+/.idea
+
+>>>>>>> .theirs

@@ -27,7 +27,7 @@
 <title>玲珑舞艺系统 v1.0</title>
 </head>
 <body>
-<header class="Hui-header cl"> <a class="Hui-logo l" title="BUG研究所OA" href="/">玲珑艺术连锁机构管理系统</a> <a class="Hui-logo-m l" href="/" title="V1.0"></a> <span class="Hui-subtitle l">V1.0</span>
+<header class="Hui-header cl"> <a class="Hui-logo l" title="BUG研究所OA" href="/">玲珑艺术教育管理系统</a> <a class="Hui-logo-m l" href="/" title="V1.0"></a> <span class="Hui-subtitle l">V1.0</span>
 	
 	<nav class="mainnav cl" id="Hui-nav">
 		<ul>

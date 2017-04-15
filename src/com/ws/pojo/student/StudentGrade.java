@@ -82,6 +82,10 @@ public class StudentGrade extends IdEntity {
         this.setId(id);
         return this;
     }
+    public StudentGrade gradeId(String gradeId){
+        this.setGradeId(gradeId);
+        return this;
+    }
 
     /**
      * 获取{@link StudentGrade#adviser}

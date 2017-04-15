@@ -15,7 +15,7 @@ public class DataGrid<T> {
     /**
      * 每页显示的记录条数
      */
-    private int pageSize = 10;
+    private int pageSize = 20;
     /**
      * 总记录数
      */
