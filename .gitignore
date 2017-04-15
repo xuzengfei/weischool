@@ -8,3 +8,5 @@
 /resource/hib-config.xml
 /resource/log4j.properties
 /resource
+/.idea
+/weischool.iml
