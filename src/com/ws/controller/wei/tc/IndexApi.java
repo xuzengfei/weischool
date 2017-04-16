@@ -169,12 +169,12 @@ public class IndexApi {
      * @param status 状态：1-准 2-请 3-旷
      * @return
      */
-    @RequestMapping(value = "/grade/reg/studentgrade/{stId}/status/{status}", method = RequestMethod.POST)
+    @RequestMapping(value = "/grade/reg/gradetime/{gtId}/studentgrade/{stId}/status/{status}", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson addSign(@PathVariable String stId, @PathVariable Short status) {
+    public AjaxJson addSign(@PathVariable String gtId,@PathVariable String stId, @PathVariable Short status) {
         StudentGrade studentGrade = this.studentGradeService.get(stId);
         Teacher teacher = this.teacherService.get(WeiTcLoginUtils.getTeacherSession().getTcId());
-        GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status);
+        GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status,gtId);
         gradeRegService.add(gradeReg);
         return new AjaxJson(null, true, gradeReg.getId());
     }

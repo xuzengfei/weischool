@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="header">
-    <a href="teach_index.html"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1)"><span class="icon-icon15"></span></a>
     <p>${gradeName}</p>
 </div>
 </body>

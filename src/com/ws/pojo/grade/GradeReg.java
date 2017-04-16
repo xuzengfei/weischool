@@ -55,7 +55,7 @@ public class GradeReg {
     public GradeReg() {
     }
 
-    public GradeReg(String id, String gradeId, String gradeName, String tcId, String tcName, String stId, String stName, Long ct, Short status) {
+    public GradeReg(String id, String gradeId, String gradeName, String tcId, String tcName, String stId, String stName, Long ct, Short status,String gtId) {
         this.id = id;
         this.gradeId = gradeId;
         this.gradeName = gradeName;
@@ -65,6 +65,7 @@ public class GradeReg {
         this.stName = stName;
         this.ct = ct;
         this.status = status;
+        this.gtId=gtId;
     }
 
     @Override

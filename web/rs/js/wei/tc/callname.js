@@ -11,7 +11,7 @@ function loadStudent(){
                     if(item.pic!=""){
                         html+='<img src="'+basePath+'fileupload/thumb/'+item.pic+'" class="img-circle callNameImg">';
                     }else{
-                        html+='<img src="${pageContext.request.contextPath}/rs/css/wei/images/index_userImg.png" class="img-circle callNameImg">';
+                        html+='<img src="'+basePath+'rs/css/wei/images/index_userImg.png" class="img-circle callNameImg">';
                     }
                     html+='    <div class="callNameBox">';
                     html+='    <p class="stuName">'+item.stName+'</p>';
@@ -31,13 +31,14 @@ function loadStudent(){
                             if(res.success){
                                    var dataR =  res.obj;
                                    $.each(dataR,function (n,it) {
+
                                          $("#"+it.stId ).attr("grId",it.id)
                                        if(it.status==1){
-                                           $("#"+it.stId ).children(".onTimeBtn").trigger("click");
+                                           $("#"+it.stId ).children().children(".onTimeBtn").trigger("click1");
                                        }else if(it.status==2){
-                                           $("#"+it.stId ).children(".askForLeave").trigger("click");
+                                           $("#"+it.stId ).children().children(".askForLeave").trigger("click1");
                                        }else{
-                                           $("#"+it.stId ).children(".skipClass").trigger("click");
+                                           $("#"+it.stId ).children().children(".skipClass").trigger("click1");
                                        }
                                    })
                             }
@@ -82,8 +83,8 @@ function sign(obj,status) {
     var item =$(obj).parent().parent(".list-group-item");
     var grId =$(item).attr("grId");
     if(grId==""||typeof (grId)=="undefined"){
-        alert($(item).attr("id"));
-        $.post(basePath+"wei/tc/grade/reg/studentgrade/"+$(item).attr("id")+"/status/"+status ,function(res){
+
+        $.post(basePath+"wei/tc/grade/reg/gradetime/"+gtId+"/studentgrade/"+$(item).attr("sgId")+"/status/"+status ,function(res){
             if(res.success){
                 $(obj).trigger("click1");
             }else{
@@ -91,7 +92,7 @@ function sign(obj,status) {
             }
         }, "json");
     }else{
-        $.post(basePath+"grade/reg/"+grId+"/status/"+status ,function(res){
+        $.post(basePath+"wei/tc/grade/reg/"+grId+"/status/"+status ,function(res){
             if(res.success){
                 $(obj).trigger("click1");
             }else{
