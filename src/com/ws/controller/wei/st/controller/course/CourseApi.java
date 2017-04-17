@@ -7,9 +7,11 @@ import com.ws.controller.wei.st.common.WeiStLoginUtils;
 import com.ws.pojo.campus.Campus;
 import com.ws.pojo.grade.ClassRegister;
 import com.ws.pojo.grade.Grade;
+import com.ws.pojo.grade.GradeReg;
 import com.ws.pojo.student.StudentGrade;
 import com.ws.pojo.student.StudentOpenId;
 import com.ws.service.grade.ClassRegisterService;
+import com.ws.service.grade.GradeRegService;
 import com.ws.service.grade.GradeService;
 import com.ws.service.student.StudentGradeService;
 import org.apache.commons.collections.map.HashedMap;
@@ -38,16 +40,25 @@ public class CourseApi {
     private ClassRegisterService classRegisterService;
     @Autowired
     private GradeService gradeService;
+    @Autowired
+    private GradeRegService gradeRegService;
 
     @RequestMapping(value = "/to/choose", method = RequestMethod.GET)
     public String toChoose() {
         return "/wei/classQuery_choose";
     }
 
-    @RequestMapping(value = "/to/choose/{id}", method = RequestMethod.GET)
-    public ModelAndView toQuery(@PathVariable("id") String id) {
+    /**
+     * 跳转到课程点名查询列表
+     *
+     * @param gradId 班级ID
+     * @param stId  班级学员ID
+     * @return
+     */
+    @RequestMapping(value = "/to/choose/grade/{gradId}/studentgrade/{sgId}", method = RequestMethod.GET)
+    public ModelAndView toQuery(@PathVariable("gradId") String gradId, @PathVariable("sgId") String stId) {
 
-        return new ModelAndView("/wei/classQuery", "id", id);
+        return new ModelAndView("/wei/classQuery", "gradId", gradId).addObject("sgId", stId);
     }
 
     @RequestMapping(value = "/list/grade", method = RequestMethod.GET)
@@ -58,7 +69,8 @@ public class CourseApi {
         List<Map<String, String>> mlist = new ArrayList<>();
         for (StudentGrade st : studentGrades) {
             Map<String, String> map = new HashedMap();
-            map.put("id", st.getId());
+            map.put("sgId", st.getId());
+            map.put("id", st.getGrade().getId());
             map.put("name", st.getGrade().getName());
             mlist.add(map);
         }
@@ -97,9 +109,24 @@ public class CourseApi {
         return HqlGenerateUtil.datagrid(datagrid);
     }
 
+    @RequestMapping(value = "/grade/register/datagrid", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson listGradeRegister(HttpServletRequest request, GradeReg gradeReg, DataGrid<GradeReg> datagrid) {
+        gradeReg.setStId(WeiStLoginUtils.getStudentSession().getStId());
+        List<String[]> orders = new ArrayList<>();
+        String[] order = new String[2];
+        order[0] = "ct";
+        order[1] = "desc";
+        orders.add(order);
+        datagrid.setOrder(orders);
+        gradeRegService.datagrid(gradeReg, datagrid, request);
+        return HqlGenerateUtil.datagrid(datagrid);
+    }
+
     @RequestMapping(value = "/rest/class/{gradeId}", method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson restClass(@PathVariable("gradeId") String gradeId) {
+
         StudentGrade studentGrade = studentGradeService.get(gradeId);
         Map<String, String> result = new HashedMap();
         result.put("restClass", studentGrade.getRestClass() + "");

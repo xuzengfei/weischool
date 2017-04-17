@@ -27,7 +27,7 @@ function init() {
  * 列出用户
  */
 function  listCourse(rdata) {
-    $.getJSON(basePath+"wei/st/course/class/register/datagrid?pageNo="+pageNo+"&gradeId="+moduleId,rdata, function(res){
+    $.getJSON(basePath+"wei/st/course/grade/register/datagrid?pageNo="+pageNo+"&gradeId="+moduleId,rdata, function(res){
         if(res.success){
             var data = res.obj.datas;//列表
             recordCount =res.obj.recordCount;
@@ -41,7 +41,7 @@ function  listCourse(rdata) {
                 }
                 $("#listLoad1").append(
                     "<div class='list-group-item'>" +
-                    "<p class='date'>"+$.myTime.UnixToDate(item.createTime, "yyyy-MM-dd")+"</p>" +
+                    "<p class='date'>"+$.myTime.UnixToDate(item.ct, "yyyy-MM-dd")+"</p>" +
                     "<p class='teacher'>授课老师：</p>" +
                     "<p class='teacherVal'>"+item.tcName+"</p>" +
                     "<p class='state'>"+statusVal+"</p></div>");
@@ -98,7 +98,7 @@ function loadPic(){
 }
 //加载头部信息
 function loadTopData() {
-    $.getJSON(basePath+"wei/st/course/rest/class/"+moduleId,function(res){
+    $.getJSON(basePath+"wei/st/course/rest/class/"+sgId,function(res){
         if(res.success){
             var data =res.obj;
             $(".classTop h3").html(data.gradeName+"上课签到");

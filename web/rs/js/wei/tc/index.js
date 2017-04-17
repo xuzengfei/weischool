@@ -50,9 +50,8 @@ function list() {
                     if(item.status>0){
                         html+=basePath+"wei/tc/callname/grade/"+item.id+"/gradeTime/"+item.gtId;
                     }else{
-                        html+="teach_callName.html";
+                        html+="javascript:void(0);";
                     }
-
                     html+="\"><button class=\"callNameBtn\">点名</button></a>";
                     html+="      </div>";
                 })

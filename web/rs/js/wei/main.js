@@ -222,21 +222,22 @@ $(function () {
  function teacherIndex() {
      $(".list-group-item").each(function () {
          var s = $(this).find(".statue").text();
-         if (s == "课程结束" || s == "还未开始") {
+         if (s == "还未开始") {
              $(this).find(".statue").css("background-color", "#a4a4a4");
              $(this).css("border-bottom", "#a4a4a4 solid 1px");
              $(this).find(".callNameBtn").attr("disabled", true);
              $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
+             $(this).find(".callNameBtn").text("---")
          } else if (s == "正在上课") {
              $(this).find(".statue").css("background-color", "#1bb9e0");
              $(this).css("border-bottom", "#1bb9e0 solid 1px");
              $(this).find(".callNameBtn").attr("disabled", false);
              $(this).find(".callNameBtn").css("background-color", "#1bb9e0");
-         } else if (s == "课程取消") {
+         } else if (s == "课程结束") {
              $(this).find(".statue").css("background-color", "#f26d3e");
-             $(this).find(".callNameBtn").attr("disabled", true);
-             $(this).find(".callNameBtn").css("background-color", "#a4a4a4");
-             $(this).find(".callNameBtn").text("------")
+             $(this).find(".callNameBtn").attr("disabled", false);
+             $(this).find(".callNameBtn").css("background-color", "#f26d3e");
+             $(this).find(".callNameBtn").text("查改")
          }
      });
  }

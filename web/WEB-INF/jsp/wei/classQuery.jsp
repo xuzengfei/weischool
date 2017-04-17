@@ -90,7 +90,9 @@
 </body>
 <script type="text/javascript">
     var basePath ="${pageContext.request.contextPath}/";
-    var moduleId ='${id}';
+    var moduleId ='${gradId}';
+    var sgId ='${sgId}';
+
 </script>
 <script src="${pageContext.request.contextPath}/rs/js/wei/classQuery.js"></script>
 </html>
