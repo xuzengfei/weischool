@@ -39,6 +39,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<UserAccount> findUser(String name, String value) {
+		return this.userAccountDao.find(" from UserAccount r where r." + name
+				+ "=? and delFlag=0", value);
+	}
+
+	@Override
 	public List<User> enableUser() {
 		// TODO Auto-generated method stub
 		return this.userDao.enableUser();

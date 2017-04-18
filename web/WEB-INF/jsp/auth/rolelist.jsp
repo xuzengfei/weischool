@@ -26,8 +26,8 @@
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/role/isenable/{id}/0" icon="disabled" title="禁用" exp="isenable#eq#1"  post="PUT" message="是否禁用？"></t:dgConfirmOpt>
     <t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/role/isenable/{id}/1" icon="enabled" title="启用" exp="isenable#eq#0"   post="PUT" message="是否启用？"></t:dgConfirmOpt>
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/role/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
-	<t:dgFunOpt funname="openWin('${ pageContext.request.contextPath }/auth/role/to/edit/{id}','更新',500,450)" title="更新" icon="edit" ></t:dgFunOpt>
-	<t:dgToolBar icon="add" title="添加角色" btClass="btn-primary" funname="openWin('${ pageContext.request.contextPath }/auth/role/to/add','添加角色',500,450)"></t:dgToolBar>
+	<t:dgFunOpt funname="openWinMax('${ pageContext.request.contextPath }/auth/role/to/edit/{id}','更新')" title="更新" icon="edit" ></t:dgFunOpt>
+	<t:dgToolBar icon="add" title="添加角色" btClass="btn-primary" funname="openWinMax('${ pageContext.request.contextPath }/auth/role/to/add','添加角色')"></t:dgToolBar>
 	<t:dgToolBar icon="del" title="删除角色" btClass="btn-danger" funname="bathDel('${ pageContext.request.contextPath }/auth/role/','role','删除角色')"></t:dgToolBar>
 </t:datagrid>
 </body>

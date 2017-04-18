@@ -35,6 +35,11 @@ public class Module extends IdEntity implements java.io.Serializable {
      */
     private Short isAdmin;
 
+    public Module() {
+    }
+    public  Module(String id){
+        this.setId(id);
+    }
     @Column(name = "pid", length = 36, nullable = false)
     public String getPid() {
         return pid;

@@ -24,6 +24,14 @@ public interface UserService {
 	UserAccount findUser(UserAccount user);
 
 	/**
+	 * 查询用户账号
+	 * @param name UserAccount属性名称
+	 * @param value UserAccount属性值
+	 * @return
+	 */
+	List<UserAccount> findUser(String name,String value);
+
+	/**
 	 * 获取可用的用户
 	 * 
 	 * @return

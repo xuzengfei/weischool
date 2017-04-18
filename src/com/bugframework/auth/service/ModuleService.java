@@ -46,6 +46,12 @@ public interface ModuleService {
 	List<Module> find(String name, String pid);
 
 	/**
+	 * 查询非系统管理的模块，并且是启用而且未删除的模块
+ 	 * @return
+	 */
+	List<Module> findIgnoreSys();
+
+	/**
 	 * 分页查询
 	 * 
 	 * @param module

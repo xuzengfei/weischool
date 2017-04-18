@@ -58,7 +58,7 @@ public class IdEntity {
     @Id
     @GeneratedValue(generator = "hibernate-uuid")
     @GenericGenerator(name = "hibernate-uuid", strategy = "uuid")
-    @Column(name = "id", length = 36)
+    @Column(name = "id", length = 32)
     public String getId() {
         return id;
     }

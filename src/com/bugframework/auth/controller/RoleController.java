@@ -29,6 +29,7 @@ public class RoleController {
     @Autowired
     private ModuleService moduleService;
 
+
     /**
      * 進入角色列表
      *
@@ -93,8 +94,8 @@ public class RoleController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson add(Role role) {
-        ResultCode code = this.roleService.add(role);
+    public AjaxJson add(Role role, String[] modules) {
+        ResultCode code = this.roleService.add(role, modules);
         AjaxJson j = new AjaxJson();
         switch (code) {
             case EXCEPTION:
@@ -115,8 +116,8 @@ public class RoleController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson edit(Role role) {
-        ResultCode code = this.roleService.update(role, true);
+    public AjaxJson edit(Role role, String[] modules) {
+        ResultCode code = this.roleService.update(role, true, modules);
         AjaxJson j = new AjaxJson();
         switch (code) {
             case EXCEPTION:
@@ -167,26 +168,28 @@ public class RoleController {
     }
 
     /**
-     * 删除，逻辑删除
+     * 删除，物理删除<br>
+     * <p>
+     * 1.校验是否已经被分配用户，如果被分配用户，则不给删除
+     * </p>
+     * <p>
+     * 2.删除成功要把权限给删除
+     * </p>
      *
-     * @param id传入ID
+     * @param id 传入ID
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public AjaxJson del(@PathVariable String id) {
         AjaxJson j = new AjaxJson();
-        Role role = new Role();
-        role.setId(id);
-        role.setDelFlag(1);
-        role.setDelTime(System.currentTimeMillis());
-        ResultCode code = this.roleService.update(role, false);
+        ResultCode code = this.roleService.delete(id);
         switch (code) {
             case EXCEPTION:
                 j = new AjaxJson("数据异常", false, ResultCode.EXCEPTION.getValue());
                 break;
             case INVALID:
-                j = new AjaxJson("提交数据不合法", false, ResultCode.INVALID.getValue());
+                j = new AjaxJson("提交数据不合法,或者该角色已经被用户使用", false, ResultCode.INVALID.getValue());
                 break;
             default:
                 j = new AjaxJson("操作成功", false, ResultCode.SUCCESS.getValue());

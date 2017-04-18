@@ -18,7 +18,7 @@
 <body>
 <div class="pd-20">
 	<form action="${ pageContext.request.contextPath }/auth/role/${empty role.id?"add":"edit" }" method="post" class="form form-horizontal" id="form-admin-add">
-		<input type="hidden" name="id" value="${role.id }">
+		<input type="hidden" name="id" id="roleId" value="${role.id }">
 		<div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-5">
@@ -34,7 +34,16 @@
 			</div>
 			<div class="col-4"> </div>
 		</div>
-		 <div class="row cl">
+		<div class="row cl">
+			<label class="form-label col-3">网站角色：</label>
+			<div class="formControls col-5">
+				<dl class="permission-list">
+				<dd >
+				</dd>
+			</dl>
+			</div>
+		</div>
+		<div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>启用/禁用：</label>
 			<div class="formControls col-5 skin-minimal">
 				<div class="radio-box">
@@ -73,8 +82,55 @@ $(function(){
 			reloadDatagrid(response);
 		}
 	});
+
+
+     $.getJSON("${ pageContext.request.contextPath }/auth/module/ignore/sys/module",function (res) {
+		if(res.success){
+			var data = res.obj;
+			var data1=data;
+			var html="";
+			$.each(data,function (i,item) {
+			    if(item.floor==1){
+                    html+='<dl class="cl permission-list2">';
+                    html+='<dt>';
+                    html+='<label class="c-orange"><input type="checkbox"  name="modules" id="'+item.id+'" value="'+item.id+'"  > '+item.name+' </label>';
+                    html+=' </dt>';
+                    html+=' <dd>';
+						$.each(data,function (i1,item1) {
+						    if(item1.floor==2&&item1.pid==item.id)
+                            html+='<label ><input type="checkbox"  pid="'+item.id+'" name="modules" id="'+item1.id+'"  value="'+item1.id+'"  > '+item1.name+' </label>';
+						});
+                    html+='</dd>';
+                    html+='</dl>';
+				}
+            })
+			$(".permission-list").children().html(html);
+
+            $(".permission-list dt input:checkbox").click(function(){
+                $(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
+            });
+            $(".permission-list2 dd input:checkbox").click(function(){
+                if($(this).prop("checked")){
+                    $("#"+$(this).attr("pid")).prop("checked",true);
+                } else{
+					if($("input[name="+$(this).attr("name")+"]:checked").length==0)
+                        $("#"+$(this).attr("pid")).prop("checked",false);
+                }
+            });
+			if($("#roleId").val()!=""){
+                $.getJSON("${ pageContext.request.contextPath }/auth/rmodule/role/"+$("#roleId").val(),function (res) {
+					if(res.success){
+					    $.each(res.obj,function (i,item) {
+					        $("#"+item.module).prop("checked",true);
+                        })
+					}
+                })
+			}
+        }
+    })
 });
- 
+
 </script>
+
 </body>
 </html>

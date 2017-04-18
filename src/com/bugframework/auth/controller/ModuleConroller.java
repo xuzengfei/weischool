@@ -38,11 +38,11 @@ public class ModuleConroller {
         List<BaseTree> list = new ArrayList<BaseTree>();
         for (Module a : listModule) {
             list.add(new BaseTree.TreeBuilder(a.getPid(), a.getId(), a.getName())
-                            .open((a.getId().equals("1") || a.getId().equals("0")) ? true : false)
-                            .checked(false)
-                            .canDel(a.getIsAdmin() == 1 ? false : true)
-                            .floor(a.getFloor())
-                            .build()
+                    .open((a.getId().equals("1") || a.getId().equals("0")) ? true : false)
+                    .checked(false)
+                    .canDel(a.getIsAdmin() == 1 ? false : true)
+                    .floor(a.getFloor())
+                    .build()
             );
 
         }
@@ -226,4 +226,11 @@ public class ModuleConroller {
         }
         return j;
     }
+
+    @RequestMapping(value = "/ignore/sys/module", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson ignoreSysModule() {
+        return new AjaxJson(null, true, this.moduleService.findIgnoreSys());
+    }
+
 }
