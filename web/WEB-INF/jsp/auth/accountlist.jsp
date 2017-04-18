@@ -27,14 +27,12 @@
 	<t:dgCol title="创建时间" field="createTime" formatter="yyyy-MM-dd" query="true"></t:dgCol>
 	<t:dgCol title="状态"   field="isenable" replace="1_启用中,0_禁用中"></t:dgCol>
 	<t:dgCol title="操作" field="opt" width="200"></t:dgCol>
+	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/account/reset/{id}/123456" message="是否重置密码为：123456？" title="重置密码"  post="PUT" icon="&#xe61d;" ></t:dgConfirmOpt>
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/account/isenable/{id}/0" icon="disabled" title="禁用" exp="isenable#eq#1"  post="PUT" message="是否禁用？"></t:dgConfirmOpt>
     <t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/account/isenable/{id}/1" icon="enabled" title="启用" exp="isenable#eq#0"   post="PUT" message="是否启用？"></t:dgConfirmOpt>
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/auth/account/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
 	<t:dgFunOpt funname="openWin('${ pageContext.request.contextPath }/auth/account/to/edit/{id}','更新',500,450)" title="更新" icon="edit" ></t:dgFunOpt>
 	<t:dgToolBar icon="add" title="添加帐号" btClass="btn-primary" funname="openWin('${ pageContext.request.contextPath }/auth/account/to/add','添加帐号',500,450)"></t:dgToolBar>
-	<t:dgToolBar icon="del" title="删除帐号" btClass="btn-danger" funname="add(id)"></t:dgToolBar>
 </t:datagrid>
- 
- 
 </body>
 </html>

@@ -2,8 +2,10 @@ package com.bugframework.auth.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.bugframework.common.utility.ResourceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,6 +44,18 @@ public class UserController {
 			DataGrid<User> datagrid) {
 		userService.datagrid(user, datagrid, request);
 		return HqlGenerateUtil.datagrid(datagrid);
+	}
+	@RequestMapping(value = "/to/personal", method = RequestMethod.GET)
+	public ModelAndView toPersonal() {
+		return new ModelAndView("/auth/personal","user", ResourceUtil.getUserSession().getUser());
+	}
+
+	@RequestMapping(value = "",method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxJson edit(User user){
+		user.setId(ResourceUtil.getUserSession().getUser().getId());
+		this.userService.update(user);
+		return new AjaxJson(null,true,null);
 	}
 
 }

@@ -7,6 +7,7 @@ import com.bugframework.auth.service.RoleService;
 import com.bugframework.common.pojo.AjaxJson;
 import com.bugframework.common.pojo.DataGrid;
 import com.bugframework.common.utility.HqlGenerateUtil;
+import com.bugframework.common.utility.ResourceUtil;
 import com.bugframework.common.utility.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,6 @@ public class AccountController {
     /**
      * 进入添加界面
      *
-     * @param request
      * @return
      */
     @RequestMapping(value = "/to/add", method = RequestMethod.GET)
@@ -103,7 +103,7 @@ public class AccountController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson edit(UserAccount account) {
-        if(account.getSysRole().getId()==null||"".equals(account.getSysRole().getId()))
+        if (account.getSysRole().getId() == null || "".equals(account.getSysRole().getId()))
             account.setSysRole(null);
         ResultCode code = this.accountService.edit(account);
         AjaxJson j = new AjaxJson();
@@ -131,35 +131,32 @@ public class AccountController {
      * @param status 启用或者禁用标记
      * @return 返回 AjaxJson，具体的值参考 AjaxJson
      */
-    // TODO
     @RequestMapping(value = "/isenable/{id}/{status}", method = RequestMethod.PUT)
     @ResponseBody
     public AjaxJson isenable(@PathVariable String id,
                              @PathVariable Integer status) {
-        AjaxJson j = new AjaxJson();
         UserAccount account = new UserAccount();
         account.setId(id);
         account.setIsenable(status);
         account.setDelFlag(null);// 因为delFlag有个默认值
-        ResultCode code = this.accountService.update(account);
-        switch (code) {
-            case EXCEPTION:
-                j = new AjaxJson("数据异常", false, ResultCode.EXCEPTION.getValue());
-                break;
-            case INVALID:
-                j = new AjaxJson("提交数据不合法", false, ResultCode.INVALID.getValue());
-                break;
-            default:
-                j = new AjaxJson("操作成功", true, ResultCode.SUCCESS.getValue());
-                break;
-        }
-        return j;
+        return new AjaxJson().result(this.accountService.update(account));
     }
+
+    @RequestMapping(value = "/reset/{id}/{pswd}", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxJson resetPswd(@PathVariable String id, @PathVariable String pswd) {
+        UserAccount account = new UserAccount();
+        account.setId(id);
+        account.setPassword(pswd);
+        account.setDelFlag(null);// 因为delFlag有个默认值
+        return new AjaxJson().result(this.accountService.update(account));
+    }
+
 
     /**
      * 删除，逻辑删除
      *
-     * @param id传入ID
+     * @param id 传入ID
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -184,4 +181,21 @@ public class AccountController {
         }
         return j;
     }
+
+
+    @RequestMapping(value = "/to/repassword", method = RequestMethod.GET)
+    public ModelAndView toRepassword() {
+        return new ModelAndView("/auth/repswd", "userAccount", ResourceUtil.getUserSession());
+    }
+
+    @RequestMapping(value = "/{id}/newpswd/{newP}", method = RequestMethod.PUT)
+    @ResponseBody
+    public AjaxJson changePswd(@PathVariable String id, @PathVariable String newP) {
+        UserAccount userAccount = new UserAccount();
+        userAccount.setId(id);
+        userAccount.setPassword(newP);
+        this.accountService.edit(userAccount);
+        return null;
+    }
+
 }

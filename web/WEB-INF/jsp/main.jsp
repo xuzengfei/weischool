@@ -46,7 +46,7 @@
 		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">${user.user.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="#">个人信息</a></li>
-				<li><a href="#">切换账户</a></li>
+				<li><a href="#">修改密码</a></li>
 				<li><a href="javascript:window.location.href='${ pageContext.request.contextPath }/auth/login/loginout'">退出</a></li>
 			</ul>
 		</li>
