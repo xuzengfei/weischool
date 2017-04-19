@@ -69,7 +69,7 @@ public class LoginController {
                 String hruser = RSAUtils.decryptStringByJs(longkey);
                 String[] longkeyArray = hruser.split(",");
                 /*
-				 * if(code.equalsIgnoreCase(longkeyArray[0])){//验证码
+                 * if(code.equalsIgnoreCase(longkeyArray[0])){//验证码
 				 */
                 if (true) {// 验证码
                     long nowTime = new Date().getTime();
@@ -81,51 +81,8 @@ public class LoginController {
                     user.setPassword(java.net.URLDecoder.decode(longkeyArray[3], "UTF-8"));
                     UserAccount sysuser = userService.findUser(user);
                     if (sysuser != null) {
-                        //sysuser.setLoginIp(ResourceUtil.getIpAddr());
-                        ResourceUtil.getSession().setMaxInactiveInterval(60 * 60);
+                        ResourceUtil.getSession().setMaxInactiveInterval(60*60*1000);
                         ResourceUtil.getSession().setAttribute(ResourceUtil.USER_SESSION, sysuser);
-
-						/*if (sysuser.getSysRole().getIsAdmin() == 1) {
-							List<Module> modules = this.moduleService.find(
-									0, 1);
-							if (!modules.isEmpty()) {
-								for (Module p : modules) {
-									if (p.getFloor() == 1) {
-										menu.add(p);
-									}
-									if (p.getFloor() == 2) {
-										menu1.add(p);
-									}
-									if (p.getFloor() == 3) {
-										menu2.add(p);
-									}
-								}
-							}
-						} else {
-							List<RoleModule> permission = this.permissionService
-									.getleftMenu(sysuser.getSysRole().getId());
-							if (!permission.isEmpty()) {
-								for (RoleModule p : permission) {
-									if (p.getModule().getFloor() == 1) {
-										menu.add(p.getModule());
-									}
-									if (p.getModule().getFloor() == 2) {
-										menu1.add(p.getModule());
-									}
-									if (p.getModule().getFloor() == 3) {
-										menu2.add(p.getModule());
-									}
-								}
-							}
-
-						}
-						ResourceUtil.getSession().setAttribute(
-								ResourceUtil.LEFT_MENU1_SESSION, menu);
-						ResourceUtil.getSession().setAttribute(
-								ResourceUtil.LEFT_MENU2_SESSION, menu1);
-						ResourceUtil.getSession().setAttribute(
-								ResourceUtil.LEFT_MENU3_SESSION, menu2);*/
-
                         j.setMsg("操作成功！");
                         j.setObj(1);
                         j.setSuccess(true);
@@ -161,30 +118,9 @@ public class LoginController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(HttpServletRequest request) {
-		/*AuthUser user = ResourceUtil.getUserSession();
-		request.setAttribute("user", user);
-		List<AuthShortcut> shortcuts = new ArrayList<AuthShortcut>();
-		if (!"1".equals(user.getSysRole().getId())) {
-			List<AuthRoleShortcut> authRoleShortcuts = this.shortcutService
-					.getshortcutByrole(user.getSysRole().getId());
-			for (AuthRoleShortcut a : authRoleShortcuts) {
-				shortcuts.add(a.getShortcut());
-			}
-		} else {
-		 
-			shortcuts = this.shortcutService.find(1);
-		}
-
-		request.setAttribute("shortcuts", shortcuts);*/
         return new ModelAndView("home");
     }
 
-
-    @RequestMapping(params = "top")
-    public ModelAndView top(HttpServletRequest request) {
-        request.setAttribute("user", ResourceUtil.getUserSession());
-        return new ModelAndView("top");
-    }
 
     /**
      * 退出登录
@@ -193,11 +129,7 @@ public class LoginController {
      */
     @RequestMapping(value = "loginout", method = RequestMethod.GET)
     public ModelAndView loginout(HttpServletRequest request) {
-        UserAccount user = ResourceUtil.getUserSession();
-        if (user != null) {
-            ResourceUtil.getSession().removeAttribute(ResourceUtil.USER_SESSION);
-            ResourceUtil.getSession().invalidate();
-        }
+        ResourceUtil.removeSession();
         return new ModelAndView("login");
     }
 

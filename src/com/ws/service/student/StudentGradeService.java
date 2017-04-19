@@ -63,6 +63,7 @@ public interface StudentGradeService {
      * @return
      */
     List<StudentGrade> findOrderRestClass(String cpId, String stId);
+
     /**
      * 通过班级查询列表
      *
@@ -70,4 +71,12 @@ public interface StudentGradeService {
      * @return
      */
     List<StudentGrade> findByGrade(String gradeId);
+
+    /**
+     * 更新剩余课时
+     *
+     * @param id   主键
+     * @param rest "+"或“-”
+     */
+    void updateRestClass(String id, String rest);
 }

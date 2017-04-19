@@ -33,10 +33,9 @@
 		<ul>
 			<li class="dropDown dropDown_click"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 快速工作 <i class="Hui-iconfont">&#xe6d5;</i></a>
 				<ul class="dropDown-menu radius box-shadow">
-					<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-					<li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-					<li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-					<li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
+					<c:forEach var="st" items="${shortcuts}">
+						<li><a href="javascript:;" onclick="addTab('${st.url}')"><i class="Hui-iconfont">${st.icon}</i> ${st.name}</a></li>
+					</c:forEach>
 				</ul>
 			</li>
 		</ul>
@@ -45,8 +44,8 @@
 		<li>${user.sysRole.name}</li>
 		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">${user.user.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
-				<li><a href="#">个人信息</a></li>
-				<li><a href="#">修改密码</a></li>
+				<li><a href="javascript:addTab('auth/user/to/personal');">个人信息</a></li>
+				<li><a href="javascript:addTab('auth/account/to/repassword');">修改密码</a></li>
 				<li><a href="javascript:window.location.href='${ pageContext.request.contextPath }/auth/login/loginout'">退出</a></li>
 			</ul>
 		</li>

@@ -12,6 +12,15 @@ import com.bugframework.common.utility.ResourceUtil;
 
 public class Interceptor implements HandlerInterceptor {
 	private List<String> excludeUrls;
+	private String mainUrl;
+
+	public String getMainUrl() {
+		return mainUrl;
+	}
+
+	public void setMainUrl(String mainUrl) {
+		this.mainUrl = mainUrl;
+	}
 
 	public List<String> getExcludeUrls() {
 		return excludeUrls;
@@ -46,6 +55,19 @@ public class Interceptor implements HandlerInterceptor {
 			return true;
 		} else {
 			if (ResourceUtil.getUserSession() != null) {
+				if (requestPath.equals(mainUrl))
+					return true;
+				boolean isMenuUrl =ResourceUtil.isMenuUrl(requestPath);
+				boolean haseRole =ResourceUtil.haseRole(requestPath);
+				if(!requestPath.equals(mainUrl)&&isMenuUrl&&!haseRole){
+					String requestType = ResourceUtil.getRequest().getHeader("X-Requested-With");
+					if (requestType == null) {//说明是非ajax提交
+						response.sendRedirect(ResourceUtil.basePath(request) + "noauth");
+					}else{
+						response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+					}
+					return false;
+				}
 				return true;
 			} else {
 				response.sendRedirect(ResourceUtil.basePath(request) + "auth/login");

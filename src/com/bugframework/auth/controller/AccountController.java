@@ -182,20 +182,32 @@ public class AccountController {
         return j;
     }
 
-
+    /**
+     * 进入重置密码界面
+     *
+     * @return 跳转界面
+     */
     @RequestMapping(value = "/to/repassword", method = RequestMethod.GET)
     public ModelAndView toRepassword() {
         return new ModelAndView("/auth/repswd", "userAccount", ResourceUtil.getUserSession());
     }
 
-    @RequestMapping(value = "/{id}/newpswd/{newP}", method = RequestMethod.PUT)
+    /**
+     * 更新密码
+     *
+     * @param id   主键
+     * @param newP 新密码
+     * @return AjaxJson
+     */
+    @RequestMapping(value = "/{id}/newpswd/{newP}", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson changePswd(@PathVariable String id, @PathVariable String newP) {
         UserAccount userAccount = new UserAccount();
         userAccount.setId(id);
         userAccount.setPassword(newP);
         this.accountService.edit(userAccount);
-        return null;
+        ResourceUtil.getUserSession().setPassword(newP);
+        return new AjaxJson("修改成功", true, null);
     }
 
 }

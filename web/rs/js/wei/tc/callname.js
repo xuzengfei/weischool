@@ -92,7 +92,7 @@ function sign(obj,status) {
             }
         }, "json");
     }else{
-        $.post(basePath+"wei/tc/grade/reg/"+grId+"/status/"+status ,function(res){
+        $.post(basePath+"wei/tc/grade/reg/"+grId+"/status/"+status ,{sgId:$(item).attr("sgId")},function(res){
             if(res.success){
                 $(obj).trigger("click1");
             }else{

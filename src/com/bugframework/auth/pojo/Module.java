@@ -34,12 +34,18 @@ public class Module extends IdEntity implements java.io.Serializable {
      * 否是为不可删除栏目1--是0--否
      */
     private Short isAdmin;
+    /**
+     * 快捷方式 1--是 0--否
+     */
+    private Short shortcut;
 
     public Module() {
     }
-    public  Module(String id){
+
+    public Module(String id) {
         this.setId(id);
     }
+
     @Column(name = "pid", length = 36, nullable = false)
     public String getPid() {
         return pid;
@@ -94,5 +100,12 @@ public class Module extends IdEntity implements java.io.Serializable {
         this.icon = icon;
     }
 
+    @Column(name = "shortcut", length = 1,columnDefinition = "0")
+    public Short getShortcut() {
+        return shortcut;
+    }
 
+    public void setShortcut(Short shortcut) {
+        this.shortcut = shortcut;
+    }
 }

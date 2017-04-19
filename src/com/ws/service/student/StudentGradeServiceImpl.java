@@ -150,4 +150,9 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         return cq.list();
     }
 
+    @Override
+    public void updateRestClass(String id, String  rest) {
+        this.studentGradeDao.batchExecute("update StudentGrade s set s.restClass =s.restClass"+rest+"1 where id=?",id);
+    }
+
 }

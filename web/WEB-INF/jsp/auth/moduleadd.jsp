@@ -57,6 +57,21 @@
 			</div>
 			<div class="col-4"> </div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-3"><span class="c-red">*</span>快捷入口：</label>
+			<div class="formControls col-5 skin-minimal">
+				<div class="radio-box">
+					<input type="radio" id="sc-1" name="shortcut"  ${module.shortcut eq 1?"checked":""} value=1 datatype="*"   nullmsg="请选择快捷入口！">
+					<label for="sex-1">是</label>
+				</div>
+				<div class="radio-box">
+					<input type="radio" id="sc-2" name="shortcut"  ${module.shortcut eq 0 or empty module.shortcut?"checked":""} value=0 >
+					<label for="sex-2">否</label>
+				</div>
+			</div>
+			<div class="col-4"> </div>
+		</div>
+
 		 <div class="row cl">
 			<label class="form-label col-3"><span class="c-red">*</span>启用/禁用：</label>
 			<div class="formControls col-5 skin-minimal">

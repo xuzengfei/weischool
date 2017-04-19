@@ -165,31 +165,35 @@ public class IndexApi {
     /**
      * TODO 保存点名
      *
-     * @param stid   班级学生ID
+     * @param gtId   班次ID
+     * @param sgId   班级学员表ID
      * @param status 状态：1-准 2-请 3-旷
      * @return
      */
-    @RequestMapping(value = "/grade/reg/gradetime/{gtId}/studentgrade/{stId}/status/{status}", method = RequestMethod.POST)
+    @RequestMapping(value = "/grade/reg/gradetime/{gtId}/studentgrade/{sgId}/status/{status}", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson addSign(@PathVariable String gtId,@PathVariable String stId, @PathVariable Short status) {
-        StudentGrade studentGrade = this.studentGradeService.get(stId);
+    public AjaxJson addSign(@PathVariable String gtId, @PathVariable String sgId, @PathVariable Short status) {
+        StudentGrade studentGrade = this.studentGradeService.get(sgId);
         Teacher teacher = this.teacherService.get(WeiTcLoginUtils.getTeacherSession().getTcId());
-        GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status,gtId);
-        gradeRegService.add(gradeReg);
+        GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status, gtId);
+        gradeRegService.add(gradeReg,sgId);
         return new AjaxJson(null, true, gradeReg.getId());
     }
 
     /**
      * TODO 更新点名
      *
-     * @param id 主键
+     * @param id     主键
      * @param status 状态：1-准 2-请 3-旷
+     *  @param sgId   班级学员表ID
      * @return
      */
     @RequestMapping(value = "/grade/reg/{id}/status/{status}", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson editSign(@PathVariable String id, @PathVariable Short status) {
-        gradeRegService.edit(id, status);
+    public AjaxJson editSign(@PathVariable String id, @PathVariable Short status,String sgId) {
+        if(sgId==null)
+            return new AjaxJson("更新失败",false,null);
+        gradeRegService.edit(id, status,sgId);
         return new AjaxJson(null, true, null);
     }
 }

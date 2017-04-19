@@ -25,6 +25,7 @@ public class RoleImpl extends BaseDaoImpl<Role> implements RoleDao{
 		 Criteria criteria=getSession().createCriteria(Role.class);
 		 if(role.getIsenable()!=null)
 		     criteria.add(Expression.eq("isenable", role.getIsenable()));
+		criteria.add(Expression.eq("isAdmin", (short)0));
 	 	/* 
 		 if(role.getIsAdmin()!=null)
 			 criteria.add(Expression.eq("isAdmin", role.getIsAdmin()));
