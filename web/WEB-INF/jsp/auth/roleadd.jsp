@@ -35,7 +35,7 @@
 			<div class="col-4"> </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-3">网站角色：</label>
+			<label class="form-label col-3">权限分配：</label>
 			<div class="formControls col-5">
 				<dl class="permission-list">
 				<dd >

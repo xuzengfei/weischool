@@ -408,19 +408,30 @@ public class DataGridTag  extends TagSupport{
 		    sb.append("html+='<span>';");
 		    
 
-		    sb.append("if(pageNo-pageSize<=0){");
+		 /*	sb.append("if(pageNo-pageSize<=0){");
 		    sb.append(" i=1;");
 		    sb.append("}");
 		    sb.append("if(pageNo>pageCount){");
 		    sb.append("	size = pageCount;");
 		    sb.append(" }");
-		    sb.append("for(;i<=size;i++){");
+	 	    sb.append("for(;i<=size;i++){");
 		    sb.append("if(i==pageNo){");//当前页码,把样式current 添加上
 		    sb.append("	html+='<span><a class=\"paginate_button current\">'+i+'</a></span>';");	
 		    sb.append("}else{");
 		    sb.append("html+='<span><a class=\"paginate_button\" href=\"javascript:currentPage('+pageNo+','+i+');\"   >'+i+'</a></span>';");
 		    sb.append("}");
-		    sb.append("}");
+		    sb.append("}");*/
+		    sb.append("var start = pageNo-5>0?(pageNo-5):1;");
+			sb.append("var end =pageNo+4>pageCount?pageCount:(pageNo+4);");
+			sb.append("if(end<10&&10<pageCount)");
+			sb.append("		end=10;");
+			sb.append("for(var i=start;i<=end;i++){");
+			sb.append("if(i==pageNo){");//当前页码,把样式current 添加上
+			sb.append("	html+='<span><a class=\"paginate_button current\">'+i+'</a></span>';");
+			sb.append("}else{");
+			sb.append("html+='<span><a class=\"paginate_button\" href=\"javascript:currentPage('+pageNo+','+i+');\"   >'+i+'</a></span>';");
+			sb.append("}");
+			sb.append("}");
 		    sb.append("html+='</span>';");
 		    sb.append("html+='<a class=\"paginate_button next disabled\" href=\"javascript:nextPage('+pageNo+','+pageCount+');\" >下一页</a>';");
 		    sb.append("html+='<a class=\"paginate_button last disabled\"  href=\"javascript:lastPage('+pageNo+','+pageCount+');\" >最后一页</a>';");
