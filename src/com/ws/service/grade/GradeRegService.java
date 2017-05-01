@@ -15,12 +15,13 @@ import java.util.List;
 public interface GradeRegService {
     /**
      * 添加
-     *  <p>添加的时候一定要将该学生班级课程的数量进行处理。处理如下：</p>
-     *  <p>1.判断是否点名状态（准时、请假、旷课），如果是正常和旷课那么，就要讲剩余课程减一。</p>
+     * <p>添加的时候一定要将该学生班级课程的数量进行处理。处理如下：</p>
+     * <p>1.判断是否点名状态（准时、请假、旷课），如果是正常和旷课那么，就要讲剩余课程减一。</p>
+     *
      * @param gradeReg 点名的数据bean
-     * @param sgId 班级学员表ID
+     * @param sgId     班级学员表ID
      */
-    void add(GradeReg gradeReg,String sgId);
+    void add(GradeReg gradeReg, String sgId);
 
     /**
      * 物理删除
@@ -32,6 +33,14 @@ public interface GradeRegService {
 
     /**
      * 更新操作
+     *
+     * @param id     主键
+     * @param status 状态
+     * @return
+     */
+    ResultCode edit(String id, short status);
+    /**
+     * 更新操作
      * <p>添加的时候一定要将该学生班级课程的数量进行处理。处理如下：</p>
      *  <p>1.获取原来的状态</p>
      *  <p>2.原来的状态和当前状态比较，有几种可能：2.1原来状态是准或旷变成旷或准，则不需要处理；2.2原来状态是准或旷变成请，则剩余课时+1；2.3原来状态是请变成准或旷，则剩余课时-1；2.4原来状态是请变成请，则不需要处理.</p>
@@ -40,8 +49,8 @@ public interface GradeRegService {
      * @param status 状态
      *  @param sgId 班级学员表ID
      * @return
-     */
-    ResultCode edit(String id, short status,String sgId);
+     *//*
+    ResultCode edit(String id, short status,String sgId);*/
 
     /**
      * 分页查询
@@ -54,6 +63,7 @@ public interface GradeRegService {
 
     /**
      * 获得班次下所有的学生签到信息
+     *
      * @param gtId
      * @return
      */

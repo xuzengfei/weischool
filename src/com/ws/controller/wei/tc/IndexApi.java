@@ -193,7 +193,7 @@ public class IndexApi {
     public AjaxJson editSign(@PathVariable String id, @PathVariable Short status,String sgId) {
         if(sgId==null)
             return new AjaxJson("更新失败",false,null);
-        gradeRegService.edit(id, status,sgId);
+        gradeRegService.edit(id, status);
         return new AjaxJson(null, true, null);
     }
 }

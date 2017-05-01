@@ -152,7 +152,7 @@ public class StudentGradeServiceImpl implements StudentGradeService {
 
     @Override
     public void updateRestClass(String id, String  rest) {
-        this.studentGradeDao.batchExecute("update StudentGrade s set s.restClass =s.restClass"+rest+"1 where id=?",id);
+        this.studentGradeDao.batchExecute("update StudentGrade s set s.restClass =s.restClass"+rest+"2 where id=?",id);
     }
 
 }

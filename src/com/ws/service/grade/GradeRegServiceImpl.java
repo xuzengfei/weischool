@@ -25,15 +25,32 @@ public class GradeRegServiceImpl implements GradeRegService {
 
     @Override
     public void add(GradeReg gradeReg, String sgId) {
-        if (gradeReg.getStatus() == 1 || gradeReg.getStatus() == 3)
-            studentGradeService.updateRestClass(sgId, "-");
+        studentGradeService.updateRestClass(sgId, "-");
         this.dao.add(gradeReg);
     }
 
+    /* @Override
+     public void add(GradeReg gradeReg, String sgId) {
+         if (gradeReg.getStatus() == 1 || gradeReg.getStatus() == 3)
+             studentGradeService.updateRestClass(sgId, "-");
+         this.dao.add(gradeReg);
+     }*/
     @Override
     public void del(String id, GradeRegEm idType) {
         this.dao.delete(idType.getVal(), id);
     }
+
+    /**
+     * @param id     主键
+     * @param status 状态
+     * @return
+     */
+    @Override
+    public ResultCode edit(String id, short status) {
+        this.dao.batchExecute("update GradeReg g set g.status =? where id = ?", status, id);
+        return ResultCode.SUCCESS;
+    }/*
+    */
 
     /**
      * 2.1原来状态是准或旷变成旷或准，则不需要处理；2.2原来状态是准或旷变成请，则剩余课时+1；2.3原来状态是请变成准或旷，则剩余课时-1；2.4原来状态是请变成请，则不需要处理
@@ -41,7 +58,7 @@ public class GradeRegServiceImpl implements GradeRegService {
      * @param id     主键
      * @param status 状态
      * @return
-     */
+     *//*
     @Override
     public ResultCode edit(String id, short status, String sgId) {
         GradeReg gradeReg = this.dao.get(id);
@@ -57,8 +74,7 @@ public class GradeRegServiceImpl implements GradeRegService {
         }
         this.dao.batchExecute("update GradeReg g set g.status =? where id = ?", status, id);
         return ResultCode.SUCCESS;
-    }
-
+    }*/
     @Override
     public void datagrid(GradeReg gradeReg, DataGrid<GradeReg> datagrid, HttpServletRequest request) {
         this.dao.datagrid(gradeReg, datagrid, request);
@@ -73,4 +89,5 @@ public class GradeRegServiceImpl implements GradeRegService {
         List<GradeReg> list = this.dao.find("from GradeReg g where gtId=? and stId=?", gtId, stId);
         return list == null || list.isEmpty() ? true : false;
     }
+
 }
