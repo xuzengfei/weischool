@@ -28,7 +28,7 @@
     <%--通过js ajax 添加课程--%>
 </div>
 <div class="header">
-    <a href="javascript:history.go(-1);"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span></a>
     课程查询
 </div>
 <div class="bottom">

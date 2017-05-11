@@ -133,7 +133,7 @@ $(function () {
 function setColor() {
     $(".list-group-item").each(function () {
         var s = $(this).find(".state").text();
-        if (s == "旷") {
+        if (s == "旷"||s == "迟") {
             $(this).find(".state").css("background-color", "#f26d3e");
             $(this).css("border-bottom", "#f26d3e solid 1px");
         } else if (s == "请") {

@@ -42,7 +42,7 @@
     </div>
 </div>
 <div class="header">
-    <a href="index.html"><span class="icon-icon15"></span></a>
+    <a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
     公告
 </div>
 <div class="bottom">

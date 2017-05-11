@@ -16,11 +16,13 @@ function loadStudent(){
                     html+='    <div class="callNameBox">';
                     html+='    <p class="stuName">'+item.stName+'</p>';
                     html+='    <button class="onTimeBtn">准</button>';
-                    html+='    <p class="statueCall">准时</p>';
+                    html+='    <p class="statueCall">&nbsp;</p>';
                     html+='   <button class="askForLeave">请</button>';
-                    html+='   <p class="statueCall">请假</p>';
+                    html+='   <p class="statueCall">&nbsp;</p>';
                     html+='    <button class="skipClass">旷</button>';
-                 /*   html+='    <p class="statueCall" style="margin-right: 0;">旷课</p>';*/
+                    html+='    <p class="statueCall" >&nbsp;</p>';
+                    html+='    <button class="forLate">迟</button>';
+                  /*  html+='    <p class="statueCall" >&nbsp;</p>';*/
                     html+='    </div>';
                     html+='    </div>';
                    $(".callNameList").append(html);
@@ -37,8 +39,10 @@ function loadStudent(){
                                            $("#"+it.stId ).children().children(".onTimeBtn").trigger("click1");
                                        }else if(it.status==2){
                                            $("#"+it.stId ).children().children(".askForLeave").trigger("click1");
-                                       }else{
+                                       }else if(it.status==3){
                                            $("#"+it.stId ).children().children(".skipClass").trigger("click1");
+                                       }else{
+                                           $("#"+it.stId ).children().children(".forLate").trigger("click1");
                                        }
                                    })
                             }
@@ -69,12 +73,20 @@ $(function () {
         $(this).parent().find(".skipClass").css("background-color", "#f26d3e");
         $(this).parent().find(".skipClass").css("color", "#ffffff");
         return false;
+    }).on("click1",".forLate",function () {
+        $(this).parent().find("button").css("background-color", "#f2f2f2");
+        $(this).parent().find("button").css("color", "#000000");
+        $(this).parent().find(".forLate").css("background-color", "#f26d3e");
+        $(this).parent().find(".forLate").css("color", "#ffffff");
+        return false;
     }).on("click",".onTimeBtn",function () {
         sign($(this),1);
     }).on("click",".askForLeave",function () {
         sign($(this),2);
     }).on("click",".skipClass",function () {
         sign($(this),3);
+    }).on("click",".forLate",function () {
+        sign($(this),4);
     })
 
 })

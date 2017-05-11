@@ -4,14 +4,12 @@
     padding: 5px;
     border-radius: 8px;
     margin-left: 170px;
-    font-family: myFonts;
-    font-weight: bold;
+    font-family: SIYUAN2;
     width: auto;
     height: auto;
 }
 .classTop h3{
-    font-family: myFonts;
-    font-weight: bold;
+    font-family: SIYUAN3;
 }
 .list-group{
     margin-top: 75px;
@@ -24,20 +22,18 @@
 }
 .itemTitle{
     font-size: 18px;
-    font-family: myFonts;
-    font-weight: bold;
+    font-family: SIYUAN3;
     margin-top: 0;
-    color: #535353;
+    color: #000000;
 }
 .date{
     margin-top: 27px;
     font-size: 9px;
-    color: #a0a0a0;
+    color: #000000;
 }
 .detail{
     margin-top: 43px;
     font-size: 12px;
-    color: #a1a1a1;
 }
 .cord{
     position: absolute;
@@ -48,7 +44,4 @@
     background-color: #1bb9e0;
     border-radius: 8px;
     margin-top: 25px;
-}
-.container{
-    overflow-y: auto;
 }

@@ -150,11 +150,17 @@ public class ResourceUtil {
      * @return
      */
     public static boolean haseRole(String url) {
-        return getAuthModuleSession().containsKey(url);
+        Map<String, String> modules =getAuthModuleSession();
+        if(modules==null)
+            return false;
+        return modules.containsKey(url);
     }
 
     public static boolean isMenuUrl(String url){
-        return getAllModuleSession().containsKey(url);
+        Map<String, String> modules =getAllModuleSession();
+        if(modules==null)
+            return false;
+        return modules.containsKey(url);
     }
 
     /**

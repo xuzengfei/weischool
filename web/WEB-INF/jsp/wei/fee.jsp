@@ -50,7 +50,7 @@
     </form>
 </div>
 <div class="header">
-    <a href="javascript:history.go(-1)"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
     缴费
 </div>
 <div class="bottom">

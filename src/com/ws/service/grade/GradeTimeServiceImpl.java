@@ -34,8 +34,8 @@ public class GradeTimeServiceImpl implements GradeTimeService{
 	public List<GradeTime> list(String gradId, Long start, Long end) {
 		Criteria cq = this.dao.getSession().createCriteria(GradeTime.class);
 		cq.add(Expression.eq("gradId",gradId));
-	 	cq.add(Expression.ge("start",start));
- 		cq.add(Expression.le("end",end));
+	  	cq.add(Expression.ge("start",start));
+ 	 	cq.add(Expression.le("end",end));
 		List<GradeTime> list  =cq.list();
 		return list;
 	}

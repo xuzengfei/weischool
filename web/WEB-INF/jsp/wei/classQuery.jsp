@@ -79,8 +79,14 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="radio" value="-1"  name="status">
+                    <input type="radio" value="3"  name="status">
                     旷课状态
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="radio" value="4"  name="status">
+                    迟到状态
                 </label>
             </div>
             <button type="button" id="btn">确定</button>

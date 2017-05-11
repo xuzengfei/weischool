@@ -37,7 +37,8 @@ function  listCourse(rdata) {
                 switch (status){
                     case 1:statusVal="准";break;
                     case 2:statusVal="请";break;
-                    default:statusVal="旷";break
+                    case 3:statusVal="旷";break;
+                    default:statusVal="迟";break
                 }
                 $("#listLoad1").append(
                     "<div class='list-group-item'>" +

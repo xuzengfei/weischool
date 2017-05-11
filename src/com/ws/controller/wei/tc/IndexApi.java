@@ -167,7 +167,7 @@ public class IndexApi {
      *
      * @param gtId   班次ID
      * @param sgId   班级学员表ID
-     * @param status 状态：1-准 2-请 3-旷
+     * @param status 状态：1-准 2-请 3-旷 4-迟
      * @return
      */
     @RequestMapping(value = "/grade/reg/gradetime/{gtId}/studentgrade/{sgId}/status/{status}", method = RequestMethod.POST)
@@ -184,7 +184,7 @@ public class IndexApi {
      * TODO 更新点名
      *
      * @param id     主键
-     * @param status 状态：1-准 2-请 3-旷
+     * @param status 状态：1-准 2-请 3-旷 4-迟
      *  @param sgId   班级学员表ID
      * @return
      */
