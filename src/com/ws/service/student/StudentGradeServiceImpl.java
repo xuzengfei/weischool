@@ -122,6 +122,7 @@ public class StudentGradeServiceImpl implements StudentGradeService {
             cq.createAlias("student", "st");
             cq.add(Expression.eq("st.id", sg.getStudent().getId()));
         }
+        cq.add(Expression.eq("delFlag",0));
         cq.addOrder(Order.desc("createTime"));
         return cq.list();
     }
@@ -136,6 +137,7 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         cq.createAlias("student", "st");
         cq.add(Expression.eq("st.id", stId));
         cq.add(Expression.eq("isenable", 1));
+        cq.add(Expression.eq("delFlag",0));
         cq.addOrder(Order.asc("restClass"));
         return cq.list();
     }
@@ -147,12 +149,18 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         Criteria cq = this.studentGradeDao.getSession().createCriteria(StudentGrade.class);
         cq.createAlias("grade", "g");
         cq.add(Expression.eq("g.id", gradeId));
+        cq.add(Expression.eq("delFlag",0));
         return cq.list();
     }
 
     @Override
     public void updateRestClass(String id, String  rest) {
         this.studentGradeDao.batchExecute("update StudentGrade s set s.restClass =s.restClass"+rest+"2 where id=?",id);
+    }
+
+    @Override
+    public void delByStId(String id) {
+        this.studentGradeDao.batchExecute("update StudentGrade s set s.delFlag = 1 where s.student.id=?",id);
     }
 
 }
