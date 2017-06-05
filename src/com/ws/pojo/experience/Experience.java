@@ -52,13 +52,13 @@ public class Experience extends IdEntity {
     }
 
     @Transient
-    public Experience remak(Long expeTime) {
+    public Experience expeTime(Long expeTime) {
         this.expeTime = expeTime;
         return this;
     }
 
     @Transient
-    public Experience remak(Student student) {
+    public Experience student(Student student) {
         this.student = student;
         return this;
     }

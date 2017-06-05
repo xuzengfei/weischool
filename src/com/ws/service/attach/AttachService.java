@@ -6,49 +6,49 @@ import com.ws.pojo.attach.Attach;
 import java.util.List;
 
 /**
- * Created by è®¸å¢é£ on 2017/1/13.
+ * Created by ĞíÔö·É on 2017/1/13.
  */
 public interface AttachService {
-    //ä¿å­˜
+    //±£´æ
     ResultCode save(Attach attach);
 
     /**
-     * ä¿®æ”¹é™„ä»¶è¡¨æ•°æ®
-     * IDä¸èƒ½ä¸ºç©º
+     * ĞŞ¸Ä¸½¼ş±íÊı¾İ
+     * ID²»ÄÜÎª¿Õ
      *
-     * @param attach ä¼ å…¥å¯¹è±¡
+     * @param attach ´«Èë¶ÔÏó
      * @return
      */
     ResultCode edit(Attach attach);
 
     /**
-     * æ‰¹é‡æ›´æ–°é™„ä»¶çš„æ¨¡å—ID
-     * @param ids é™„ä»¶IDæ•°ç»„
-     * @param moduleId æ¨¡å—ID
+     * ÅúÁ¿¸üĞÂ¸½¼şµÄÄ£¿éID
+     * @param ids ¸½¼şIDÊı×é
+     * @param moduleId Ä£¿éID
      */
     void edit(String[] ids, String moduleId);
 
     /**
-     * é€šè¿‡æ¨¡å—IDæ›´æ–°åˆ é™¤çŠ¶æ€
-     * @param moduleId æ¨¡å—ID
-     * @param delFlag åˆ é™¤æˆ–è€…éåˆ é™¤
+     * Í¨¹ıÄ£¿éID¸üĞÂÉ¾³ı×´Ì¬
+     * @param moduleId Ä£¿éID
+     * @param delFlag É¾³ı»òÕß·ÇÉ¾³ı
      */
     void edit(String moduleId, int delFlag);
 
-    //è·å–åˆ—è¡¨
+    //»ñÈ¡ÁĞ±í
     List<Attach> list(Attach attach);
 
     /**
-     * åˆ é™¤(åˆ é™¤æœåŠ¡å™¨ç¡¬ç›˜ä¸Šçš„æ–‡ä»¶åå†åˆ é™¤æ•°æ®åº“è®°å½•çš„æ•°æ®)
+     * É¾³ı(É¾³ı·şÎñÆ÷Ó²ÅÌÉÏµÄÎÄ¼şºóÔÙÉ¾³ıÊı¾İ¿â¼ÇÂ¼µÄÊı¾İ)
      *
-     * @param id ä¸»é”®ID
+     * @param id Ö÷¼üID
      * @return ResultCode
      */
     ResultCode del(String id);
 
     /**
-     * è·å¾—è·¯å¾„
-     * @param moduleId æ¨¡å—ID
+     * »ñµÃÂ·¾¶
+     * @param moduleId Ä£¿éID
      * @return
      */
     List<String> listPath(String moduleId);

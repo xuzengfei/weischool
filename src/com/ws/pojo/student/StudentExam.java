@@ -10,7 +10,7 @@ import javax.persistence.*;
  * Created by Administrator on 2017/3/7.
  */
 @Entity
-@Table(name ="ws_st_exam" )
+    @Table(name ="ws_st_exam" )
 public class StudentExam  extends IdEntity{
     /**
      * 描述
@@ -21,7 +21,7 @@ public class StudentExam  extends IdEntity{
      */
     private String title;
     /**
-     * 考试时间
+         * 考试时间
      */
     private Long exTime;
     /**
