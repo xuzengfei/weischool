@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/rs/lib/html5.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/rs/lib/respond.min.js"></script>
 <![endif]-->
-<link href=" ${ pageContext.request.contextPath }/rs/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${ pageContext.request.contextPath }/rs/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="${ pageContext.request.contextPath }/rs/css/H-ui.login.css" rel="stylesheet" type="text/css" />
 <link href="${ pageContext.request.contextPath }/rs/css/style.css" rel="stylesheet" type="text/css" />
 <link href="${ pageContext.request.contextPath }/rs/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />

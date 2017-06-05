@@ -30,7 +30,7 @@ public class BaseTag extends TagSupport {
             JspWriter out = this.pageContext.getOut();
             basePath = TagUtil.basePath(pageContext);
             //	basePath = this.pageContext.getServletContext().getContextPath()+ "/";
-            //	basePath="http://localhost:8888/";
+            //basePath="http://localhost/weischool/rs/";
             StringBuffer sb = new StringBuffer();
             String types[] = type.split(",");
             for (int i = 0; i < types.length; i++) {
