@@ -44,7 +44,7 @@ public class GradeReg {
      */
     private Long ct;
     /**
-     * 状态：1-准 2-请 3-旷
+     * 状态：1-准 2-请 3-旷 4-迟
      */
     private Short status;
     /**

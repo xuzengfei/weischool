@@ -80,7 +80,7 @@
     </div>
 </div>
 <div class="header">
-    <a href="index.html"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
     课程表
 </div>
 <div class="bottom">

@@ -79,4 +79,10 @@ public interface StudentGradeService {
      * @param rest "+"或“-”
      */
     void updateRestClass(String id, String rest);
+
+    /**
+     * 逻辑删除
+     * @param id
+     */
+    void delByStId(String id);
 }

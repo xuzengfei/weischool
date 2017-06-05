@@ -40,12 +40,10 @@ body{
 .tableDate p{
     margin:4px 0;
     padding:0;
-    text-align: center;
 }
 .day{
     font-size: 18px;
     color: #000;
-    margin: 0 auto;
 }
 .weekNum{
     color: #000;
@@ -57,30 +55,13 @@ body{
     margin-left: 9%;
     background-image:url("../images/classTableBG.png");
     background-size: 100%,auto;
-    float: left;
 }
 .classDetail{
     width: 13%;
     height: auto;
     padding: 0;
     font-size: 10px;
+    color: #ffffff;
     display: inline-block;
-    text-align: center;
-}
-.classTime{
-    padding: 0;
-    margin:0;
-    color: #fff;
-    text-align: center;
-    width: 100%;
-    float: left;
-    margin-top: 10px;
-    /*position: absolute;*/
-    /*top:auto;*/
-    position: relative;
-
-}
-.classTime>p{
-    margin: 0;
-    padding: 0;
+    border-left: #a4a4a4 solid 1px;
 }

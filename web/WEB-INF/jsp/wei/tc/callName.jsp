@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/icon_other.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/teacher.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/teacher.css?v=123">
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
     <script type="text/javascript" src="${ pageContext.request.contextPath }/rs/lib/layer/1.9.3/layer.js"></script>
@@ -20,7 +20,7 @@
     </div>
 </div>
 <div class="header">
-    <a href="javascript:history.go(-1)"><span class="icon-icon15"></span></a>
+    <a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-arrow-left"></span></a>
     <p>${gradeName}</p>
 </div>
 </body>

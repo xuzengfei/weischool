@@ -126,7 +126,8 @@ public class DateUtils {
         todayEnd.set(Calendar.MINUTE, 59);
         todayEnd.set(Calendar.SECOND, 59);
         todayEnd.set(Calendar.MILLISECOND, 999);
-        return todayEnd.getTime().getTime();*/   Calendar cal = Calendar.getInstance();
+        return todayEnd.getTime().getTime();*/
+        Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
         int second = cal.get(Calendar.SECOND);
@@ -147,7 +148,8 @@ public class DateUtils {
 
         // System.out.println(timestapTostr(new Date().getTime()));
         //    System.out.println(strTotimstrap("2017-3-16 12:00:00"));
-        System.out.println(getMondayPlus());
-        System.out.println(timestapTostr(1490968800000L,"all")+"    "+timestapTostr(1490974200000L,"all")+"  "+timestapTostr(getEndTime(),"all"));
+/*        System.out.println(getMondayPlus());
+        System.out.println(timestapTostr(1490968800000L,"all")+"    "+timestapTostr(1490974200000L,"all")+"  "+timestapTostr(getEndTime(),"all"));*/
+        System.out.println("start = "+DateUtils.getStartTime()+"    end = "+ DateUtils.getEndTime());
     }
 }

@@ -24,7 +24,7 @@ public interface StudentService {
 
     /**
      * 更新
-     *
+     * 如果是将delFlag=1(既是删除操作，要将班级成员也给删除了)
      * @param student 传入更新对象
      * @return
      */

@@ -3,6 +3,7 @@ package com.ws.service.student;
 import com.bugframework.common.pojo.DataGrid;
 import com.bugframework.common.utility.ResultCode;
 import com.ws.pojo.student.Student;
+import com.ws.pojo.student.StudentGrade;
 import com.ws.service.attach.AttachService;
 import com.ws.service.student.dao.StudentDao;
 import org.apache.log4j.Logger;
@@ -27,8 +28,12 @@ public class StudentServiceImpl implements StudentService {
             .getLogger(StudentServiceImpl.class);
     @Autowired
     private StudentDao studentDao;
+    //**附件接口
     @Autowired
     private AttachService attachService;
+    //**班级成员服务接口
+    @Autowired
+    private StudentGradeService studentGradeService;
 
     @Override
     public Student get(String id) {
@@ -49,7 +54,10 @@ public class StudentServiceImpl implements StudentService {
                 return ResultCode.EXIST;
         }
         this.studentDao.update(student);
+        if(student.getDelFlag()==1){
 
+            studentGradeService.delByStId(student.getId());
+        }
         return ResultCode.SUCCESS;
     }
 

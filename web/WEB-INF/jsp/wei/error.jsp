@@ -24,7 +24,7 @@
     <p  onclick="self.location=document.referrer;">请返回上级页面</p>
 </div>
 <div class="header">
-    <a href="index.html"><span class="icon-icon15"></span></a>
+    <a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a>
 
 </div>
 </body>

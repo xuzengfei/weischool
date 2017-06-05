@@ -22,8 +22,7 @@ a,a:hover,a:active,a:link{
 }
 .classTop h5,h3,h4{
     margin-left:95px;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
 }
 .classTop>h3{
     font-size: 24px;
@@ -34,14 +33,12 @@ a,a:hover,a:active,a:link{
     font-size: 15px;
     color: #737373;
     margin-top: -50px;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
 }
 .classTop h4{
     font-size: 12px;
     color: #6a6a6a;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
 }
 .classTop img{
     width: 85px;
@@ -61,8 +58,7 @@ a,a:hover,a:active,a:link{
     display: inline-block;
     color: #464646;
     font-size: 12px;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
     padding: 0;
     margin: 0;
 }
@@ -93,7 +89,7 @@ a,a:hover,a:active,a:link{
 }
 .time{
     font-size: 10px;
-    color: #6a6a6a;
+    color:#000000;
 }
 .statue{
     width: 40px;
@@ -105,8 +101,7 @@ a,a:hover,a:active,a:link{
     float: left;
     border-radius: 8px;
     font-size: 14px;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
     line-height: 15px;
 }
 .callNameBtn{
@@ -118,8 +113,7 @@ a,a:hover,a:active,a:link{
     float: right;
     border-radius:7px;
     font-size: 14px;
-    font-family: myFonts;
-    font-weight: normal;
+    font-family: SIYUAN3;
     margin-top: -15px;
 }
 .callNameList{
@@ -130,16 +124,16 @@ a,a:hover,a:active,a:link{
 .callNameList>.list-group-item{
     border-bottom: none;
     margin: 0 auto;
-    /*display: inline-block;*/
+    display: inline-block;
     margin-top: 5px;
 }
 .callNameList>.list-group-item>img{
     width: 45px;
     height: 45px;
-   margin-top: -32px;
+    float: left;
 }
 .statueCall{
-    color: #6a6a6a;
+    color: #000000;
     font-size: 10px;
     margin-right: 15px;
     margin-top: 10px;
@@ -155,7 +149,7 @@ a,a:hover,a:active,a:link{
     margin-top: 5px;
     display: inline-block;
     margin-right: 8px;
-    color: #6a6a6a;
+    color: #000000;
     padding:0;
     float: left;
     margin-left: 2px;
@@ -169,7 +163,6 @@ a,a:hover,a:active,a:link{
     width:240px;
     display: inline-block;
 }
-
 .onTimeBtn{
     border:#1bb9e0 solid 1px;
     width: 24px;
@@ -187,6 +180,14 @@ a,a:hover,a:active,a:link{
     background-color: #f2f2f2;
 }
 .skipClass{
+    border:#f26d3e solid 1px;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    float: left;
+    background-color: #f2f2f2;
+}
+.forLate{
     border:#f26d3e solid 1px;
     width: 24px;
     height: 24px;

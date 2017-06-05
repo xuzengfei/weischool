@@ -2,31 +2,22 @@
     margin: 0;
     padding: 0;
 }
-a:hover,a,a:visited,a:active{
-    color: #ffffff;
-    text-decoration: none;
-}
 html,body{
     height:100%;
+    overflow: hidden;
     width:100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
 }
 @font-face {
     font-family:'SIYUAN1';
-    src: url('../fonts/SOURCEHANSANSCN-BOLD.OTF');
+    src: url('../fonts/bak.otf');
 }
 @font-face {
     font-family:'SIYUAN2';
-    src: url('../fonts/SOURCEHANSANSCN-MEDIUM.OTF');
+    src: url('../fonts/bak.otf');
 }
 @font-face {
     font-family:'SIYUAN3';
-    src: url('../fonts/SOURCEHANSANSCN-LIGHT.OTF');
-}
-@font-face {
-    font-family: 'myFonts';
-    src: url("../fonts/font.TTF");
+    src: url('../fonts/bak.otf');
 }
 .container{
     padding:0;
@@ -48,15 +39,14 @@ html,body{
     color: #000000;
     font-size: 24px;
     padding-top: 8px;
-    font-family:myFonts;
-    font-weight: bold;
+    font-family:SIYUAN12;
 }
 .header span{
     position: absolute;
     left: 12px;
     font-size: 24px;
     color: #070707;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .top{
     background-image: url("../images/index_top.png");
@@ -86,7 +76,6 @@ html,body{
 .userMsg .col-xs-4 h5{
 	display:inline;
 	font-size:16px;
-    font-family:myFonts;
 }
 .last_class{
     color: #ffffff;
@@ -96,7 +85,6 @@ html,body{
     float: left;
     width: 45%;
     padding:0;
-    font-family:myFonts;
 }
 .last_class p{
     width: 60px;
@@ -105,7 +93,6 @@ html,body{
     margin-top:0;
     margin-bottom:0;
     text-align:center;
-    font-family:myFonts;
 }
 .area{
     color: #ffffff;
@@ -114,7 +101,6 @@ html,body{
     margin-right: 5px;
     width:30%;
     margin-top:0;
-    font-family:myFonts;
 }
 .area img{
     width:15px;
@@ -148,7 +134,6 @@ html,body{
     text-align: center;
     padding:0;
     margin: 0;
-    left:0;
 }
 .bottom .col-xs-4{
     background-color:  #1bb9e0;
@@ -157,8 +142,7 @@ html,body{
 .icon-icon3,.icon-icon2,.icon-icon1{
     font-size: 20px;
     display:inline-block;
-    margin-top:0;
-    padding-top: 5px;
+    margin-top:7px;
     margin-bottom:0;
 }
 .bottom .col-xs-4 p{
@@ -167,7 +151,6 @@ html,body{
     margin-top: 0;
     padding:0;
     margin-bottom:0;
-    font-family:myFonts;
 }
 
 
