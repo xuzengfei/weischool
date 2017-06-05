@@ -20,7 +20,6 @@ function listBook() {
                     $(".date").each(function () {
                         if($(this).text()==date){
                             isExist=1;
-
                             return false;
                         }
                     })

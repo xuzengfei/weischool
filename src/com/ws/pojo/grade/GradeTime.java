@@ -34,7 +34,7 @@ public class GradeTime extends IdEntity {
 
 	private String date;
 
-	private String gradName;
+		private String gradName;
 
 	@Column(name = "gra_id")
 	public String getGradId() {

@@ -193,8 +193,10 @@ public class ResourceUtil {
 
     public static String basePath(HttpServletRequest request) {
         return request.getScheme() + "://"
+                + request.getServerName()+ request.getContextPath() + "/";
+        /*return request.getScheme() + "://"
                 + request.getServerName() + ":"
-                + request.getServerPort() + request.getContextPath() + "/";
+                + request.getServerPort() + request.getContextPath() + "/";*/
     }
 
 
