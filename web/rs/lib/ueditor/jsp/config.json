@@ -8,7 +8,7 @@
     "imageCompressEnable": true, /* 是否压缩图片,默认是true */
     "imageCompressBorder": 1600, /* 图片压缩最长边限制 */
     "imageInsertAlign": "none", /* 插入的图片浮动方式 */
-    "imageRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file",
+    "imageRealMappingPath":"/usr/local/bin/file/weischool",
     "imageUsingVirtualPath": "yes",
     "imageUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
     "imagePathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
@@ -30,7 +30,7 @@
     "scrawlFieldName": "upfile", /* 提交的图片表单名称 */
     "scrawlPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
     "scrawlMaxSize": 2048000, /* 上传大小限制，单位B */
-    "scrawlRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file", /**修改成虚拟路径*/
+    "scrawlRealMappingPath":"/usr/local/bin/file/weischool", /**修改成虚拟路径*/
     "scrawlUsingVirtualPath": "yes",
     "scrawlUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
     "scrawlInsertAlign": "none",
@@ -39,7 +39,7 @@
     "snapscreenActionName": "uploadimage", /* 执行上传截图的action名称 */
     "snapscreenPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
     "snapscreenUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
-    /* "snapscreenrRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file", *//**修改成虚拟路径*//*
+    /* "snapscreenrRealMappingPath":"/usr/local/bin/file/weischool", *//**修改成虚拟路径*//*
     "snapscreenUsingVirtualPath": "yes",*/
     "snapscreenInsertAlign": "none", /* 插入的图片浮动方式 */
 
@@ -48,7 +48,7 @@
     "catcherActionName": "catchimage", /* 执行抓取远程图片的action名称 */
     "catcherFieldName": "source", /* 提交的图片列表表单名称 */
     "catcherPathFormat": "/ueditor/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "catcherRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file", /**修改成虚拟路径*/
+    "catcherRealMappingPath":"/usr/local/bin/file/weischool", /**修改成虚拟路径*/
     "catcherUsingVirtualPath": "yes",
     "catcherUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
     "catcherMaxSize": 2048000, /* 上传大小限制，单位B */
@@ -57,7 +57,7 @@
     /* 上传视频配置 */
     "videoActionName": "uploadvideo", /* 执行上传视频的action名称 */
     "videoFieldName": "upfile", /* 提交的视频表单名称 */
-    "videoRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file", /**修改成虚拟路径*/
+    "videoRealMappingPath":"/usr/local/bin/file/weischool", /**修改成虚拟路径*/
     "videoUsingVirtualPath": "yes",
     "videoPathFormat": "/ueditor/jsp/upload/video/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
     "videoUrlPrefix": "/weischool/fileupload", /* 视频访问路径前缀 */
@@ -70,7 +70,7 @@
     "fileActionName": "uploadfile", /* controller里,执行上传视频的action名称 */
     "fileFieldName": "upfile", /* 提交的文件表单名称 */
     "filePathFormat": "/ueditor/jsp/upload/file/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "fileRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file",   /**修改成虚拟路径*/
+    "fileRealMappingPath":"/usr/local/bin/file/weischool",   /**修改成虚拟路径*/
     "fileUsingVirtualPath": "yes",
     "fileUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
     "fileMaxSize": 51200000, /* 上传大小限制，单位B，默认50MB */
@@ -86,7 +86,7 @@
     "imageManagerActionName": "listimage", /* 执行图片管理的action名称 */
     "imageManagerListPath": "/ueditor/jsp/upload/image/", /* 指定要列出图片的目录 */
     "imageManagerListSize": 20, /* 每次列出文件数量 */
-    "imageManagerRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file",  /*修改成虚拟路径*/
+    "imageManagerRealMappingPath":"/usr/local/bin/file/weischool",  /*修改成虚拟路径*/
     "imageManagerUsingVirtualPath": "yes",
     "imageManagerUrlPrefix": "/weischool/fileupload", /* 图片访问路径前缀 */
     "imageManagerInsertAlign": "none", /* 插入的图片浮动方式 */
@@ -96,7 +96,7 @@
     "fileManagerActionName": "listfile", /* 执行文件管理的action名称 */
     "fileManagerListPath": "/ueditor/jsp/upload/file/", /* 指定要列出文件的目录 */
     "fileManagerUrlPrefix": "/weischool/fileupload", /* 文件访问路径前缀 */
-    "fileManagerRealMappingPath":"/usr/local/apache-tomcat-8.0.42/file",  /**修改成虚拟路径*/
+    "fileManagerRealMappingPath":"/usr/local/bin/file/weischool",  /**修改成虚拟路径*/
     "fileManagerUsingVirtualPath": "yes",
     "fileManagerListSize": 20, /* 每次列出文件数量 */
     "fileManagerAllowFiles": [
