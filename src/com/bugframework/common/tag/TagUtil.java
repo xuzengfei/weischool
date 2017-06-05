@@ -64,12 +64,12 @@ public class TagUtil {
 	}
 	public  static  String  basePath(PageContext pageContext){
 		String path =pageContext.getServletContext().getContextPath();
-		String basePath = pageContext.getRequest().getScheme()+"://"+pageContext.getRequest().getServerName()+":"+pageContext.getRequest().getServerPort()+path+"/rs/";
+		String basePath = pageContext.getRequest().getScheme()+"://"+pageContext.getRequest().getServerName()+path+"/rs/";
 		return basePath;
 	}
 	public  static String uplaodPath(PageContext pageContext){
 		String path =pageContext.getServletContext().getContextPath();
-		String filePath = pageContext.getRequest().getScheme()+"://"+pageContext.getRequest().getServerName()+":"+pageContext.getRequest().getServerPort()+path+"/file/";
+		String filePath = pageContext.getRequest().getScheme()+"://"+pageContext.getRequest().getServerName()+path+"/file/";
 		return filePath;
 	}
 }
