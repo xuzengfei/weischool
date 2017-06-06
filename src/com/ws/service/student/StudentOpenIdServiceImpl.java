@@ -32,9 +32,21 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
         return this.dao.findUniqueResult("from StudentOpenId s where s.openId =? ", openId);
     }
 
+    /**
+     * 1.判断是否合法
+     * 2.判断用户是否存在
+     * 3.是否存在班级学员
+     * 4.通过userId查询用户是否已经绑定过了，如果已经绑定了，则不能重复绑定
+     * 5.如果通过userId没有绑定，那么检查openId有没有被使用了，如果openId已经被使用了，不能重复使用
+     *
+     * @param openId openId
+     * @param stNo   学生学号
+     * @param cpId   校区ID
+     * @return
+     */
     @Override
     public ResultCode save(String openId, String stNo, String cpId) {
-        if (openId == null || stNo == null || cpId == null|| "".equals(openId)|| "".equals(stNo)|| "".equals(cpId))
+        if (openId == null || stNo == null || cpId == null || "".equals(openId) || "".equals(stNo) || "".equals(cpId))
             return ResultCode.INVALID;
         Student student = this.studentService.findByNo(stNo);
         if (student == null)
@@ -42,20 +54,26 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
 
         StudentGrade studentGrade = new StudentGrade();
         studentGrade.setStudent(student);
-        studentGrade.setCampus( new Campus(cpId));
+        studentGrade.setCampus(new Campus(cpId));
         studentGrade.setIsenable(1);
         List<StudentGrade> list = studentGradeService.find(studentGrade);
         if (list == null || list.isEmpty())
             return ResultCode.INVALID;
-        StudentOpenId studentOpenId  =this.get(openId);
-        if(studentOpenId==null){
-            this.dao.add(new StudentOpenId(student.getId(), openId, cpId, System.currentTimeMillis()));
-        }else {
-            studentOpenId.setCpId(cpId);
+        StudentOpenId studentOpenId = this.dao.findUniqueResult("from StudentOpenId s where s.stId =? ", student.getId());
+        ;
+        if (studentOpenId == null) {
+            if (this.get(openId) == null)
+                this.dao.add(new StudentOpenId(student.getId(), openId, cpId, System.currentTimeMillis()));
+            else
+                return ResultCode.EXIST;
+        } else {
+            return ResultCode.EXIST;
+            //   if(studentOpenId.getCpId())
+           /* studentOpenId.setCpId(cpId);
             studentOpenId.setCt(null);
             studentOpenId.setOpenId(null);
             studentOpenId.setStId(null);
-            this.dao.update(studentOpenId);
+            this.dao.update(studentOpenId);*/
         }
         return ResultCode.SUCCESS;
     }

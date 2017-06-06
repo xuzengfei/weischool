@@ -42,7 +42,7 @@ public class LoginApi {
         weixinLoginService.toCodeURl(request, response, "tc");
     }
 
-    @RequestMapping(value = "/authorization")
+    @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
         String openId = weixinLoginService.getOpenId(request);
         //   String openId = "-1";//todo 测试用
