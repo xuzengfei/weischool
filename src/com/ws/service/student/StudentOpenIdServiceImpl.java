@@ -55,7 +55,7 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
             studentOpenId.setCt(null);
             studentOpenId.setOpenId(null);
             studentOpenId.setStId(null);
-            this.dao.update(new StudentOpenId());
+            this.dao.update(studentOpenId);
         }
         return ResultCode.SUCCESS;
     }
