@@ -5,6 +5,7 @@ import com.bugframework.common.utility.ResultCode;
 import com.ws.controller.wei.tc.common.WeiTcLoginUtils;
 import com.ws.pojo.teacher.TeacherOpenId;
 import com.ws.service.teacher.TeacherOpenIdService;
+import com.ws.service.weixin.WeixinLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +23,13 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginApi {
     @Autowired
     private TeacherOpenIdService service;
+    @Autowired
+    private WeixinLoginService weixinLoginService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson login(String openId, String tcNo) {
-        openId = tcNo;//TODO 暂时这样写
+      //  openId = tcNo;//TODO 暂时这样写
         ResultCode code = service.save(openId, tcNo);
         if (code.getValue() == 1) {
             WeiTcLoginUtils.setTeacherSession(service.get(openId));
@@ -36,13 +39,13 @@ public class LoginApi {
 
     @RequestMapping(value = "/code", method = RequestMethod.GET)
     public void code(HttpServletRequest request, HttpServletResponse response) {
-        //     service.toCodeURl(request, response);
+        weixinLoginService.toCodeURl(request, response, "tc");
     }
 
     @RequestMapping(value = "/authorization")
     public String authorization(HttpServletRequest request) {
-        //   String openId = service.getOpenId(request);
-        String openId = "-1";//todo 测试用
+        String openId = weixinLoginService.getOpenId(request);
+        //   String openId = "-1";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";

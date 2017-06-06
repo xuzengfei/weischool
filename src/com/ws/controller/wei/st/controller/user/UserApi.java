@@ -1,6 +1,7 @@
 package com.ws.controller.wei.st.controller.user;
 
 import com.bugframework.common.pojo.AjaxJson;
+import com.bugframework.common.utility.ResourceUtil;
 import com.bugframework.common.utility.ResultCode;
 import com.ws.controller.wei.st.common.WeiStLoginUtils;
 import com.ws.pojo.student.Student;
@@ -41,13 +42,13 @@ public class UserApi {
 
     @RequestMapping(value = "/code", method = RequestMethod.GET)
     public void code(HttpServletRequest request, HttpServletResponse response) {
-        service.toCodeURl(request, response);
+        service.toCodeURl(request, response,"st");
     }
 
-    @RequestMapping(value = "/authorization")
+    @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
-        //   String openId = service.getOpenId(request);
-         String openId = "-1";//todo 测试用
+         String openId = service.getOpenId(request);
+        // String openId = "-1";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";
@@ -59,13 +60,13 @@ public class UserApi {
         }
 
         WeiStLoginUtils.setStudentSession(s);
-        return "redirect:/wei/st/to/index";
+        return "redirect:"+ ResourceUtil.basePath(request)+"wei/st/to/index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson login(String openId, String stNo, String cpId) {
-        openId =stNo;//TODO 暂时这样写
+     //   openId =stNo;//TODO 暂时这样写
         ResultCode code = studentOpenIdService.save(openId, stNo, cpId);
         if (code.getValue() == 1) {
             WeiStLoginUtils.setStudentSession(service.getByOpenid(openId));

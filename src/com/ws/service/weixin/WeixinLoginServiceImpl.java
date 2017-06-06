@@ -21,11 +21,11 @@ public class WeixinLoginServiceImpl implements WeixinLoginService {
     @Autowired
     private StudentOpenIdService studentOpenIdService;
     @Override
-    public void toCodeURl(HttpServletRequest request, HttpServletResponse response) {
+    public void toCodeURl(HttpServletRequest request, HttpServletResponse response,String to) {
         response.setContentType("text/html;charset=utf-8");
         try {
             String appid = WeiXinConfig.getValue("appid");//获得appID
-            String redirect_uri = WeiXinConfig.getValue("redirect_uri");//获得回调地址
+            String redirect_uri = WeiXinConfig.getValue(to+"_redirect_uri");//获得回调地址
             String getCodeURL = WeiXinConfig.getValue("getCodeURL");//去微信第三方平台请求地址，返回code参数
            // String redirect  =java.net.URLEncoder.encode(ResourceUtil.basePath(request)+redirect_uri,"utf-8");
            // String redirect  = ResourceUtil.basePath(request)+redirect_uri ;

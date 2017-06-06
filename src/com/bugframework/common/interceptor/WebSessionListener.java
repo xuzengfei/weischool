@@ -28,7 +28,7 @@ public class WebSessionListener implements HttpSessionListener {
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
         if (ResourceUtil.getSession() != null) {
-            ResourceUtil.removeSession();
+            ResourceUtil.getSession().invalidate();
         }
     }
 }

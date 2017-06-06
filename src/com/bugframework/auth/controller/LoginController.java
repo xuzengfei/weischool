@@ -111,7 +111,7 @@ public class LoginController {
         String url = "login";
         UserAccount user = ResourceUtil.getUserSession();
         if (user != null) {
-            url = "redirect:/admin";
+            url = "redirect:"+ResourceUtil.basePath(request)+"admin";
         }
         return url;
     }

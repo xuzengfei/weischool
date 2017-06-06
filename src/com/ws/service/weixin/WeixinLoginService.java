@@ -13,9 +13,10 @@ public interface WeixinLoginService {
      * 获得code的url,通过response跳转到回调地址，并且在回调地址上带上code的参数
      * @param request：request参数
      * @param response：response 参数
+     * @param to 跳转到老师(tc)或者学生(st)验证界面
      * @return 直接跳转，不需要返回值
      */
-    void toCodeURl(HttpServletRequest request, HttpServletResponse response);
+    void toCodeURl(HttpServletRequest request, HttpServletResponse response,String to);
 
     /**
      * 获得用户唯一标识
