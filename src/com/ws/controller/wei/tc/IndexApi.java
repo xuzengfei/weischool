@@ -185,13 +185,12 @@ public class IndexApi {
      *
      * @param id     主键
      * @param status 状态：1-准 2-请 3-旷 4-迟
-     *  @param sgId   班级学员表ID
      * @return
      */
     @RequestMapping(value = "/grade/reg/{id}/status/{status}", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson editSign(@PathVariable String id, @PathVariable Short status,String sgId) {
-        if(sgId==null)
+    public AjaxJson editSign(@PathVariable String id, @PathVariable Short status) {
+        if(id==null)
             return new AjaxJson("更新失败",false,null);
         gradeRegService.edit(id, status);
         return new AjaxJson(null, true, null);

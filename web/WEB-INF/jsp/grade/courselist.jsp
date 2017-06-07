@@ -95,14 +95,8 @@ function loadTime(){
 			editable: true,
 			droppable: true, // this allows things to be dropped onto the calendar
 			eventLimit: true, // allow "more" link when too many events
-		 
 			eventClick: function(calEvent, jsEvent, view) {
-			 
-			 
-			//alert('Event: ' + calEvent.title);
-		//	alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-			//alert('View: ' + view.name);
-
+                openWinMax('${ pageContext.request.contextPath }/web/manager/gradereg/to/gtId/'+calEvent.id);
 			},
 			drop: function(date, jsEvent, ui, resourceId) {
                 var ymd =new Date().format("yyyy-MM-dd",date);
@@ -116,8 +110,21 @@ function loadTime(){
                 }
 
 			},
+            eventDragStart:function(calEvent, jsEvent, ui, view){
+                layer.confirm("此操作将会删除【"+calEvent.title+"】，确定要执行?", {
+                    btn: ['是','否'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    del(calEvent.id);
+                    layer.msg("删除成功", {shift: 6});
+                }, function(){
+                    layer.msg('决定好再操作', {shift: 6});
+                    $('#calendar').fullCalendar( 'refetchEvents' ); //重新获取所有事件数据
+                });
+
+			},
 			eventDragStop:function(calEvent, jsEvent, view) {//移动到指定位置触发事件:此处回调函数参数是原来参数
-				del(calEvent.id);
+
 	  
 			}/* ,
 			eventDrop:function( event, delta, revertFunc) { //移动到指定位置触发事件:此处回调函数参数是最新参数
@@ -146,7 +153,8 @@ function loadTime(){
 			  url: "${pageContext.request.contextPath }/web/manager/course/del/gradetime/"+id,
 			  dataType: "json",
 			  success:function(res){
-				  $('#calendar').fullCalendar( 'refetchEvents' ); //重新获取所有事件数据 
+                  $('#calendar').fullCalendar( 'removeEvents',id);
+			      // $('#calendar').fullCalendar( 'refetchEvents' ); //重新获取所有事件数据
 			  }
 			});
 	}
