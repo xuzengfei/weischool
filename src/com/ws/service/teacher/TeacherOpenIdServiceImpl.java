@@ -32,11 +32,15 @@ public class TeacherOpenIdServiceImpl implements TeacherOpenIdService {
         Teacher teacher = this.teacherService.getByNo(tcNo);
         if (teacher == null)
             return ResultCode.INVALID;
-        TeacherOpenId teacherOpenId = this.get(openId);
+        TeacherOpenId teacherOpenId = this.dao.findUniqueResult("from TeacherOpenId s where s.tcId =? ", teacher.getId());
         if (teacherOpenId == null) {
-            this.dao.add(new TeacherOpenId(teacher.getId(), openId, System.currentTimeMillis()));
+            if (this.get(openId) == null)
+                this.dao.add(new TeacherOpenId(teacher.getId(), openId, System.currentTimeMillis()));
+            else
+                return ResultCode.EXIST;
         } else {
-            this.dao.update(new TeacherOpenId(teacher.getId(), openId, null));
+            return ResultCode.EXIST;
+            // this.dao.update(new TeacherOpenId(teacher.getId(), openId, null));
         }
         return ResultCode.SUCCESS;
     }
