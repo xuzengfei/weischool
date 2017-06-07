@@ -8,6 +8,7 @@ import com.ws.pojo.grade.GradeCostTpl;
 import com.ws.service.coupon.CoupService;
 import com.ws.service.grade.GradeCostTplService;
 import com.ws.service.grade.GradeService;
+import com.ws.service.weixin.WeixinLoginService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,8 @@ public class PayApi {
     private GradeService gradeService;
     @Autowired
     private CoupService coupService;
+    @Autowired
+    private WeixinLoginService weixinLoginService;
 
     @RequestMapping(value = "/grade/{gradeId}/costtpls", method = RequestMethod.GET)
     public ModelAndView toCostTpl(@PathVariable String gradeId) {
@@ -52,7 +55,8 @@ public class PayApi {
     }
 
     /**
-     *第二步 填写订单
+     * 第二步 填写订单
+     *
      * @param gradeId
      * @param cosId
      * @return
@@ -78,4 +82,18 @@ public class PayApi {
         j.setSuccess(true);
         return j;
     }
+
+    @RequestMapping(value = "/jssdk/congfig", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson getJsSdkConfig() {
+        Map<String,String> result = null;
+        try {
+            result = weixinLoginService.getWeiConfig("https://www.linglonged.com");
+            return new AjaxJson(null, true, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return  new AjaxJson("验证失败,请联系管理员。", false, result);
+    }
+
 }
