@@ -86,14 +86,18 @@ public class PayApi {
     @RequestMapping(value = "/jssdk/congfig", method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson getJsSdkConfig() {
-        Map<String,String> result = null;
+        Map<String, String> result = null;
         try {
-            result = weixinLoginService.getWeiConfig("https://www.linglonged.com");
+            result = weixinLoginService.getWeiConfig("https://www.linglonged.com/weischool/wei/st/pay/to/jssdk/congfig");
             return new AjaxJson(null, true, result);
         } catch (Exception e) {
             e.printStackTrace();
         }
-       return  new AjaxJson("验证失败,请联系管理员。", false, result);
+        return new AjaxJson("验证失败,请联系管理员。", false, result);
     }
 
+    @RequestMapping(value = "/to/jssdk/congfig", method = RequestMethod.GET)
+    public String toJsSdkConfig() {
+         return "/wei/pay";
+    }
 }

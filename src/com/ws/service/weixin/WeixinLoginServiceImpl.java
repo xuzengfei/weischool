@@ -109,8 +109,13 @@ public class WeixinLoginServiceImpl implements WeixinLoginService {
         String getAccessTokenUrl = WeiXinConfig.getValue("getAccessTokenUrl");//去微信第三方平台请求地址，返回access_token等信息
         String secret = WeiXinConfig.getValue("secret");//获得appID
         JSONObject jsonObject = CommonUtil.httpsRequest(getAccessTokenUrl.replace("APPID", appId).replace("SECRET", secret), "GET", (String) null);
-        if (jsonObject != null) {
-            if (jsonObject.getInt("errcode") != 0)
+        if (jsonObject != null) {//这段代码的意思：如果errorcode不存在，说明正确返回数据，那么catch的时候把正确的值赋进去；如果没有报异常，则说明access_token的值没有获取
+            int code =0;
+            try {
+                code = jsonObject.getInt("errcode");
+            }catch (Exception e){
+            }
+            if(code!=0)
                 throw new Exception(jsonObject.getString("errmsg"));
             Global.setAccessToken(jsonObject.getString("access_token"));
             Global.setAccessTokenExpires(jsonObject.getLong("expires_in") + System.currentTimeMillis() - 120);//允许有两分钟误差

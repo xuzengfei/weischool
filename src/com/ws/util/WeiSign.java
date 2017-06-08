@@ -36,8 +36,8 @@ public class WeiSign {
             e.printStackTrace();
         }
 
-        ret.put("url", url);
-        ret.put("jsapi_ticket", jsapi_ticket);
+       // ret.put("url", url);
+      //  ret.put("jsapi_ticket", jsapi_ticket);
         ret.put("nonceStr", nonce_str);
         ret.put("timestamp", timestamp);
         ret.put("signature", signature);
