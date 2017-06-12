@@ -42,12 +42,12 @@ public class UserApi {
 
     @RequestMapping(value = "/code", method = RequestMethod.GET)
     public void code(HttpServletRequest request, HttpServletResponse response) {
-        service.toCodeURl(request, response,"st");
+        service.toCodeURl(request, response, "st");
     }
 
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
-         String openId = service.getOpenId(request);
+        String openId = service.getOpenId(request);
         // String openId = "-1";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
@@ -60,13 +60,13 @@ public class UserApi {
         }
 
         WeiStLoginUtils.setStudentSession(s);
-        return "redirect:"+ ResourceUtil.basePath(request)+"wei/st/to/index";
+        return "redirect:" + ResourceUtil.basePath(request) + "wei/st/to/index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson login(String openId, String stNo, String cpId) {
-     //   openId =stNo;//TODO 暂时这样写
+        //   openId =stNo;//TODO 暂时这样写
         ResultCode code = studentOpenIdService.save(openId, stNo, cpId);
         if (code.getValue() == 1) {
             WeiStLoginUtils.setStudentSession(service.getByOpenid(openId));
@@ -86,22 +86,28 @@ public class UserApi {
         return null;
     }
 
+    /**
+     * 更新校区
+     *
+     * @param cp 校区ID
+     * @return AjaxJson
+     */
     @RequestMapping(value = "/change/cp/{cp}", method = RequestMethod.GET)
     @ResponseBody
-    public AjaxJson chanageCp(@PathVariable String cp){
+    public AjaxJson chanageCp(@PathVariable String cp) {
         StudentGrade studentGrade = new StudentGrade();
         studentGrade.setIsenable(1);
-        List<StudentGrade> list =  this.studentGradeService.find(studentGrade);
-        for (StudentGrade sg:list){
-            if(sg.getCpId().equals(cp)){
+        List<StudentGrade> list = this.studentGradeService.find(studentGrade);
+        for (StudentGrade sg : list) {
+            if (sg.getCpId().equals(cp)) {
                 StudentOpenId studentOpenId = WeiStLoginUtils.getStudentSession();
-            //    WeiStLoginUtils.removeTeacherSession();
+                //    WeiStLoginUtils.removeTeacherSession();
                 studentOpenId.setCpId(cp);
                 WeiStLoginUtils.setStudentSession(studentOpenId);
-                return new AjaxJson(null,true,null);
+                return new AjaxJson(null, true, null);
             }
         }
-        return new AjaxJson(null,false,null);
+        return new AjaxJson(null, false, null);
     }
 
 }
