@@ -51,7 +51,7 @@ public class LoginApi {
             return "/wei/error";
         }
         //  StudentOpenId s = service.getByOpenid(openId);
-        TeacherOpenId s = null;
+        TeacherOpenId s = service.get(openId);
         if (s == null) {
             request.setAttribute("openId", openId);
             return "/wei/tc/login";

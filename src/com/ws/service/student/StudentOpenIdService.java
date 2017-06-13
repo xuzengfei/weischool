@@ -44,4 +44,11 @@ public interface StudentOpenIdService {
      * @return  -1该学生已经被绑定 1--成功
      */
     int save(String openId,String stId,String cpId,Long ct);
+
+    /**
+     * 获得openId下所有的学生
+     * @param openId
+     * @return
+     */
+    List<StudentOpenId> getListByOpenId(String openId);
 }

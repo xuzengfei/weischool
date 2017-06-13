@@ -12,7 +12,7 @@
     <LINK rel="Bookmark" href="/favicon.ico">
     <LINK rel="Shortcut Icon" href="/favicon.ico"/>
     <t:base type="H-ui.css,icon.css,style.css,jquery,layer,valiform,H-ui,tools,usertools"></t:base>
-    <title>添加证书</title>
+    <title>学生微信绑定</title>
 </head>
 <body>
 <div class="pd-20">
@@ -37,11 +37,6 @@
 <script type="text/javascript">
     var basePath = '${ pageContext.request.contextPath }/';
      $(function () {
-        $('.skin-minimal input').iCheck({
-            checkboxClass: 'icheckbox-blue',
-            radioClass: 'iradio-blue',
-            increaseArea: '20%'
-        });
         $("#form-admin-add").Validform({
             tiptype: 2,
             ajaxPost: true,

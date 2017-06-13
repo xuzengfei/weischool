@@ -88,13 +88,13 @@ public class StudentOpenIdVoController {
         String resMsg = "";
         for (int i = 0; i < stIdsArray.length; i++) {
             List<StudentGrade> grades = studentGradeService.findByStId(stIdsArray[i]);
-            int resultCode = this.studentOpenIdService.save(studentOpenId.getOpenId(),stIdsArray[i], grades.get(i).getCampus().getId(), System.currentTimeMillis());
+            int resultCode = this.studentOpenIdService.save(studentOpenId.getOpenId(),stIdsArray[i], grades.get(0).getCampus().getId(), System.currentTimeMillis());
             if (resultCode == -1) {
                 resMsg += "【"+ stNamesArray[i] + "已经绑定了微信】 ";
             }
         }
         if ("".equals(resMsg))
             resMsg = "全部绑定成功";
-        return new AjaxJson(resMsg, true, resMsg);
+        return new AjaxJson(resMsg, true, null);
     }
 }

@@ -5,16 +5,36 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 /**
+ * 学生微信绑定
  * Created by admin on 2017/2/15.
  */
 @Entity
 @Table(name = "ws_st_openid")
 public class StudentOpenId {
+    /**
+     *主键
+     */
     private String id;
+    /**
+     * 学生ID
+     */
     private String stId;
+    /**
+     * 微信用户在微信公众号唯一标识
+     */
     private String openId;
+    /**
+     * 校区ID
+     */
     private String cpId;
+    /**
+     * 创建时间
+     */
     private Long ct;
+    /**
+     * 学生名称
+     */
+    private String stName;
 
     public StudentOpenId() {
     }
@@ -82,5 +102,13 @@ public class StudentOpenId {
 
     public void setCt(Long ct) {
         this.ct = ct;
+    }
+    @Transient
+    public String getStName() {
+        return stName;
+    }
+
+    public void setStName(String stName) {
+        this.stName = stName;
     }
 }

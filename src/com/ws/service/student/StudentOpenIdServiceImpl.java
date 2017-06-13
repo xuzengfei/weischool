@@ -94,4 +94,11 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
         return 1;
     }
 
+    @Override
+    public List<StudentOpenId> getListByOpenId(String openId) {
+        if (openId == null)
+            return null;
+        return this.dao.find("from StudentOpenId s where s.openId =? ", openId);
+    }
+
 }

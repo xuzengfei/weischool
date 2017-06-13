@@ -4,6 +4,7 @@ import com.ws.pojo.student.StudentOpenId;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,7 +37,9 @@ public interface WeixinLoginService {
      */
     boolean isOpenIdExist(String openId);
 
-    StudentOpenId getByOpenid(String openId);
+    StudentOpenId getByOpenId(String openId);
+
+    List<StudentOpenId> getListByOpenId(String openId);
 
     /**
      * 获得微信jssdk配置参数值

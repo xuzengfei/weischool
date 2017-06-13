@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,10 +74,17 @@ public class WeixinLoginServiceImpl implements WeixinLoginService {
     }
 
     @Override
-    public StudentOpenId getByOpenid(String openId) {
+    public StudentOpenId getByOpenId(String openId) {
         if (openId == null)
             return null;
         return studentOpenIdService.get(openId);
+    }
+
+    @Override
+    public List<StudentOpenId> getListByOpenId(String openId) {
+        if (openId == null)
+            return null;
+        return studentOpenIdService.getListByOpenId(openId);
     }
 
     @Override
