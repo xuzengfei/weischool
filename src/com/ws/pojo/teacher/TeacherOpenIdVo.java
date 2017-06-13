@@ -18,10 +18,7 @@ public class TeacherOpenIdVo {
      * 主键
      */
     private String id;
-    /**
-     * 老师微信openID
-     */
-    private String openId;
+
     /**
      * 创建ID
      */
@@ -55,14 +52,6 @@ public class TeacherOpenIdVo {
         this.id = id;
     }
 
-    @Column(name = "open_id", length = 36)
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId;
-    }
 
     @DateColumn
     @Column(name = "ct")

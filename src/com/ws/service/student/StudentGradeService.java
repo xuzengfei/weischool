@@ -85,4 +85,11 @@ public interface StudentGradeService {
      * @param id
      */
     void delByStId(String id);
+
+    /**
+     * 获得该学生所有班级
+     * @param s 学生ID
+     * @return
+     */
+    List<StudentGrade> findByStId(String s);
 }

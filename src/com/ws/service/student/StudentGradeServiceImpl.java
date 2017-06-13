@@ -163,4 +163,12 @@ public class StudentGradeServiceImpl implements StudentGradeService {
         this.studentGradeDao.batchExecute("update StudentGrade s set s.delFlag = 1 where s.student.id=?",id);
     }
 
+    @Override
+    public List<StudentGrade> findByStId(String s) {
+        Criteria cq = this.studentGradeDao.getSession().createCriteria(StudentGrade.class);
+        cq.createAlias("student", "st");
+        cq.add(Expression.eq("st.id",s));
+        return cq.list();
+    }
+
 }

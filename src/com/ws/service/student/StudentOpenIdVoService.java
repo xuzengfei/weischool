@@ -22,7 +22,9 @@ public interface StudentOpenIdVoService {
 
     /**
      * 解除绑定
+     *
      * @param id
      */
     void del(String id);
+
 }

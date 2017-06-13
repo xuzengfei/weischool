@@ -32,6 +32,13 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
         return this.dao.findUniqueResult("from StudentOpenId s where s.openId =? ", openId);
     }
 
+    @Override
+    public StudentOpenId getById(String id) {
+        if (id == null)
+            return null;
+        return this.dao.get(id);
+    }
+
     /**
      * 1.判断是否合法
      * 2.判断用户是否存在
@@ -76,6 +83,15 @@ public class StudentOpenIdServiceImpl implements StudentOpenIdService {
             this.dao.update(studentOpenId);*/
         }
         return ResultCode.SUCCESS;
+    }
+
+    @Override
+    public int save(String openId, String stId, String cpId, Long ct) {
+        StudentOpenId studentOpenId = this.dao.findUniqueResult("from StudentOpenId s where s.stId =? and s.openId =? ", stId, openId);
+        if (studentOpenId != null)
+            return -1;
+        this.dao.add(new StudentOpenId(stId, openId, cpId, ct));
+        return 1;
     }
 
 }

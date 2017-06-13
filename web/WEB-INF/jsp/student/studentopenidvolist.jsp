@@ -23,7 +23,8 @@
 	<t:dgCol title="学号"  field="student.name"  query="true"></t:dgCol>
 	<t:dgCol title="姓名"  field="student.no"  query="true"></t:dgCol>
 	<t:dgCol title="绑定时间"  width="150"  field="ct" formatter="yyyy-MM-dd HH:mm" query="true"></t:dgCol>
-	<t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+	<t:dgCol title="操作" field="opt" width="200"></t:dgCol>
+	<t:dgFunOpt funname="openWinMax('${ pageContext.request.contextPath }/web/manager/studentopenidvo/{id}','新增绑定')" title="新增绑定" icon="add" ></t:dgFunOpt>
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/web/manager/studentopenidvo/{id}" message="确定解除绑定？" title="解绑"  post="DELETE" icon="del" ></t:dgConfirmOpt>
 </t:datagrid>
 </body>

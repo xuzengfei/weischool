@@ -28,4 +28,5 @@ public class StudentOpenIdVoServiceImpl implements StudentOpenIdVoService {
         this.dao.delete(id);
     }
 
+
 }

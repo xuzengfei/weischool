@@ -19,10 +19,7 @@ public class StudentOpenIdVo {
      * 主键
      */
     private String id;
-    /**
-     * 学生的openId
-     */
-    private String openId;
+
     /**
      * 常用的校区
      */
@@ -72,14 +69,6 @@ public class StudentOpenIdVo {
         this.student = student;
     }
 
-    @Column(name = "open_id", length = 36)
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId;
-    }
 
     @Column(name = "cp_id", length = 36)
     public String getCpId() {
