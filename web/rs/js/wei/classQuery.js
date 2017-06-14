@@ -87,8 +87,8 @@ function search() {
     var start =$("#start").val();
     var end =$("#end").val();
     if(start!=""&&end!=""){
-        requestData["createTime_ST"] =strTotimestamp(start+" 00:00:00");
-        requestData["createTime_ED"] =strTotimestamp(end+" 23:59:59");
+        requestData["ct_ST"] =strTotimestamp(start+" 00:00:00");
+        requestData["ct_ED"] =strTotimestamp(end+" 23:59:59");
     }
     init();//初始化后查询
     listCourse(requestData);

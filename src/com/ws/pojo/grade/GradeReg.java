@@ -1,5 +1,6 @@
 package com.ws.pojo.grade;
 
+import com.bugframework.common.annotation.DateColumn;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -149,6 +150,7 @@ public class GradeReg {
         this.stName = stName;
     }
 
+    @DateColumn
     @Column(name = "ct")
     public Long getCt() {
         return ct;

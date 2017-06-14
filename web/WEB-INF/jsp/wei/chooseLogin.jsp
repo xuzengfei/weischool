@@ -21,7 +21,7 @@
         <a href="#" class="dropdown-toggle"  id="cp" data-toggle="dropdown">学生选择<b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
             <c:forEach var="c" items="${sps}">
-                <li onclick="chooseUser('${c.id}','${c.openId}','${c.stId}','${c.cpId}')" ><a href="#" tabindex="-1" data-toggle="tab"  >火炬校区</a></li>
+                <li onclick="chooseUser('${c.id}','${c.openId}','${c.stId}','${c.cpId}')" ><a href="#" tabindex="-1" data-toggle="tab"  >${c.stName}</a></li>
             </c:forEach>
         </ul>
     </div>

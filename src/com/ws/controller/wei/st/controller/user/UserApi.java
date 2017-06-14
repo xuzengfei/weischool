@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,40 +44,42 @@ public class UserApi {
     public void code(HttpServletRequest request, HttpServletResponse response) {
         service.toCodeURl(request, response, "st");
     }
+
     //todo修改学生登陆
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
         String openId = service.getOpenId(request);
-        // String openId = "-1";//todo 测试用
+        //   String openId = "ox7PvwSFpFAu9eM35EOpRY2L-l98";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";
         }
         List<StudentOpenId> studentOpenIds = service.getListByOpenId(openId);
-        if (studentOpenIds == null) {
+        if (studentOpenIds == null || studentOpenIds.isEmpty()) {
             request.setAttribute("openId", openId);
             return "/wei/login";
         }
         WeiStLoginUtils.setStudentSession(studentOpenIds.get(0));
-        if(studentOpenIds.size()==1){
+        if (studentOpenIds.size() == 1) {
             return "redirect:" + ResourceUtil.basePath(request) + "wei/st/to/index";
-        }else{
-            for (StudentOpenId s:studentOpenIds) {
+        } else {
+            for (StudentOpenId s : studentOpenIds) {
                 s.setStName(this.studentService.get(s.getStId()).getName());
             }
-            request.setAttribute("sps",studentOpenIds);
+            request.setAttribute("sps", studentOpenIds);
             return "/wei/chooseLogin";
         }
     }
+
     @RequestMapping(value = "/to_user", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson toUser(StudentOpenId studentOpenId,HttpServletRequest request){
-        if (studentOpenId.getCpId()==null||studentOpenId.getStId()==null||studentOpenId.getOpenId()==null||studentOpenId.getId()==null)
-            return new AjaxJson(null,false,null);
-        if (WeiStLoginUtils.getStudentSession().getStId().equals(studentOpenId.getStId())){
+    public AjaxJson toUser(StudentOpenId studentOpenId, HttpServletRequest request) {
+        if (studentOpenId.getCpId() == null || studentOpenId.getStId() == null || studentOpenId.getOpenId() == null || studentOpenId.getId() == null)
+            return new AjaxJson(null, false, null);
+        if (!WeiStLoginUtils.getStudentSession().getStId().equals(studentOpenId.getStId())) {
             WeiStLoginUtils.setStudentSession(studentOpenId);
         }
-        return new AjaxJson(null,true,null);
+        return new AjaxJson(null, true, null);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
