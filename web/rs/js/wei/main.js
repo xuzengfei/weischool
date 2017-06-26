@@ -283,24 +283,7 @@ $(function () {
 });
 
 //控制课程表随机颜色块
-function classTableColor(){
-    var color = new Array("#1bb9e0", "#ff7e50", "#50ffb7", "#ff5050");
-    $(".classTime").each(function () {
-        var c = Math.floor(Math.random() * 3);
-        $(this).css("background-color", color[c]);
-        var s = $(this).find(".start").text();
-        var o = $(this).find(".over").text();
-        var ss = parseInt(s.split(":"));
-        var oo = parseInt(o.split(":"));
-        var h = $(this).height();
-        if (oo - ss >= 3) {
-            $(this).css("height", 3 / 2 * h + "px");
-        }
-        if (ss > 12) {
-            $(this).css("top", "60%");
-        }
-    });
-}
+
 
 function loadStPic(basePath) {
     var n = 0;
@@ -317,6 +300,16 @@ function loadStPic(basePath) {
 
     });
 }
+
+$(function(){
+    $(".listContent").find("img").each(function () {
+        $(this).click(function () {
+            var src=$(this).attr("src");
+            $(".modalImg").attr("src",src);
+        })
+    })
+});
+
 (function ($) {
     $.extend({
         myTime: {

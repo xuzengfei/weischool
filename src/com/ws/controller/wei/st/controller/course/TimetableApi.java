@@ -37,7 +37,7 @@ public class TimetableApi {
        String[] weekDays = DateUtils.getWeekDays(week);
        if (weekDays!=null){
            Map<String,Object> result = new HashedMap();
-           result.put("month",DateUtils.formatM.format(new Date()));
+           result.put("month",Integer.parseInt(weekDays[0].split("-")[1]));
            result.put("date",weekDays);
            String start = weekDays[0]+" 00:00:00";
            String end = weekDays[6]+" 23:59:59";

@@ -25,17 +25,17 @@ function listBook() {
                     })
                 }
                 if(isExist==0){
-                    str+='<div class="dateBox"> <img src="'+basePath+'rs/css/wei/images/littlePoint.png"> <p class="date">'+date+'</p> </div>';
+                    str+='<div class="dateBox"> <img src="'+basePath+'rs/css/wei/images/littlePoint.png" > <p class="date">'+date+'</p> </div>';
                 }
                 str+=' <div class="listContent"> <p>'+item.remark+'</p>';
 
                 $.each(item.picPaths,function (i,v) {
-                    str+='<img src="'+basePath+'fileupload/thumb/' + v+'" >';
+                    str+='<img src="'+basePath+'fileupload/thumb/' + v+'" data-toggle="modal" data-target="#myModal"  >';
                 })
                 $("#listLoad").append(str+"</div></div>");
 
             })
-            expePic();//控制图片大小
+
         }
     });
 }

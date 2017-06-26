@@ -12,6 +12,7 @@ public class WeiStLoginUtils {
     public static StudentOpenId getStudentSession() {
         HttpSession session = ResourceUtil.getSession();
         if (session != null) {
+            StudentOpenId s =(StudentOpenId)session.getAttribute("STUDENT");
             return (StudentOpenId)session.getAttribute("STUDENT");
         }
         return null;

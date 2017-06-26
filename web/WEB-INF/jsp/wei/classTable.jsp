@@ -18,65 +18,91 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/iconStyle_other.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/icon_other.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/classTable.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/classPlan.css">
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
 </head>
 <body>
 <div class="container">
-    <div class="tableTop">
-        <div class="mouth"><span></span><br>月</div>
-        <div class="tableDate">
-            <p class="day day0"></p>
-            <p class="weekNum">周一</p>
+    <div class="dataBanner">
+        <div class="month" style="width: 9%;">
+            <p id="monthNum"></p>
+            <p>月</p>
         </div>
-        <div class="tableDate">
-            <p class="day day1"></p>
-            <p class="weekNum">周二</p>
+        <div style="width: 7%"><span class="glyphicon glyphicon-menu-left" id="before"></span></div>
+        <div class="day">
+            <p class="dayNum day0"></p>
+            <p class="week">周一</p>
         </div>
-        <div class="tableDate">
-            <p class="day day2"></p>
-            <p class="weekNum">周三</p>
+        <div class="day">
+            <p class="dayNum day1"></p>
+            <p class="week">周二</p>
         </div>
-        <div class="tableDate">
-            <p class="day day3"></p>
-            <p class="weekNum">周四</p>
+        <div class="day">
+            <p class="dayNum day2"></p>
+            <p class="week">周三</p>
         </div>
-        <div class="tableDate">
-            <p class="day day4"></p>
-            <p class="weekNum">周五</p>
+        <div class="day">
+            <p class="dayNum day3"></p>
+            <p class="week">周四</p>
         </div>
-        <div class="tableDate">
-            <p class="day day5"></p>
-            <p class="weekNum">周六</p>
+        <div class="day">
+            <p class="dayNum day4"></p>
+            <p class="week">周五</p>
         </div>
-        <div class="tableDate">
-            <p class="day day6"></p>
-            <p class="weekNum">周日</p>
+        <div class="day">
+            <p class="dayNum day5"></p>
+            <p class="week">周六</p>
         </div>
+        <div class="day">
+            <p class="dayNum day6"></p>
+            <p class="week">周日</p>
+        </div>
+        <div style="width: 7%"><span class="glyphicon glyphicon-menu-right" id="after"></span></div>
     </div>
-    <div class="tableClass">
-        <div class="classDetail day0_">
+    <div class="plan">
+        <!--月份下面空白-->
+        <div style="width: 9%"></div>
+        <!--向前按钮下面空白-->
+        <div style="width: 7%"></div>
+
+        <!--周一-->
+        <div class="day0_ dayclass">
 
         </div>
-        <div class="classDetail day1_">
+
+        <!--周二-->
+        <div class="day1_ dayclass">
 
         </div>
-        <div class="classDetail day2_">
+
+        <!--周三-->
+        <div class="day2_ dayclass">
 
         </div>
-        <div class="classDetail day3_">
+
+        <!--周四-->
+        <div class="day3_ dayclass">
 
         </div>
-        <div class="classDetail day4_">
+
+        <!--周五-->
+        <div class="day4_ dayclass">
 
         </div>
-        <div class="classDetail day5_">
+
+        <!--周六-->
+        <div class="day5_ dayclass">
 
         </div>
-        <div class="classDetail day6_">
+
+        <!--周日-->
+        <div class="day6_ dayclass">
 
         </div>
+
+        <!--向后按钮下面空白-->
+        <div style="width: 7%;"></div>
     </div>
 </div>
 <div class="header">

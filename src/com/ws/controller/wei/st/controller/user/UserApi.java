@@ -48,8 +48,8 @@ public class UserApi {
     //todo修改学生登陆
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
-        String openId = service.getOpenId(request);
-        //   String openId = "ox7PvwSFpFAu9eM35EOpRY2L-l98";//todo 测试用
+          String openId = service.getOpenId(request);
+        //   String openId = "ox7PvwVS1UfxQqxiO7FjpXgasZaM";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";

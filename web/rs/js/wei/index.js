@@ -58,10 +58,14 @@ $(function () {
 function  listUser() {
     $.getJSON(basePath+"wei/st/st/grade", function(res){
         if(res.success){
+            var restClass =res.obj[0].restClass;
             $("#stName").html(res.obj[0].stName);
-            $("#restClass").html(res.obj[0].restClass);
+            $("#restClass").html(restClass);
             $("#gradeName").html(res.obj[0].gradeName);
             $("#cpName").html(res.obj[0].cpName+"<b class='caret'></b>");
+            if(restClass<20){
+                $("#restClass").css({"font-weight":"bold","color":"red"})
+            }
         }
     });
 }

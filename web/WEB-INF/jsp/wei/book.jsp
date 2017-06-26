@@ -22,12 +22,24 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/demos.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/book.css">
-    <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/rs/lib/jquery/2.4.1/jquery-2.1.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/rs/js/wei/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/jquery-weui.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
 
 </head>
 <body ontouchstart>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="margin-right: 10px;">&times;</span></button>
+            <img src="#" class="modalImg">
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
 <div class="container" id="listLoad">
     <%--<div class="list">
         <div class="dateBox">

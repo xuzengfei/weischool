@@ -44,7 +44,7 @@
 
         <h3 id="menu-pay">微信支付接口</h3>
         <span class="desc">发起一个微信支付请求</span>
-        <button class="btn btn_primary" id="chooseWXPay">chooseWXPay</button>
+        <button class="btn btn_primary" onclick="callpay()">chooseWXPay</button>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
@@ -79,11 +79,52 @@
                          'chooseWXPay'
                      ]
                  });
+
+
+
              }else{
                  alert(rs.msg);
              }
          })
     })
+
+    function onBridgeReady(){
+        $.post("${pageContext.request.contextPath}/wei/st/pay/jssdk/paycfg",{fee:"1"},function (rs) {
+            if(rs.success){
+                var data = rs.obj
+                WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest', {
+                        "appId":data.appId,     //公众号名称，由商户传入
+                        "timeStamp":data.timeStamp,         //时间戳，自1970年以来的秒数
+                        "nonceStr":data.nonceStr, //随机串
+                        "package":data.package,
+                        "signType":data.signType,         //微信签名方式：
+                        "paySign":data.paySign //微信签名
+                    },
+                    function(res){
+                        if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                            alert(1);
+                        }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                    }
+                );
+            }else{
+                alert(rs.msg);
+            }
+        },"json");
+
+    }
+    function callpay() {
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+    }
 </script>
 <script src="${pageContext.request.contextPath}/rs/lib/pay/zepto.min.js"></script>
 <script src="${pageContext.request.contextPath}/rs/lib/pay/demo.js"> </script>

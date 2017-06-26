@@ -1,5 +1,7 @@
 package com.ws.util;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +25,7 @@ public class WeiSign {
                 "&noncestr=" + nonce_str +
                 "&timestamp=" + timestamp +
                 "&url=" + url;
-        System.out.println(string1);
+
 
         try {
             MessageDigest crypt = MessageDigest.getInstance("SHA-1");
@@ -54,5 +56,37 @@ public class WeiSign {
         formatter.close();
         return result;
     }
+    public static String sign(String msg){
+        MessageDigest messageDigest = null;
+        try
+        {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(msg.getBytes("UTF-8"));
+        } catch (NoSuchAlgorithmException e)
+        {
+            System.out.println("NoSuchAlgorithmException caught!");
+            System.exit(-1);
+        } catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
 
+        byte[] byteArray = messageDigest.digest();
+
+        StringBuffer md5StrBuff = new StringBuffer();
+
+        for (int i = 0; i < byteArray.length; i++)
+        {
+            if (Integer.toHexString(0xFF & byteArray[i]).length() == 1)
+                md5StrBuff.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
+            else
+                md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
+        }
+        return md5StrBuff.toString().toUpperCase();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sign("我收到发货到阿富汗的房间都是浪费就对了绝对是士大夫大师傅大师傅第三方第三方的"));
+    }
 }
