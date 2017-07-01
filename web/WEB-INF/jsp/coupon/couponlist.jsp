@@ -26,7 +26,7 @@
 	<t:dgCol title="状态" width="100"  field="isenable" replace="1_已使用,0_未使用"></t:dgCol>
 	<t:dgCol title="操作" field="opt" width="250"></t:dgCol>
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/web/manager/coupon/del/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
-	<t:dgFunOpt funname="openWin('${ pageContext.request.contextPath }/web/manager/coupon/to/edit/{id}','更新',500,450)" title="更新" icon="edit" ></t:dgFunOpt>
+	<t:dgFunOpt exp="isenable#eq#0" funname="openWin('${ pageContext.request.contextPath }/web/manager/coupon/to/edit/{id}','更新',500,450)" title="更新" icon="edit" ></t:dgFunOpt>
 	<t:dgToolBar icon="add" title="添加" btClass="btn-primary" funname="openWinMax('${ pageContext.request.contextPath }/web/manager/coupon/to/add/${stId}','添加代金券')"></t:dgToolBar>
 </t:datagrid>
 </body>

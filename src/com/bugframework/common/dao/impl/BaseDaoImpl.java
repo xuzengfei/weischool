@@ -117,7 +117,9 @@ public abstract class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
      */
     @Override
     public void add(T entity) {
+        if(entity.getCreateTime()==null)
         entity.setCreateTime(System.currentTimeMillis());
+        if (entity.getCreateBy()==null)
         entity.setCreateBy(ResourceUtil.getUserSession().getId());
         getSession().save(entity);
     }

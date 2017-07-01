@@ -44,12 +44,15 @@
 
         <h3 id="menu-pay">微信支付接口</h3>
         <span class="desc">发起一个微信支付请求</span>
-        <button class="btn btn_primary" onclick="callpay()">chooseWXPay</button>
+        <button class="btn btn_primary" id="chooseWXPay">chooseWXPay</button>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/rs/lib/pay/jweixin-1.0.0.js"></script>
+<script src="${pageContext.request.contextPath}/rs/lib/pay/jweixin-1.2.0.js"></script>
+
+
 <script>
+
     /*
      * 注意：
      * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
@@ -62,7 +65,7 @@
      * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
      */
     $(function () {
-         $.getJSON("${pageContext.request.contextPath}/wei/st/pay/jssdk/congfig",function (rs) {
+         $.getJSON("${pageContext.request.contextPath}/wei/st/pay/jssdk/congfig",{url:window.location.href},function (rs) {
               if(rs.success){
                  var data = rs.obj;
                  wx.config({
@@ -79,9 +82,6 @@
                          'chooseWXPay'
                      ]
                  });
-
-
-
              }else{
                  alert(rs.msg);
              }
@@ -91,7 +91,7 @@
     function onBridgeReady(){
         $.post("${pageContext.request.contextPath}/wei/st/pay/jssdk/paycfg",{fee:"1"},function (rs) {
             if(rs.success){
-                var data = rs.obj
+                var data = rs.obj;
                 WeixinJSBridge.invoke(
                     'getBrandWCPayRequest', {
                         "appId":data.appId,     //公众号名称，由商户传入
@@ -113,20 +113,82 @@
         },"json");
 
     }
-    function callpay() {
-        if (typeof WeixinJSBridge == "undefined") {
-            if (document.addEventListener) {
-                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-            } else if (document.attachEvent) {
-                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-            }
-        } else {
-            onBridgeReady();
-        }
-    }
+
+
+    wx.ready(function () {
+        // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+        document.querySelector('#checkJsApi').onclick = function () {
+            wx.checkJsApi({
+                jsApiList: [
+                    'getNetworkType',
+                    'previewImage'
+                ],
+                success: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        };
+
+        // 8 界面操作接口
+        // 8.1 隐藏右上角菜单
+        document.querySelector('#hideOptionMenu').onclick = function () {
+            wx.hideOptionMenu();
+        };
+
+        // 8.2 显示右上角菜单
+        document.querySelector('#showOptionMenu').onclick = function () {
+            wx.showOptionMenu();
+        };
+
+        // 9 微信原生接口
+        // 9.1.1 扫描二维码并返回结果
+        document.querySelector('#scanQRCode0').onclick = function () {
+            wx.scanQRCode();
+        };
+        // 9.1.2 扫描二维码并返回结果
+        document.querySelector('#scanQRCode1').onclick = function () {
+            wx.scanQRCode({
+                needResult: 1,
+                desc: 'scanQRCode desc',
+                success: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            });
+        };
+
+        // 10 微信支付接口
+        // 10.1 发起一个支付请求
+         document.querySelector('#chooseWXPay').onclick = function () {
+         // 注意：此 Demo 使用 2.7 版本支付接口实现，建议使用此接口时参考微信支付相关最新文档。
+             $.post("${pageContext.request.contextPath}/wei/st/pay/jssdk/paycfg",{fee:"1",body:"wewewe"},function (rs) {
+                 if(rs.success) {
+                     var data = rs.obj;
+                     wx.chooseWXPay({
+                         timestamp: data.timeStamp,
+                         nonceStr: data.nonceStr,
+                         package: data.package,
+                         signType:data.signType, // 注意：新版支付接口使用 MD5 加密
+                         paySign: data.paySign,
+                         success: function (res) {
+                             if (res.errMsg == "chooseWXPay:ok") {
+                                 //支付成功
+                                 alert('支付成功');
+                             } else {
+                                 alert(res.errMsg);
+                             }
+                         }
+                     });
+                 }else{
+                     alert(rs.msg);
+                 }
+             },"json");
+
+
+         };
+    })
+
 </script>
-<script src="${pageContext.request.contextPath}/rs/lib/pay/zepto.min.js"></script>
-<script src="${pageContext.request.contextPath}/rs/lib/pay/demo.js"> </script>
+<%--<script src="${pageContext.request.contextPath}/rs/lib/pay/zepto.min.js"></script>--%>
+<%--<script src="${pageContext.request.contextPath}/rs/lib/pay/demo.js"> </script>--%>
 </body>
 </html>

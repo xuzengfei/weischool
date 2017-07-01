@@ -128,6 +128,14 @@ public class StudentGradeServiceImpl implements StudentGradeService {
     }
 
     @Override
+    public StudentGrade find(String gradeId, String stId) {
+        return studentGradeDao
+                .findUniqueResult(
+                        " from StudentGrade r where r.student.id=? and r.grade.id=?  and r.delFlag=?",
+                        stId, gradeId, 0);
+    }
+
+    @Override
     public List<StudentGrade> findOrderRestClass(String cpId, String stId) {
         if (cpId == null || stId == null)
             return null;

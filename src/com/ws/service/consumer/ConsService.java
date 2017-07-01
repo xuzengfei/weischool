@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ConsService {
     /**
-     * 添加
-     *
-     * @param cons 添加的对象值
-     * @return ResultCode
+     * 添加缴费记录[缴费清单]，费用计算：总额-代金券。
+     * 保存缴费记录后，判断是否课时费用，如果是课时费用，要更新学生的最新课时
+     * @param cons  缴费记录对象值
+     * @param coupId 学生代金券ID,ID为空则不需要减去代金券
+     * @return
      */
     ResultCode add(Consumer cons, String coupId);
 

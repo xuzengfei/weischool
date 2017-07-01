@@ -3,8 +3,10 @@ package com.ws.controller.manager.consumer;
 import com.bugframework.common.pojo.AjaxJson;
 import com.bugframework.common.pojo.DataGrid;
 import com.bugframework.common.utility.HqlGenerateUtil;
+import com.bugframework.common.utility.ResourceUtil;
 import com.bugframework.common.utility.ResultCode;
 import com.ws.pojo.consumer.Consumer;
+import com.ws.pojo.coupon.Coupon;
 import com.ws.pojo.student.Student;
 import com.ws.pojo.student.StudentGrade;
 import com.ws.service.consumer.ConsService;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author Xuzengfei
@@ -52,7 +55,7 @@ public class ConsController {
     @RequestMapping(value = "/to/add/{stId}", method = RequestMethod.GET)
     public ModelAndView toadd(@PathVariable String stId) {
         StudentGrade studentGrade =studentGradeService.get(stId);
-        return new ModelAndView("/consumer/consadd").addObject("stId", stId);
+        return new ModelAndView("/consumer/consadd").addObject("stId", stId).addObject("coups",coupService.listByStudent(studentGrade.getStudent().getId()));
     }
 
     @RequestMapping(value = "/to/edit/{id}", method = RequestMethod.GET)
@@ -64,6 +67,8 @@ public class ConsController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson add(Consumer cons,String coupId) {
+        cons.setCreateTime(System.currentTimeMillis());
+        cons.setCreateName(ResourceUtil.getUserSession().getUser().getName());
         ResultCode code = this.service.add(cons,coupId);
         AjaxJson j = new AjaxJson();
         switch (code) {

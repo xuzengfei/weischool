@@ -35,9 +35,9 @@
 			<div class="col-4"> </div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-3">简述：</label>
+			<label class="form-label col-3"><span class="c-red">*</span>简述：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text"  placeholder="输入简述,32字内"  value="${obj.remark }" name="remark"    datatype="*1-32"  >
+				<input type="text" class="input-text"  placeholder="输入简述,32字内"  value="${obj.remark }" name="remark"    datatype="*1-32" nullmsg="简述不能为空"  >
 			</div>
 			<div class="col-4"> </div>
 		</div>

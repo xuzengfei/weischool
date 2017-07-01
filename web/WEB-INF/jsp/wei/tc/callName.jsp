@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/teacher.css?v=123">
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
+     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
     <script type="text/javascript" src="${ pageContext.request.contextPath }/rs/lib/layer/1.9.3/layer.js"></script>
 </head>
 <body>

@@ -6,12 +6,16 @@ import com.bugframework.common.utility.ResourceUtil;
 import com.bugframework.common.utility.WXPayUtil;
 import com.souvc.weixin.util.WeiXinConfig;
 import com.ws.controller.wei.st.common.WeiStLoginUtils;
+import com.ws.pojo.consumer.Consumer;
 import com.ws.pojo.coupon.Coupon;
 import com.ws.pojo.grade.Grade;
 import com.ws.pojo.grade.GradeCostTpl;
+import com.ws.pojo.student.StudentGrade;
+import com.ws.service.consumer.ConsService;
 import com.ws.service.coupon.CoupService;
 import com.ws.service.grade.GradeCostTplService;
 import com.ws.service.grade.GradeService;
+import com.ws.service.student.StudentGradeService;
 import com.ws.service.weixin.WeixinLoginService;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,6 +51,10 @@ public class PayApi {
     private CoupService coupService;
     @Autowired
     private WeixinLoginService weixinLoginService;
+    @Autowired
+    private ConsService consService;
+    @Autowired
+    private StudentGradeService studentGradeService;
 
     @RequestMapping(value = "/grade/{gradeId}/costtpls", method = RequestMethod.GET)
     public ModelAndView toCostTpl(@PathVariable String gradeId) {
@@ -77,6 +86,19 @@ public class PayApi {
         return new ModelAndView("/wei/fee").addObject("gradeId", gradeId).addObject("cosId", cosId);
     }
 
+    //todo 测试
+    @RequestMapping(value = "/grade/free", method = RequestMethod.GET)
+    public ModelAndView tofree1(String gradeId, String cosId) {
+        return new ModelAndView("/wei/fee").addObject("gradeId", gradeId).addObject("cosId", cosId);
+    }
+
+    /**
+     * 获得订单数据
+     *
+     * @param gradeId 班级ID
+     * @param cosId   费用模板ID
+     * @return AjaxJson
+     */
     @RequestMapping(value = "/grade/{gradeId}/costtpl/{cosId}/free/data", method = RequestMethod.GET)
     @ResponseBody
     public AjaxJson free(@PathVariable String gradeId, @PathVariable String cosId) {
@@ -94,12 +116,62 @@ public class PayApi {
         return j;
     }
 
+    /**
+     * 第三步：调用微信支付
+     *
+     * @param cosId  费用模板ID
+     * @param coupId 抵用券ID
+     * @return
+     */
+    @RequestMapping(value = "/cosId/{cosId}", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson beforePay(@PathVariable String cosId, String coupId) {
+        int useRule = 0;
+        if (!"-1".equals(coupId)) {
+            useRule = Integer.parseInt(this.coupService.get(coupId).getUseRule());
+        }
+        GradeCostTpl gradeCostTpl = this.gradeCostTplService.get(cosId);
+        int free = Integer.parseInt(gradeCostTpl.getAmount()) - useRule;
+        free = free < 0 ? 0 : free * 100;
+        return getPayCfg("" + free, "玲珑舞艺-"+gradeCostTpl.getRemark());
+        //return getPayCfg("1", "玲珑舞艺-" + gradeCostTpl.getRemark());
+    }
+
+    /**
+     * 第四步： 微信支付成功后，记录到缴费清单
+     *
+     * @param cosId  费用模板ID
+     * @param coupId 抵用券ID
+     * @return
+     */
+    @RequestMapping(value = "/cosId/{cosId}", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson afterPay(@PathVariable String cosId, String coupId, String gradeId) {
+        System.out.println("cosId="+cosId+";coupId="+coupId+";gradeId="+gradeId);
+        GradeCostTpl gradeCostTpl = this.gradeCostTplService.get(cosId);
+        StudentGrade studentGrade = studentGradeService.find(gradeId, WeiStLoginUtils.getStudentSession().getStId());
+        System.out.println("studentGrade="+studentGrade);
+        Consumer consumer = new Consumer();
+        consumer.setProjectType(1);
+        consumer.setProject(gradeCostTpl.getRemark());
+        consumer.setPayType("微信支付");
+        consumer.setPayTime(System.currentTimeMillis());
+        consumer.setStudent(studentGrade);
+        consumer.setCreateTime(System.currentTimeMillis());
+        consumer.setCreateName("微信支付用户");
+        consumer.setCreateBy(WeiStLoginUtils.getStudentSession().getStId());
+        consumer.setClassNum(gradeCostTpl.getClassNum());
+        consumer.setAmount(gradeCostTpl.getAmount());
+        consService.add(consumer, "-1".equals(coupId) ? null : coupId);
+        return new AjaxJson(null, true, null);
+    }
+
     @RequestMapping(value = "/jssdk/congfig", method = RequestMethod.GET)
     @ResponseBody
-    public AjaxJson getJsSdkConfig() {
+    public AjaxJson getJsSdkConfig(HttpServletRequest request, String url) {
         Map<String, String> result = null;
         try {
-            result = weixinLoginService.getWeiConfig("https://www.linglonged.com/weischool/wei/st/pay/to/jssdk/congfig");
+            result = weixinLoginService.getWeiConfig(url);
             return new AjaxJson(null, true, result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,59 +186,34 @@ public class PayApi {
 
     @RequestMapping(value = "/jssdk/paycfg", method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson getPayCfg(String fee) {
+    public AjaxJson getPayCfg(String fee, String body) {
+        if ("0".equals(fee)) {
+            return new AjaxJson(null, false, 1);
+        }
         String resp = null;
         String ip = ResourceUtil.getIpAddr();
         String appId = WeiXinConfig.getValue("appid");//获得appID
         String notify_url = WeiXinConfig.getValue("notify_url");
         String mch_id = WeiXinConfig.getValue("mch_id");
         String pay_uri = WeiXinConfig.getValue("pay_uri");
-        String openId = "ox7PvwfElwYZUfpiS08RtBRPJd60";
-        //String openId = WeiStLoginUtils.getStudentSession().getOpenId();
+        // String openId = "ox7PvwfElwYZUfpiS08RtBRPJd60";
+        String openId = WeiStLoginUtils.getStudentSession().getOpenId();
         String key = WeiXinConfig.getValue("key");
         Long s = System.currentTimeMillis();
         String nonce_str = IdUtil.uuid();
-     /* String  sign ="appid="+appId+
-                     "&mch_id="+mch_id+
-                     "&sign_type=MD5"+
-                    "&device_info=WEB" +
-                    "&nonce_str="+nonce_str+
-                    "&body=linglonged"+
-                   "&out_trade_no="+s+
-                    "&total_fee=21" +
-                    "&spbill_create_ip="+ip+
-                   "&notify_url="+notify_url+
-                   "&openid="+openId +
-                 "&trade_type=JSAPI" +
-                    "&key="+key;*/
 
         HashMap<String, String> data = new HashMap<>();
         data.put("appid", appId);
         data.put("mch_id", mch_id);
         data.put("device_info", "WEB");
         data.put("nonce_str", nonce_str);
-        data.put("body", "玲珑舞艺课时费用");
+        data.put("body", body);
         data.put("out_trade_no", s.toString());
         data.put("total_fee", fee);
         data.put("spbill_create_ip", ip);
         data.put("notify_url", notify_url);
         data.put("openid", openId);
         data.put("trade_type", "JSAPI");
-        /*
-        String reqBody = "<xml>" +
-                "<appid>"+appId+"</appid>" +
-                "<mch_id>"+mch_id+"</mch_id>" +
-                "<sign_type>MD5</sign_type>" +
-                "<device_info>WEB</device_info>" +
-                "<nonce_str>"+nonce_str+"</nonce_str>" +
-                "<body>linglonged</body>" +
-                 "<out_trade_no>"+s+"</out_trade_no>" +
-                "<total_fee>21</total_fee>" +
-               "<spbill_create_ip>"+ip+"</spbill_create_ip>"+
-                 "<notify_url>"+notify_url+"</notify_url>" +
-                "<openid>"+openId+"</openid>" +
-                "<trade_type>JSAPI</trade_type>" +
-                "<sign>"+ WeiSign.sign(sign)+"</sign></xml>";*/
 
         try {
             String reqBody = WXPayUtil.generateSignedXml(data, key);
@@ -204,7 +251,7 @@ public class PayApi {
             }
             if (datamap.get("return_code").equals("SUCCESS")) {
                 Map<String, String> result = new HashedMap();
-                result.put("appid", appId);
+                result.put("appId", appId);
                 result.put("timeStamp", s.toString());
                 result.put("nonceStr", nonce_str);
                 result.put("package", "prepay_id=" + datamap.get("prepay_id"));
@@ -218,6 +265,7 @@ public class PayApi {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new AjaxJson(null, false, "服务器异常");
+        return new AjaxJson("服务器异常", false, -1);
     }
+
 }

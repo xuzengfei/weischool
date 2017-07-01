@@ -33,7 +33,7 @@ public class Consumer extends IdEntity {
      * 缴费方式说明
      */
     private String payType;
-    /**
+    /**d
      * 缴费时间
      */
     private Long payTime;
@@ -209,5 +209,20 @@ public class Consumer extends IdEntity {
 	public void setPayTime(Long payTime) {
 		this.payTime = payTime;
 	}
-    
+
+    @Override
+    public String toString() {
+        return "Consumer{" +
+                "projectType=" + projectType +
+                ", project='" + project + '\'' +
+                ", amount='" + amount + '\'' +
+                ", payType='" + payType + '\'' +
+                ", payTime=" + payTime +
+                ", remark='" + remark + '\'' +
+                ", createName='" + createName + '\'' +
+                ", student=" + student +
+                ", classNum=" + classNum +
+                ", stId='" + stId + '\'' +
+                '}';
+    }
 }

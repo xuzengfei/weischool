@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/rs/css/wei/css/fee.css">
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/rs/lib/layer_mobile/layer.js"></script>
+    <script src="${pageContext.request.contextPath}/rs/lib/pay/jweixin-1.2.0.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
 </head>
 <body>
@@ -37,16 +39,13 @@
             <p class="feeItem">选择优惠券</p>
             <select  onchange="chooseConpus(this)">
                 <option value="-1">--代金券选择--</option>
-                <!--<option>100元现金券</option>-->
-                <!--<option>8折优惠券</option>-->
-                <!--<option>5折优惠券</option>-->
             </select>
         </div>
         <div class="trueFee">
             <p class="feeItem">实付款</p>
             <p class="trueFee_p">￥0元</p>
         </div>
-        <button type="submit">确认</button>
+        <button type="button" id="chooseWXPay">确认</button>
     </form>
 </div>
 <div class="header">

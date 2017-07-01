@@ -78,6 +78,24 @@ public class StudentGrade extends IdEntity {
         this.grade = grade;
     }
 
+    @Override
+    public String toString() {
+        return "StudentGrade{" +
+                "adviser='" + adviser + '\'' +
+                ", major='" + major + '\'' +
+                ", remark='" + remark + '\'' +
+                ", signTime=" + signTime +
+                ", restClass=" + restClass +
+                ", campus=" + campus +
+                ", grade=" + grade +
+                ", student=" + student +
+                ", cpId='" + cpId + '\'' +
+                ", gradeId='" + gradeId + '\'' +
+                ", studentNo='" + studentNo + '\'' +
+                ", studentName='" + studentName + '\'' +
+                '}';
+    }
+
     public StudentGrade id(String id){
         this.setId(id);
         return this;

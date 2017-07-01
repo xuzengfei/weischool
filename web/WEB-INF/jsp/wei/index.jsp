@@ -19,7 +19,7 @@
     <script src="${pageContext.request.contextPath}/rs/js/wei/fastclick.js"></script>
     <script src="${pageContext.request.contextPath}/rs/lib/jquery/1.9.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/rs/js/wei/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
+     <script src="${pageContext.request.contextPath}/rs/js/wei/main.js"></script>
 </head>
 <body>
 <div class="container">
@@ -107,6 +107,12 @@
 </body>
 <script type="text/javascript">
     var basePath ="${pageContext.request.contextPath}/";
+
+    $(function () {
+        $(".last_class").click(function () {
+            window.location.href=basePath+"wei/st/pay/to/jssdk/congfig";
+        })
+    })
 </script>
 <script src="${pageContext.request.contextPath}/rs/js/wei/index.js"></script>
 

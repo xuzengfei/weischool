@@ -56,6 +56,14 @@ public interface StudentGradeService {
     List<StudentGrade> find(StudentGrade sg);
 
     /**
+     *
+     * @param gradeId
+     * @param stId
+     * @return
+     */
+    StudentGrade find(String gradeId,String stId);
+
+    /**
      * 按照剩余课时升序排序获得班级学生的列表
      *
      * @param cpId 校区ID

@@ -16,5 +16,5 @@ function listcosttpl() {
     });
 }
 function goto(id) {
-    window.location.href = basePath + "wei/st/pay/grade/" + gradeId + "/costtpl/" + id+"/free";
+    window.location.href = basePath + "wei/st/pay/grade/free?gradeId="+gradeId+"&cosId="+id;
 }

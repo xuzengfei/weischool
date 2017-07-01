@@ -31,7 +31,7 @@
 	<t:dgCol title="操作人员" field="createName"></t:dgCol>
 	<t:dgCol title="创建时间" field="createName" formatter="yyyy-MM-dd HH:mm"  ></t:dgCol>
 	<t:dgCol title="操作" field="opt" width="200"></t:dgCol>
-	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/web/manager/expe/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
+	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/web/manager/cons/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
 <%--	<t:dgFunOpt funname="openWin('${ pageContext.request.contextPath }/web/manager/expe/to/edit/{id}','更新',500,450)" title="更新" icon="edit" ></t:dgFunOpt>--%>
 	<t:dgToolBar icon="add" title="缴费" btClass="btn-primary" funname="openWin('${ pageContext.request.contextPath }/web/manager/cons/to/add/${stId}','缴费',700,550)"></t:dgToolBar>
 </t:datagrid>
