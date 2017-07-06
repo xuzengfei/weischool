@@ -44,7 +44,7 @@
 					<td><input class="btn radius btn-secondary" type="button" onclick="parent.openWinMax('${ pageContext.request.contextPath }/web/manager/expe?stId=${obj.student.id}')"  value="成长经历"></td>
 				</tr>
 				<tr>
-					<td><input class="btn radius btn-secondary" onclick="parent.openWinMax('${ pageContext.request.contextPath }/web/manager/cons?cpId=${cpId}&stId=${obj.student.id}&name=${obj.student.name}&idNo=${obj.student.idNo}')" type="button" value="费用缴纳"></td>
+					<td><input class="btn radius btn-secondary" onclick="parent.openWinMax('${ pageContext.request.contextPath }/web/manager/cons?cpId=${cpId}&stId=${obj.id}&name=${obj.student.name}&idNo=${obj.student.idNo}')" type="button" value="费用缴纳"></td>
 				</tr>
 			</table>
 		</td>

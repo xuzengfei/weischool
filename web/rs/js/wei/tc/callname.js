@@ -34,7 +34,7 @@ function loadStudent(){
                                    var dataR =  res.obj;
                                    $.each(dataR,function (n,it) {
 
-                                         $("#"+it.stId ).attr("grId",it.id)
+                                         $("#"+it.stId ).attr("grId",it.id);
                                        if(it.status==1){
                                            $("#"+it.stId ).children().children(".onTimeBtn").trigger("click1");
                                        }else if(it.status==2){
@@ -98,6 +98,7 @@ function sign(obj,status) {
 
         $.post(basePath+"wei/tc/grade/reg/gradetime/"+gtId+"/studentgrade/"+$(item).attr("sgId")+"/status/"+status ,function(res){
             if(res.success){
+                $(item).attr("grId",res.obj);
                 $(obj).trigger("click1");
             }else{
                 layer.msg('点名失败！', {shift: 6});
