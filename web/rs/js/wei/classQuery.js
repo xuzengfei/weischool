@@ -104,6 +104,9 @@ function loadTopData() {
             var data =res.obj;
             $(".classTop h3").html(data.gradeName+"上课签到");
             $(".classTop h2").html(data.restClass);
+            if(data.restClass>99){
+                $(".classTop h2").css("font-size","27px");
+            }
         }
     })
 }
