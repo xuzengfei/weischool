@@ -52,6 +52,12 @@ public class GradeRegServiceImpl implements GradeRegService {
     }/*
     */
 
+    @Override
+    public void rollBack(String id, String sgId) {
+        this.dao.delete(id);
+        studentGradeService.updateRestClass(sgId, "+");
+    }
+
     /**
      * 2.1原来状态是准或旷变成旷或准，则不需要处理；2.2原来状态是准或旷变成请，则剩余课时+1；2.3原来状态是请变成准或旷，则剩余课时-1；2.4原来状态是请变成请，则不需要处理
      *

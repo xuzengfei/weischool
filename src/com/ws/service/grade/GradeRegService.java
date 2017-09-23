@@ -39,6 +39,14 @@ public interface GradeRegService {
      * @return
      */
     ResultCode edit(String id, short status);
+
+    /**
+     * 回滚原来状态，课时也要还原
+     *
+     * @param id   主键
+     * @param sgId 班级学员表ID
+     */
+    void rollBack(String id, String sgId);
     /**
      * 更新操作
      * <p>添加的时候一定要将该学生班级课程的数量进行处理。处理如下：</p>

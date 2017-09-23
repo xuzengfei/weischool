@@ -176,7 +176,7 @@ public class IndexApi {
         StudentGrade studentGrade = this.studentGradeService.get(sgId);
         Teacher teacher = this.teacherService.get(WeiTcLoginUtils.getTeacherSession().getTcId());
         GradeReg gradeReg = new GradeReg(null, studentGrade.getGradeId(), studentGrade.getGrade().getName(), teacher.getId(), teacher.getName(), studentGrade.getStudent().getId(), studentGrade.getStudentName(), System.currentTimeMillis(), status, gtId);
-        gradeRegService.add(gradeReg,sgId);
+        gradeRegService.add(gradeReg, sgId);
         return new AjaxJson(null, true, gradeReg.getId());
     }
 
@@ -190,9 +190,21 @@ public class IndexApi {
     @RequestMapping(value = "/grade/reg/{id}/status/{status}", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson editSign(@PathVariable String id, @PathVariable Short status) {
-        if(id==null)
-            return new AjaxJson("更新失败",false,null);
         gradeRegService.edit(id, status);
+        return new AjaxJson(null, true, null);
+    }
+
+    /**
+     * 回滚原来状态，课时也要还原
+     *
+     * @param id   主键
+     * @param sgId 班级学员表ID
+     * @return
+     */
+    @RequestMapping(value = "/grade/reg/{id}/studentgrade/{sgId}", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson rollback(@PathVariable String id, @PathVariable String sgId) {
+        gradeRegService.rollBack(id, sgId);
         return new AjaxJson(null, true, null);
     }
 }

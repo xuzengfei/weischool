@@ -11,11 +11,10 @@ function list() {
         if (res.success) {
             $(".dayclass").children().remove();
             var result = res.attributes;
-            console.log(result.month);
             $("#monthNum").html(cnMonth(parseInt(result.month)));
              $.each(result.date,function (i,item) {
                  $(".day"+i).html(item.split("-")[2]);
-                 $(".day"+i+"_").attr("name","day_"+item.split("-")[2]);
+                 $(".day"+i+"_").attr("name","day_"+parseInt(item.split("-")[2]));
              })
             $.each(result.data,function (i,item) {
                 var start = $.myTime.UnixToDate(item.start, "hh:mm");

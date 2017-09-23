@@ -22,6 +22,7 @@
 	<t:dgCol title="学号" icon="maincolor" funname="openWinMax('${ pageContext.request.contextPath }/web/manager/student/grade/to/view/${cpId}/{id}')" field="student.no"  query="true"></t:dgCol>
 	<t:dgCol title="姓名"  field="student.name"  query="true"></t:dgCol>
 	<t:dgCol title="所属专业"  field="major"  query="true"></t:dgCol>
+	<t:dgCol title="课程顾问"  field="adviser" ></t:dgCol>
 	<t:dgCol title="性别"  field="student.sex"></t:dgCol>
 	<t:dgCol title="联系人"  field="student.contacts"></t:dgCol>
 	<t:dgCol title="联系方式"  field="student.contactsTel"></t:dgCol>

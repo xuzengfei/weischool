@@ -15,13 +15,13 @@ function loadStudent(){
                     }
                     html+='    <div class="callNameBox">';
                     html+='    <p class="stuName">'+item.stName+'</p>';
-                    html+='    <button class="onTimeBtn">准</button>';
+                    html+='    <button class="onTimeBtn" isclick="false">准</button>';
                     html+='    <p class="statueCall">&nbsp;</p>';
-                    html+='   <button class="askForLeave">请</button>';
+                    html+='   <button class="askForLeave" isclick="false">请</button>';
                     html+='   <p class="statueCall">&nbsp;</p>';
-                    html+='    <button class="skipClass">旷</button>';
+                    html+='    <button class="skipClass" isclick="false">旷</button>';
                     html+='    <p class="statueCall" >&nbsp;</p>';
-                    html+='    <button class="forLate">迟</button>';
+                    html+='    <button class="forLate" isclick="false">迟</button>';
                   /*  html+='    <p class="statueCall" >&nbsp;</p>';*/
                     html+='    </div>';
                     html+='    </div>';
@@ -58,24 +58,32 @@ $(function () {
     $(".callNameList").on("click1",".onTimeBtn",function () {
         $(this).parent().find("button").css("background-color", "#f2f2f2");
         $(this).parent().find("button").css("color", "#000000");
+        $(this).parent().find("button").attr("isclick", "false");
+        $(this).parent().find(".onTimeBtn").attr("isclick", "true");
         $(this).parent().find(".onTimeBtn").css("background-color", "#1bb9e0");
         $(this).parent().find(".onTimeBtn").css("color", "#ffffff");
         return false;
     }).on("click1",".askForLeave",function () {
         $(this).parent().find("button").css("background-color", "#f2f2f2");
         $(this).parent().find("button").css("color", "#000000");
+        $(this).parent().find("button").attr("isclick", "false");
+        $(this).parent().find(".askForLeave").attr("isclick", "true");
         $(this).parent().find(".askForLeave").css("background-color", "#64d8ae");
         $(this).parent().find(".askForLeave").css("color", "#ffffff");
         return false;
     }).on("click1",".skipClass",function () {
         $(this).parent().find("button").css("background-color", "#f2f2f2");
         $(this).parent().find("button").css("color", "#000000");
+        $(this).parent().find("button").attr("isclick", "false");
+        $(this).parent().find(".skipClass").attr("isclick", "true");
         $(this).parent().find(".skipClass").css("background-color", "#f26d3e");
         $(this).parent().find(".skipClass").css("color", "#ffffff");
         return false;
     }).on("click1",".forLate",function () {
         $(this).parent().find("button").css("background-color", "#f2f2f2");
         $(this).parent().find("button").css("color", "#000000");
+        $(this).parent().find("button").attr("isclick", "false");
+        $(this).parent().find(".forLate").attr("isclick", "true");
         $(this).parent().find(".forLate").css("background-color", "#f26d3e");
         $(this).parent().find(".forLate").css("color", "#ffffff");
         return false;
@@ -94,24 +102,38 @@ $(function () {
 function sign(obj,status) {
     var item =$(obj).parent().parent(".list-group-item");
     var grId =$(item).attr("grId");
-    if(grId==""||typeof (grId)=="undefined"){
-
-        $.post(basePath+"wei/tc/grade/reg/gradetime/"+gtId+"/studentgrade/"+$(item).attr("sgId")+"/status/"+status ,function(res){
+    if($(obj).attr("isclick")=="true"){//回滚
+        $.post(basePath+"wei/tc/grade/reg/"+grId+"/studentgrade/"+$(item).attr("sgId"),function(res){
             if(res.success){
-                $(item).attr("grId",res.obj);
-                $(obj).trigger("click1");
+                $(obj).attr("isclick","false");
+                $(item).attr("grId","");
+                $(obj).css("background-color", "#f2f2f2");
+                $(obj).css("color", "#000000");
             }else{
-                layer.msg('点名失败！', {shift: 6});
+                layer.msg('回滚失败！', {shift: 6});
             }
         }, "json");
     }else{
-        $.post(basePath+"wei/tc/grade/reg/"+grId+"/status/"+status ,{sgId:$(item).attr("sgId")},function(res){
-            if(res.success){
-                $(obj).trigger("click1");
-            }else{
-                layer.msg('点名失败！', {shift: 6});
-            }
-        }, "json");
+        if(grId==""||typeof (grId)=="undefined"){
+
+            $.post(basePath+"wei/tc/grade/reg/gradetime/"+gtId+"/studentgrade/"+$(item).attr("sgId")+"/status/"+status ,function(res){
+                if(res.success){
+                    $(item).attr("grId",res.obj);
+                    $(obj).trigger("click1");
+                }else{
+                    layer.msg('点名失败！', {shift: 6});
+                }
+            }, "json");
+        }else{
+            $.post(basePath+"wei/tc/grade/reg/"+grId+"/status/"+status ,{sgId:$(item).attr("sgId")},function(res){
+                if(res.success){
+                    $(obj).trigger("click1");
+                }else{
+                    layer.msg('点名失败！', {shift: 6});
+                }
+            }, "json");
+        }
+
     }
 
 

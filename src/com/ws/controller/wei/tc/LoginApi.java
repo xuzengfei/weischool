@@ -45,7 +45,7 @@ public class LoginApi {
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String authorization(HttpServletRequest request) {
         String openId = weixinLoginService.getOpenId(request);
-        //   String openId = "-1";//todo 测试用
+        //  String openId = "ox7PvwSFpFAu9eM35EOpRY2L-l98";//todo 测试用
         if (openId == null) {
             request.setAttribute("errorMsg", "微信请求失败！");
             return "/wei/error";
