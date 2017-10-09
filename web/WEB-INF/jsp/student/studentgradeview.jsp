@@ -78,7 +78,7 @@
 	<tr>
 
 		<th class="text-r">报名时间：</th>
-		<td>${obj.signTime}</td>
+		<td><t:date value="${obj.signTime}"   pattern="yyyy-MM-dd"/></td>
 		<th class="text-r">剩余课时：</th>
 		<td>${obj.restClass}</td>
 	</tr>

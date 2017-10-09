@@ -138,7 +138,7 @@ public class StudentGrade extends IdEntity {
     /**
      * 获取{@link StudentGrade#remark}
      */
-    @Column(name = "remark", length = 100)
+    @Column(name = "remark", length = 200)
     public String getRemark() {
         return remark;
     }

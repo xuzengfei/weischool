@@ -83,8 +83,8 @@
 		<div class="row cl">
 			<label class="form-label col-3">描述：</label>
 			<div class="formControls col-5">
-				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="说点什么...50个字符以内"  datatype="*0-50" errormsg="请输入少于50个字符以内的描述" dragonfly="true" onKeyUp="textarealength(this,50)">${obj.remark }</textarea>
-				<p class="textarea-numberbar"><em class="textarea-length">0</em>/50</p>
+				<textarea name="remark" cols="" rows="" class="textarea"  placeholder="说点什么...200个字符以内"  datatype="*0-200" errormsg="请输入少于200个字符以内的描述" dragonfly="true" onKeyUp="textarealength(this,200)">${obj.remark }</textarea>
+				<p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
 			</div>
 			<div class="col-4"> </div>
 		</div>
