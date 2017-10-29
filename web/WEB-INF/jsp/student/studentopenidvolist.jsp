@@ -20,8 +20,8 @@
 
 <t:datagrid name="student" actionUrl="${ pageContext.request.contextPath }/web/manager/studentopenidvo/datagrid" queryMode="group"  >
 	<t:dgCol title="ID"   field="id"  hidden="true"></t:dgCol>
-	<t:dgCol title="学号"  field="student.name"  query="true"></t:dgCol>
-	<t:dgCol title="姓名"  field="student.no"  query="true"></t:dgCol>
+	<t:dgCol title="学号"  field="student.no"  query="true"></t:dgCol>
+	<t:dgCol title="姓名"  field="student.name"  query="true"></t:dgCol>
 	<t:dgCol title="绑定时间"  width="150"  field="ct" formatter="yyyy-MM-dd HH:mm" query="true"></t:dgCol>
 	<t:dgCol title="操作" field="opt" width="200"></t:dgCol>
 	<t:dgFunOpt funname="openWinMax('${ pageContext.request.contextPath }/web/manager/studentopenidvo/{id}','新增绑定')" title="新增绑定" icon="add" ></t:dgFunOpt>
