@@ -5,7 +5,9 @@ import com.ws.pojo.grade.GradeTime;
 
 import java.util.List;
 
-
+/**
+ * 班次服务层
+ */
 public interface GradeTimeService {
 	 /**
      * 添加操作
@@ -21,5 +23,11 @@ public interface GradeTimeService {
 
 	ResultCode del(String id);
 
+    /**
+     * 获取班级时间信息
+     * @param id 主键
+     * @return
+     */
+	GradeTime get(String id);
 
 }

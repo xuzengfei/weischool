@@ -76,4 +76,15 @@ public interface GradeRegService {
      * @return
      */
     List<GradeReg> find(String gtId);
+
+    /**
+     * 批量点名
+     * @param stIdArray 多个学生ID
+     * @param stNameArray 多个学生名称
+     * @param gradeId 班级ID
+     * @param gtId 班次ID
+     * @param signTime 点名时间
+     * @param status  状态：1-准 2-请 3-旷 4-迟
+     */
+    void bathAdd(String[] stIdArray, String[] stNameArray, String gradeId, String gtId, Long signTime,Short  status);
 }

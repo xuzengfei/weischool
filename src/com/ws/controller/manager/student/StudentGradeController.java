@@ -82,6 +82,24 @@ public class StudentGradeController {
     }
 
     /**
+     * 获得列表数据
+     *
+     * @param request
+     * @param studentGrade
+     * @param datagrid
+     * @return
+     */
+    @RequestMapping(value = "/datagrid/grade/{graId}", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxJson datagrid2(HttpServletRequest request, StudentGrade studentGrade, DataGrid<StudentGrade> datagrid, @PathVariable String graId) {
+        Grade grade = new Grade();
+        grade.setId(graId);
+        studentGrade.setGrade(grade);
+        studentGradeService.datagrid(studentGrade, datagrid, request);
+        return HqlGenerateUtil.datagrid(datagrid);
+    }
+
+    /**
      * 进入详情
      *
      * @return /auth/roleadd界面

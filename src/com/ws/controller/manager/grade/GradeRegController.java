@@ -3,8 +3,14 @@ package com.ws.controller.manager.grade;
 import com.bugframework.common.pojo.AjaxJson;
 import com.bugframework.common.pojo.DataGrid;
 import com.bugframework.common.utility.HqlGenerateUtil;
+import com.ws.pojo.grade.Grade;
 import com.ws.pojo.grade.GradeReg;
+import com.ws.pojo.grade.GradeTime;
+import com.ws.pojo.student.StudentGrade;
 import com.ws.service.grade.GradeRegService;
+import com.ws.service.grade.GradeService;
+import com.ws.service.grade.GradeTimeService;
+import com.ws.service.student.StudentGradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +33,8 @@ import java.util.List;
 public class GradeRegController {
     @Autowired
     private GradeRegService gradeRegService;
+    @Autowired
+    private GradeTimeService gradeTimeService;
 
     /**
      * 跳转到班次学生签到信息界面
@@ -77,4 +85,23 @@ public class GradeRegController {
         gradeRegService.edit(id, status);
         return new AjaxJson("更新成功", true, null);
     }
+
+    @RequestMapping(value = "/gtId/{gtId}/to/sign",method = RequestMethod.GET)
+    public ModelAndView toSign(@PathVariable String gtId){
+        GradeTime gradeTime = this.gradeTimeService.get(gtId);
+        return new ModelAndView("/grade/courseregadd", "gtId", gtId).addObject("gradeId",gradeTime.getGradId()).addObject("signTime",gradeTime.getStart());
+    }
+    @RequestMapping(value = "/sign",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson sign(String gradeId,String stId,String stName,Short status,String gtId,Long signTime){
+
+        String[] stIdArray =stId.split(",");
+        String[] stNameArray =stName.split(",");
+        gradeRegService.bathAdd(stIdArray,stNameArray,gradeId,gtId,signTime,status);
+
+        AjaxJson j =new AjaxJson();
+        j.setSuccess(true);
+        return  j;
+    }
+
 }

@@ -83,7 +83,7 @@ public class HqlGenerateUtil {
                     }
                 } else if (isforeKeyAnnotation) {
                     value = PropertyUtils.getSimpleProperty(searchObj, name);
-                    if (value == null) {
+                    if (value == null||"".equals(value)) {
                         continue;
                     }
                     Annotation foreKeyAnnotation = getMethod.getAnnotation(ForeKey.class);

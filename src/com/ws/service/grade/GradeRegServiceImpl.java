@@ -2,8 +2,10 @@ package com.ws.service.grade;
 
 import com.bugframework.common.pojo.DataGrid;
 import com.bugframework.common.utility.ResultCode;
+import com.ws.pojo.grade.Grade;
 import com.ws.pojo.grade.GradeReg;
 import com.ws.pojo.grade.GradeRegEm;
+import com.ws.pojo.student.StudentGrade;
 import com.ws.service.grade.dao.GradeRegDao;
 import com.ws.service.student.StudentGradeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,15 @@ public class GradeRegServiceImpl implements GradeRegService {
     private GradeRegDao dao;
     @Autowired
     private StudentGradeService studentGradeService;
+    @Autowired
+    private GradeService gradeService;
 
     @Override
     public void add(GradeReg gradeReg, String sgId) {
-        studentGradeService.updateRestClass(sgId, "-");
-        this.dao.add(gradeReg);
+        if(!isExist(gradeReg.getGtId(),  gradeReg.getStId())) {
+            studentGradeService.updateRestClass(sgId, "-");
+            this.dao.add(gradeReg);
+        }
     }
 
     /* @Override
@@ -91,9 +97,19 @@ public class GradeRegServiceImpl implements GradeRegService {
         return this.dao.find("from GradeReg g where g.gtId =? ", gtId);
     }
 
+    @Override
+    public void bathAdd(String[] stIdArray, String[] stNameArray, String gradeId, String gtId, Long signTime,Short status) {
+        Grade grade = gradeService.get(gradeId);
+        for (int i = 0;i<stIdArray.length;i++){
+            StudentGrade studentGrade =  studentGradeService.find(gradeId,stIdArray[i]);
+            GradeReg gradeReg = new GradeReg(null,  gradeId, grade.getName(), grade.getTeacher(), grade.getTcName(), stIdArray[i],stNameArray[i], signTime, status, gtId);
+            add(gradeReg, studentGrade.getId());
+        }
+    }
+
     private boolean isExist(String gtId, String stId) {
         List<GradeReg> list = this.dao.find("from GradeReg g where gtId=? and stId=?", gtId, stId);
-        return list == null || list.isEmpty() ? true : false;
+        return list == null || list.isEmpty() ? false : true;
     }
 
 }

@@ -222,7 +222,7 @@ public class DataGridTag  extends TagSupport{
 		sb.append("<thead>");
 		sb.append("<tr class=\"text-c\">");
 		if(this.checkbox) 
-			sb.append("<th width=\"25\"><input type=\"checkbox\" id=\""+this.name+"_checkall\" name=\"\" value=\"\"></th>");
+			sb.append("<th width=\"25\"><input type=\"checkbox\" id=\""+this.name+"_checkall\" onclick=\"" +this.name + "_checkall()\" name=\"\" value=\"\"></th>");
 		for(DataGridColumn column:this.datacDataGridColumns){
 			if(column.getField().equals("opt"))
 				sb.append("<th width="+column.getWidth()+">操作</th>");
@@ -271,14 +271,20 @@ public class DataGridTag  extends TagSupport{
 				sb.append("}");
 		sb.append("});");
 		
-		sb.append("$(function(){");
+		/*sb.append("$(function(){");
 		sb.append("	$(\"#"+this.name+"_checkall\").click(function() { ");
 		sb.append("var flag = $(this).attr(\"checked\"); ");
 		sb.append("$(\"input[name="+this.name+"_checkbox]:checkbox\").each(function() {");
 		sb.append("if(flag==undefined){ $(this).removeAttr(\"checked\");}else{$(this).attr(\"checked\", flag);} ");
 		sb.append("}) ");
 		sb.append("}) ");
-		sb.append("});");
+		sb.append("});");*/
+		sb.append("function "+this.name+"_checkall(){");
+		sb.append("var flag =$(\"#"+this.name+"_checkall\").prop(\"checked\");");
+		sb.append("$(\"input[name="+this.name+"_checkbox]:checkbox\").each(function() {");
+		sb.append("if(flag==false){ $(this).prop(\"checked\",false);}else{$(this).prop(\"checked\", true);} ");
+		sb.append("}) ");
+		sb.append("};");
 		
 		
 		sb.append("function roadDataGrid(){");
@@ -302,9 +308,9 @@ public class DataGridTag  extends TagSupport{
 			}
 			sb.append("var field ;");
 			sb.append("var ishide ;");
-			sb.append("var html='';");
+
 			sb.append("$.each(items,function(i,value){");
-			
+				sb.append("var html='';");
 				sb.append("flag=1;");
 				sb.append("html+='<tr class=\"text-c\" >';");
 				if(this.checkbox){
@@ -378,12 +384,15 @@ public class DataGridTag  extends TagSupport{
 				}
 				
 		       sb.append("html+='</tr>';");
+		       sb.append("$('#"+this.name+" tbody').append(html);");
 		       if(DataUtils.isStrNotEmpty(this.onLoadSuccess)){
-		       sb.append(this.onLoadSuccess);
+				   sb.append("if(++i==items.length) {");
+				   sb.append(this.onLoadSuccess);
+				   sb.append("}");
 		       }
 			sb.append("});");
-		
-			sb.append("$('#"+this.name+" tbody').append(html);");
+
+
 			sb.append(" if(flag==0){");
 			if(this.checkbox){//如果是拥有选择列的话，这里要加一
 				this.colspan++;

@@ -147,10 +147,10 @@ public class PayApi {
     @RequestMapping(value = "/cosId/{cosId}", method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson afterPay(@PathVariable String cosId, String coupId, String gradeId) {
-        System.out.println("cosId="+cosId+";coupId="+coupId+";gradeId="+gradeId);
+
         GradeCostTpl gradeCostTpl = this.gradeCostTplService.get(cosId);
         StudentGrade studentGrade = studentGradeService.find(gradeId, WeiStLoginUtils.getStudentSession().getStId());
-        System.out.println("studentGrade="+studentGrade);
+
         Consumer consumer = new Consumer();
         consumer.setProjectType(1);
         consumer.setProject(gradeCostTpl.getRemark());

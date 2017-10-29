@@ -20,7 +20,7 @@
     <tr><th  class="text-r">班级名称：</th><td>${graName }</td><th  class="text-r">任课教师：</th><td>${teacher }</td></tr>
   </tbody>
 </table>
-<t:datagrid name="student" actionUrl="${ pageContext.request.contextPath }/web/manager/student/grade/datagrid/${cpId}/${graId }" queryMode="group">
+<t:datagrid name="student" actionUrl="${ pageContext.request.contextPath }/web/manager/student/grade/datagrid/${cpId}/${graId }" queryMode="group"  >
 	<t:dgCol title="ID"   field="id"  hidden="true"></t:dgCol>
 	<t:dgCol title="学生基本ID"   hidden="true"  field="student.id"></t:dgCol>
 	<t:dgCol title="学号" icon="maincolor" funname="openWinMax('${ pageContext.request.contextPath }/web/manager/student/grade/to/view/${cpId}/{id}')" field="student.no"  query="true"></t:dgCol>

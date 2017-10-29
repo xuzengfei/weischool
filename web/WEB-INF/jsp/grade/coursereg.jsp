@@ -14,19 +14,33 @@
 	<title>学生上课签到</title>
 </head>
 <body>
-<t:datagrid name="grade" actionUrl="${ pageContext.request.contextPath }/web/manager/gradereg/gtId/${gtId}" queryMode="group">
+<t:datagrid name="grade" actionUrl="${ pageContext.request.contextPath }/web/manager/gradereg/gtId/${gtId}" queryMode="group" pagination="false" >
 	<t:dgCol title="ID"   field="id"  hidden="true"></t:dgCol>
+	<t:dgCol title="stid"   field="stId"  hidden="true"></t:dgCol>
 	<t:dgCol title="课程名称"  width="200"    field="gradeName" ></t:dgCol>
 	<t:dgCol title="任课老师"  width="200"   field="tcName"  ></t:dgCol>
 	<t:dgCol title="学生名称"  width="200"   field="stName"  align="left" query="true"></t:dgCol>
 	<t:dgCol title="创建时间"  width="100"  field="ct" formatter="yyyy-MM-dd HH:mm" ></t:dgCol>
 	<t:dgCol title="上课状态" width="100"  field="status"   query="true" replace="1_准时,2_请假,3_旷课,4_迟到"></t:dgCol>
 	<t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+<%--
 	<t:dgConfirmOpt url="${ pageContext.request.contextPath }/web/manager/grade/{id}" message="是否删除" title="删除"  post="DELETE" icon="del" ></t:dgConfirmOpt>
+--%>
 	<t:dgFunOpt funname="upd('{id}',{status},this)" title="更新状态" icon="edit" ></t:dgFunOpt>
+	<t:dgToolBar icon="add" title="点名" funname="openWinMax('${ pageContext.request.contextPath }/web/manager/gradereg/gtId/${gtId}/to/sign')"  btClass="btn-primary"></t:dgToolBar>
 </t:datagrid>
 </body>
 <script type="text/javascript">
+
+	function getIds(){
+	    var idArray =[];
+	   $(".table").find(".text-c").each(function(i){
+	        if(i>0){
+                idArray[i-1]=$(this).children().eq(1).html();
+			}
+	   })
+		return idArray;
+	}
 /* function toStudent(url){
 	window.location.href=url;
 } */
